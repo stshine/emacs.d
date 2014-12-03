@@ -131,8 +131,8 @@
 (global-set-key (kbd "M-p") 'pager-row-up)
 (global-set-key (kbd "M-n") 'pager-row-down)
 
-(global-set-key (kbd "C-c SPC") 'ace-jump-mode)
-;;(global-set-key (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+(global-set-key (kbd "C-c j") 'ace-jump-mode)
+(global-set-key (kbd "C-c J") 'ace-jump-mode-pop-mark)
 
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c c") 'org-capture)
