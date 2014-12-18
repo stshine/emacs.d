@@ -1,3 +1,6 @@
+;;; emacs-func.el --- Some useful functions and commands collected.
+
+;;; Code:
 (defun range (start end step)
   (cond
    ((> start end) '())
@@ -50,3 +53,5 @@ The effect is that the cursor stays in the same position on the screen."
   "comment or uncomment current line"
   (interactive)
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+
+;;; emacs-func.el ends here

@@ -24,7 +24,7 @@
 (global-company-mode)
 (projectile-global-mode 1)
 (show-paren-mode 1)
-(semantic-mode 1)
+;; (semantic-mode 1)
 (electric-pair-mode 1)
 (auto-image-file-mode)
 
@@ -37,6 +37,25 @@
 (setq mouse-yank-at-point t)
 ;; (setq backup-directory-alist
 (setq frame-title-format "%b - emacs")
+
+(setq-default indent-tabs-mode nil) ;; don't use tabs to indent
+(setq-default tab-width 8) ;; but maintain correct appearance
+;; Newline at end of file
+(setq require-final-newline t)
+;; delete the selection with a keypress
+(delete-selection-mode t)
+
+;; store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+`((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+`((".*" ,temporary-file-directory t)))
+
+;; revert buffers automatically when underlying files are changed externally
+(global-auto-revert-mode t)
+
+;; smart tab behavior - indent or complete
+(setq tab-always-indent 'complete)
 
 (setq display-time-format "%m-%e %T")
 (setq display-time-interval 1)
@@ -59,6 +78,15 @@
 (require 'cmuscheme)
 (require 'geiser)
 ;;(setq geiser-active-implementations '(guile))
+
+(require 'recentf)
+(setq recentf-save-file "~/.emacs.d/.recentf"
+      recentf-max-saved-items 500
+      recentf-max-menu-items 15
+      ;; disable recentf-cleanup on Emacs start, because it can cause
+      ;; problems with remote files
+      recentf-auto-cleanup 'never)
+(recentf-mode 1)
 
 (require 'undo-tree)
 (require 'guide-key)
@@ -106,7 +134,7 @@
 (helm-projectile-on)
 
 ;;; semantic config
-(semantic-add-system-include "/usr/include/" 'c-mode)
+;; (semantic-add-system-include "/usr/include/" 'c-mode)
 
 ;;guide-key mode
 (setq guide-key/guide-key-sequence '("C-c p" "C-c h"))
@@ -118,6 +146,8 @@
 ;;(setq guide-key-tip/enabled t)
 
 ;;(require 'pager)
+
+(setq org-agenda-files '("~/org/"))
 
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
@@ -133,7 +163,7 @@
 (global-set-key (kbd "C-c J") 'ace-jump-mode-pop-mark)
 
 (global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c c") 'org-capture)
+;; (global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 
@@ -143,6 +173,10 @@
 (add-to-list 'auto-mode-alist '("\\.php$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
+;;; -----------------------Python mode----------------------
+(setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+(add-hook 'elpy-mode-hook 'flycheck-mode)
+(elpy-enable)
 
 ;;; ------------------------Org Mode--------------------------
 (defun guide-key/my-hook-function-for-org-mode ()
