@@ -34,17 +34,20 @@
 (setq column-number-mode t)
 (setq visible-bell t)
 (setq inhibit-startup-message t)
+(setq initial-scratch-message "")
 (setq mouse-yank-at-point t)
+(setq kill-whole-line t)
 ;; (setq backup-directory-alist
-(setq frame-title-format "%b - emacs")
 
+(setq kill-ring-max 500)
+(setq default-major-mode 'text-mode)
 (setq-default indent-tabs-mode nil) ;; don't use tabs to indent
-(setq-default tab-width 8) ;; but maintain correct appearance
+(setq-default tab-width 4) ;; but maintain correct appearance
 ;; Newline at end of file
 (setq require-final-newline t)
 ;; delete the selection with a keypress
 (delete-selection-mode t)
-
+(setq frame-title-format "%b - emacs")
 ;; store all backup and autosave files in the tmp dir
 (setq backup-directory-alist
 `((".*" . ,temporary-file-directory)))
@@ -163,7 +166,7 @@
 (global-set-key (kbd "C-c J") 'ace-jump-mode-pop-mark)
 
 (global-set-key (kbd "C-c l") 'org-store-link)
-;; (global-set-key (kbd "C-c c") 'org-capture)
+(global-set-key (kbd "C-c c") 'org-capture)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 
@@ -173,10 +176,14 @@
 (add-to-list 'auto-mode-alist '("\\.php$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
-;;; -----------------------Python mode----------------------
+;;; ----------------------- Python ----------------------
+(elpy-enable)
 (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
 (add-hook 'elpy-mode-hook 'flycheck-mode)
-(elpy-enable)
+(setq flycheck-flake8-maximum-line-length 120)
+(elpy-use-ipython)
+(setq python-shell-interpreter "ipython3")
+
 
 ;;; ------------------------Org Mode--------------------------
 (defun guide-key/my-hook-function-for-org-mode ()
