@@ -327,11 +327,22 @@
         (left . 200)
         (top . 0)))
 
-(set-frame-font "Consolas-10")
+
+;; -------------------- Chinese Setup -------------------------------
+(require 'chinese-pyim)
+(setq pyim-dicts
+      '((:name "default-dict" :file "~/Documents/pyim-bigdict.pyim" :coding utf-8-unix)))
+
+(setq default-input-method 'chinese-pyim)
+
+
+(set-frame-font "-adobe-Source Code Pro-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1")
+;;(set-frame-font "Consolas-10")
 
 (dolist (charset '(kana han symbol cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font)
-		    charset "方正黑体_GBK"))
+                    ;; charset "方正黑体_GBK"
+                    charset "Noto Sans CJK SC"))
 
 (set-fontset-font (frame-parameter nil 'font)
 		  'mathematical "STIX")
