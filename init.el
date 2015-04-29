@@ -229,6 +229,14 @@
 ;; utf-8 always and forever
 (setq erc-server-coding-system '(utf-8 . utf-8))
 
+
+;;; ----------------------- Eshell Mode ----------------------
+;; use helm to list eshell history
+(add-hook 'eshell-mode-hook
+          #'(lambda ()
+              (substitute-key-definition 'eshell-list-history 'helm-eshell-history eshell-mode-map)
+              (substitute-key-definition 'eshell-pcomplete 'helm-esh-pcomplete eshell-mode-map)))
+
 ;;; ----------------------- Python ----------------------
 (elpy-enable)
 (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
