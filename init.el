@@ -369,10 +369,12 @@
 ;; ------------------------ Elisp  --------------------------
 (add-hook 'emacs-lisp-mode-hook
 	  (lambda ()
-	    (paredit-mode )))
+	    (paredit-mode 1)
+        (paren-face-mode 1)))
+
 
 ;; ------------------------ Scheme --------------------------
-(setq scheme-program-name "guile")
+(setq scheme-program-name "racket")
 
 
 (defvar *binding-constructs*
