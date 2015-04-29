@@ -107,6 +107,8 @@
 
 (require 'undo-tree)
 (require 'guide-key)
+(require 'flycheck)
+(pdf-tools-install)
 
 (require 'paren-face)
 (set-face-foreground 'parenthesis "LightGray")
@@ -119,6 +121,10 @@
 (require 'helm-grep)
 
 (company-auctex-init)
+
+(ace-link-setup-default)
+
+(popwin-mode t)
 
 ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
 ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
