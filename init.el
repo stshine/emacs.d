@@ -185,12 +185,29 @@
 (setq python-shell-interpreter "ipython3")
 
 
+
 ;;; ------------------------Org Mode--------------------------
-(defun guide-key/my-hook-function-for-org-mode ()
-  (guide-key/add-local-guide-key-sequence "C-c")
-  (guide-key/add-local-guide-key-sequence "C-c C-x")
-  (guide-key/add-local-highlight-command-regexp "org-"))
-(add-hook 'org-mode-hook 'guide-key/my-hook-function-for-org-mode)
+(define-key org-mode-map (kbd "C-c [") nil)
+(define-key org-mode-map (kbd "C-c ]") nil)
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")))
+(setq org-use-fast-todo-selection t)
+(setq org-todo-state-tags-triggers
+      (quote (
+              ;;("CANCELLED" ("CANCELLED" . t))
+              ;;("WAITING" ("WAITING" . t))
+              ;;("HOLD" ("WAITING") ("HOLD" . t))
+              ;;(done ("WAITING") ("HOLD"))
+              ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
+              ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
+              ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
+(setq org-clock-in-switch-to-state 'bh/clock-in-to-next)
+
+(add-hook 'org-mode-hook
+          (lambda ()
+            (guide-key/add-local-guide-key-sequence "C-c")
+            (guide-key/add-local-guide-key-sequence "C-c C-x")
+            (guide-key/add-local-highlight-command-regexp "org-")))
 
 
 ;; ------------------------ Elisp  --------------------------
