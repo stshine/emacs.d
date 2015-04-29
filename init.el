@@ -204,6 +204,38 @@
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 
+;;; --------------------- Mail Settings -------------------
+(setq mu4e-maildir "~/Mail/qqmail"
+      mu4e-sent-folder   "/Sent Messages"
+      mu4e-drafts-folder "/Drafts"
+      mu4e-trash-folder  "/Deleted Messages")
+
+(setq mu4e-get-mail-command "mbsync")
+
+;; don't keep message buffers around
+(setq message-kill-buffer-on-exit t)
+
+;; use 'fancy' non-ascii characters in various places in mu4e
+(setq mu4e-use-fancy-chars t)
+
+;; save attachment to my desktop (this can also be a function)
+(setq mu4e-attachment-dir "~/Downloads/")
+
+;; attempt to show images when viewing messages
+(setq mu4e-view-show-images t)
+
+;;; -------------------- Gnus Settings --------------------
+(setq gnus-select-method '(nntp "news.gmane.org"))
+(setq gnus-asynchronous t)
+
+
+;; sending mail
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-stream-type 'starttls
+      smtpmail-smtp-server "smtp.qq.com"      
+      smtpmail-smtp-service 587)
+
+
 ;;; ----------------------- Erc Mode ----------------------
 ;; Interpret mIRC-style color commands in IRC chats
 (setq erc-interpret-mirc-color t)
