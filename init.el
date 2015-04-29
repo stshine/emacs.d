@@ -191,6 +191,38 @@
 (add-to-list 'auto-mode-alist '("\\.php$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
+
+;;; ----------------------- Erc Mode ----------------------
+;; Interpret mIRC-style color commands in IRC chats
+(setq erc-interpret-mirc-color t)
+;; The following are commented out by default, but users of other
+;; non-Emacs IRC clients might find them useful.
+;; Kill buffers for channels after /part
+(setq erc-kill-buffer-on-part t)
+;; Kill buffers for private queries after quitting the server
+(setq erc-kill-queries-on-quit t)
+;; Kill buffers for server messages after quitting the server
+(setq erc-kill-server-buffer-on-quit t)
+;; open query buffers in the current window
+(setq erc-query-display 'buffer)
+;; exclude boring stuff from tracking
+(erc-track-mode t)
+(setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
+"324" "329" "332" "333" "353" "477"))
+
+(setq erc-save-buffer-on-part t)
+;; FIXME - this advice is wrong and is causing problems on Emacs exit
+;; (defadvice save-buffers-kill-emacs (before save-logs (arg) activate)
+;; (save-some-buffers t (lambda () (when (eq major-mode 'erc-mode) t))))
+;; truncate long irc buffers
+(erc-truncate-mode +1)
+;; autoaway setup
+(setq erc-auto-discard-away t)
+(setq erc-autoaway-idle-seconds 600)
+(setq erc-autoaway-use-emacs-idle t)
+;; utf-8 always and forever
+(setq erc-server-coding-system '(utf-8 . utf-8))
+
 ;;; ----------------------- Python ----------------------
 (elpy-enable)
 (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
