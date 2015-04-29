@@ -246,6 +246,16 @@
 (setq python-shell-interpreter "ipython3")
 
 
+;;; ------------------------ Go --------------------------
+(require 'go-mode)
+(require 'company-go)
+(add-hook 'go-mode-hook
+          (lambda ()
+            (set (make-local-variable 'company-backends) '(company-go))
+            (go-eldoc-setup)
+            (subword-mode t)
+            (flycheck-mode 1)))
+
 
 ;;; ------------------------Org Mode--------------------------
 (define-key org-mode-map (kbd "C-c [") nil)
