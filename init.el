@@ -108,8 +108,9 @@
 (require 'undo-tree)
 (require 'guide-key)
 
-;;(require 'parenface)
-;;(set-face-foreground 'paren-face "DimGray")
+(require 'paren-face)
+(set-face-foreground 'parenthesis "LightGray")
+(global-paren-face-mode)
 
 (require 'helm)
 (require 'helm-config)
