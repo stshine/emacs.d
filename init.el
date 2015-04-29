@@ -427,5 +427,7 @@
 		  'symbol "STIX")
 
 (require 'moe-theme)
-(load-theme 'monokai)
+(load-theme 'solarized-light)
+
+(sml/setup)
 
