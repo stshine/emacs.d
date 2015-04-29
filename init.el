@@ -237,6 +237,44 @@
               (substitute-key-definition 'eshell-list-history 'helm-eshell-history eshell-mode-map)
               (substitute-key-definition 'eshell-pcomplete 'helm-esh-pcomplete eshell-mode-map)))
 
+
+;;; ----------------------- Web Mode ----------------------
+;; JSX highlight
+(defadvice web-mode-highlight-part (around tweak-jsx activate)
+  (if (equal web-mode-content-type "jsx")
+      (let ((web-mode-enable-part-face nil))
+        ad-do-it)
+    ad-do-it))
+
+;; JSX flycheck
+(flycheck-define-checker jsxhint-checker
+  "A JSX syntax and style checker based on JSXHint."
+
+  :command ("jsxhint" source)
+  :error-patterns
+  ((error line-start (1+ nonl) ": line " line ", col " column ", " (message) line-end))
+  :modes (web-mode))
+
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (equal web-mode-content-type "jsx")
+              ;; enable flycheck
+              (flycheck-select-checker 'jsxhint-checker))
+            (emmet-mode 1)
+            (flycheck-mode 1)
+            (guide-key/add-local-guide-key-sequence "C-c")))
+
+
+;;; ----------------------- JavaScript ----------------------
+(setq js2-include-node-externs t)
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (js2-imenu-extras-mode 1)
+            ;; (flycheck-mode 1)
+            (tern-mode t)
+            (add-to-list 'company-backends 'company-tern)))
+
+
 ;;; ----------------------- Python ----------------------
 (elpy-enable)
 (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
