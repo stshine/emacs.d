@@ -16,14 +16,14 @@
 (load-file "~/.emacs.d/emacs-func.el")
 
 
-;;(menu-bar-mode 0)
+;; (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
+;; (display-battery-mode 1)
 (blink-cursor-mode 0)
 (global-linum-mode)
 (global-undo-tree-mode)
 
-(global-company-mode)
 (projectile-global-mode 1)
 (show-paren-mode 1)
 ;; (semantic-mode 1)
@@ -39,6 +39,7 @@
 (setq initial-scratch-message "")
 (setq mouse-yank-at-point t)
 (setq kill-whole-line t)
+(setq magit-last-seen-setup-instructions "1.4.0")
 ;; (setq backup-directory-alist
 
 (setq kill-ring-max 500)
@@ -46,6 +47,7 @@
 (setq-default indent-tabs-mode nil) ;; don't use tabs to indent
 (setq-default tab-width 4) ;; but maintain correct appearance
 ;; Newline at end of file
+(setq save-interprogram-paste-before-kill t)
 (setq require-final-newline t)
 ;; delete the selection with a keypress
 (delete-selection-mode t)
@@ -93,7 +95,7 @@
 
 
 (require 'cmuscheme)
-(require 'geiser)
+;;(require 'geiser)
 ;;(setq geiser-active-implementations '(guile))
 
 (require 'recentf)
@@ -354,6 +356,7 @@
             (c-set-style "symfony2") ;; bug workaround
             ))
 
+
 ;;; ------------------------Org Mode--------------------------
 (define-key org-mode-map (kbd "C-c [") nil)
 (define-key org-mode-map (kbd "C-c ]") nil)
@@ -407,13 +410,12 @@
 (add-hook 'scheme-mode-hook
 	  (lambda ()
 	    (paredit-mode 1)
-	    
 	    ;; set proper indentation for non-standard binding constructs
 	    (mapc (lambda (x) (put x 'scheme-indent-function 1)) *binding-constructs*)))
 
 (setq default-frame-alist
-      '((width . 100)
-        (height . 41)
+      '((width . 115)
+        (height . 42)
         (left . 200)
         (top . 0)))
 
