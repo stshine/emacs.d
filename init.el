@@ -1,11 +1,13 @@
 (setq custom-file "~/.emacs.d/emacs-custom.el")
 
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-;;                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")))
+(setq package-archives '(("melpa" . "http://melpa.org/packages/")
+                         ;; ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")))
 
 (setq package-enable-at-startup nil)
 (package-initialize)
+
+(prefer-coding-system 'utf-8)
 
 (setenv "PATH" (concat (getenv "PATH") ":~/Apps/bin"))
 (push "~/Apps/bin" exec-path)
