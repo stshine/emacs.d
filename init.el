@@ -136,6 +136,9 @@
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
 (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
 
+(define-key helm-command-map (kbd "o") 'helm-swoop)
+(define-key helm-command-map (kbd "g") 'helm-do-ag)
+
 ;; (define-key helm-grep-mode-map (kbd "<return>")  'helm-grep-mode-jump-other-window)
 ;; (define-key helm-grep-mode-map (kbd "n")  'helm-grep-mode-jump-other-window-forward)
 ;; (define-key helm-grep-mode-map (kbd "p")  'helm-grep-mode-jump-other-window-backward)
@@ -167,7 +170,7 @@
 ;; (semantic-add-system-include "/usr/include/" 'c-mode)
 
 ;;guide-key mode
-(setq guide-key/guide-key-sequence '("C-c p" "C-c h"))
+(setq guide-key/guide-key-sequence '("C-c p" "C-c h" "C-x r"))
 (setq guide-key/recursive-key-sequence-flag t)
 (setq guide-key/popup-window-position 'bottom)
 (guide-key-mode 1)
@@ -181,10 +184,12 @@
 
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x b") 'helm-buffers-list)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x C-b") 'helm-buffer-list)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
-(global-set-key (kbd "M-/") 'hippie-expand)
+(define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
+;; (global-set-key (kbd "M-/") 'hippie-expand)
 
 (global-set-key (kbd "M-p") 'pager-row-up)
 (global-set-key (kbd "M-n") 'pager-row-down)
@@ -197,16 +202,17 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 
-;; ------------------- language modes -------------------
+(global-set-key (kbd "C-=") 'er/expand-region)
 
 ;; ------------------- Mouse key bindings ---------------
 (global-set-key (kbd "<mouse-3>") 'mouse-major-mode-menu)
 (global-set-key (kbd "<S-down-mouse-1>") 'mouse-save-then-kill)
 (global-set-key (kbd "<C-down-mouse-3>") 'mouse-appearance-menu)
 
+;; ------------------- Language modes -------------------
 (add-to-list 'auto-mode-alist '("\\.rkt$" . scheme-mode))
 (add-to-list 'auto-mode-alist '("\\.html$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.php$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.blade\\.php$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
 
