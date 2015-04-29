@@ -257,6 +257,15 @@
             (flycheck-mode 1)))
 
 
+;;; ------------------------ PHP --------------------------
+(setq php-mode-coding-style 'symfony2)
+(add-hook 'php-mode-hook
+          (lambda ()
+            (flycheck-mode 1)
+            (php-enable-symfony2-coding-style)
+            (c-set-style "symfony2") ;; bug workaround
+            ))
+
 ;;; ------------------------Org Mode--------------------------
 (define-key org-mode-map (kbd "C-c [") nil)
 (define-key org-mode-map (kbd "C-c ]") nil)
