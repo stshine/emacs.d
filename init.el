@@ -186,6 +186,12 @@
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 
 ;; ------------------- language modes -------------------
+
+;; ------------------- Mouse key bindings ---------------
+(global-set-key (kbd "<mouse-3>") 'mouse-major-mode-menu)
+(global-set-key (kbd "<S-down-mouse-1>") 'mouse-save-then-kill)
+(global-set-key (kbd "<C-down-mouse-3>") 'mouse-appearance-menu)
+
 (add-to-list 'auto-mode-alist '("\\.rkt$" . scheme-mode))
 (add-to-list 'auto-mode-alist '("\\.html$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.php$" . web-mode))
