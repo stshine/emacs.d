@@ -172,7 +172,7 @@
 ;; (semantic-add-system-include "/usr/include/" 'c-mode)
 
 ;;guide-key mode
-(setq guide-key/guide-key-sequence '("C-c p" "C-c h" "C-x r"))
+(setq guide-key/guide-key-sequence '("C-c" "C-x r"))
 (setq guide-key/recursive-key-sequence-flag t)
 (setq guide-key/popup-window-position 'bottom)
 (guide-key-mode 1)
@@ -313,8 +313,7 @@
               ;; enable flycheck
               (flycheck-select-checker 'jsxhint-checker))
             (emmet-mode 1)
-            (flycheck-mode 1)
-            (guide-key/add-local-guide-key-sequence "C-c")))
+            (flycheck-mode 1)))
 
 
 ;;; ----------------------- JavaScript ----------------------
@@ -376,8 +375,6 @@
 
 (add-hook 'org-mode-hook
           (lambda ()
-            (guide-key/add-local-guide-key-sequence "C-c")
-            (guide-key/add-local-guide-key-sequence "C-c C-x")
             (guide-key/add-local-highlight-command-regexp "org-")))
 
 
