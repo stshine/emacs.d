@@ -27,6 +27,12 @@
 		   pager-page-down pager-page-up)
 "Commands which when called without any other intervening command should keep the `pager-temporary-goal-column'.")
 
+(defun remove-dos-eol ()
+  "Do not show ^M in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []))
+
 ;; ----------------------------------------------------------------------
 (defun pager-row-up ()
   "Move point to previous line while scrolling screen down one line.
