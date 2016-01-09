@@ -13,8 +13,10 @@
 (setq-default buffer-file-coding-system 'utf-8-unix)
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
-(setenv "PATH" (concat (getenv "PATH") ":~/Apps/bin"))
+(setenv "PATH" (concat (getenv "PATH") ":~/Apps/bin:~/.local/bin:~/node_modules/.bin"))
 (push "~/Apps/bin" exec-path)
+(push "~/.local/bin" exec-path)
+(push "~/node_modules/.bin" exec-path)
 
 (load-file "~/.emacs.d/emacs-custom.el")
 (load-file "~/.emacs.d/emacs-func.el")
