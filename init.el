@@ -1,4 +1,5 @@
 (setq custom-file "~/.emacs.d/emacs-custom.el")
+(setq gc-cons-threshold 100000000)
 
 (setq package-archives '(("melpa" . "http://melpa.org/packages/")
                          ;; ("marmalade" . "http://marmalade-repo.org/packages/")
