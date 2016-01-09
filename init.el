@@ -2,9 +2,7 @@
 (setq gc-cons-threshold 100000000)
 
 (setq package-archives '(("melpa" . "http://melpa.org/packages/")
-                         ;; ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")))
-
 (setq package-enable-at-startup nil)
 (package-initialize)
 
