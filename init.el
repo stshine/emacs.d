@@ -123,9 +123,13 @@
 (require 'flycheck)
 (pdf-tools-install)
 
-(require 'paren-face)
-(set-face-foreground 'parenthesis "LightGray")
-(global-paren-face-mode)
+
+(use-package paren-face
+  :config
+  (progn
+    (set-face-foreground 'parenthesis "DimGray")
+    (global-paren-face-mode)))
+
 
 (require 'helm)
 (require 'helm-config)
