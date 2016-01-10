@@ -5,6 +5,7 @@
                          ("gnu" . "http://elpa.gnu.org/packages/")))
 (setq package-enable-at-startup nil)
 (package-initialize)
+(require 'use-package)
 
 (prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)
