@@ -416,6 +416,12 @@
 	    ;; set proper indentation for non-standard binding constructs
 	    (mapc (lambda (x) (put x 'scheme-indent-function 1)) *binding-constructs*)))
 
+;; ------------------------ Racket --------------------------
+(add-hook 'racket-mode-hook
+          (lambda ()
+            ;; (paredit-mode 1)
+            ))
+
 
 
 ;; ------------------------ Clojure --------------------------
