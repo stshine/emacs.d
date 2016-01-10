@@ -177,15 +177,7 @@
 ;;; semantic config
 ;; (semantic-add-system-include "/usr/include/" 'c-mode)
 
-;;guide-key mode
-(setq guide-key/guide-key-sequence '("C-c" "C-x r"))
-(setq guide-key/recursive-key-sequence-flag t)
-(setq guide-key/popup-window-position 'bottom)
-(guide-key-mode 1)
-
-;;(require 'guide-key-tip)
-;;(setq guide-key-tip/enabled t)
-
+(which-key-mode 1)
 ;;(require 'pager)
 
 (setq org-agenda-files '("~/org/"))
