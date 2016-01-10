@@ -105,14 +105,18 @@
 ;;(require 'geiser)
 ;;(setq geiser-active-implementations '(guile))
 
-(require 'recentf)
-(setq recentf-save-file "~/.emacs.d/.recentf"
-      recentf-max-saved-items 500
-      recentf-max-menu-items 15
-      ;; disable recentf-cleanup on Emacs start, because it can cause
-      ;; problems with remote files
-      recentf-auto-cleanup 'never)
-(recentf-mode 1)
+
+(use-package recentf
+  :config
+  (progn
+    (setq recentf-save-file "~/.emacs.d/.recentf")
+    (setq recentf-max-saved-items 5000)
+    (setq recentf-max-menu-items 15)
+    ;; disable recentf-cleanup on Emacs start, because it can cause
+    ;; problems with remote files
+    (setq recentf-auto-cleanup 'never)
+    (recentf-mode 1)))
+
 
 (require 'undo-tree)
 (require 'guide-key)
