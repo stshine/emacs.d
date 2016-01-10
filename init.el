@@ -185,17 +185,25 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "C-x C-b") 'helm-buffer-list)
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 (define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
 ;; (global-set-key (kbd "M-/") 'hippie-expand)
 
+
+
+(setq projectile-switch-project-action 'neotree-projectile-action)
+(setq neo-theme 'arrow)
+(global-set-key [f9] 'neotree-toggle)
+
+
 (global-set-key (kbd "M-p") 'pager-row-up)
 (global-set-key (kbd "M-n") 'pager-row-down)
 
-(global-set-key (kbd "C-c j") 'ace-jump-mode)
-(global-set-key (kbd "C-c J") 'ace-jump-mode-pop-mark)
+
+(global-set-key (kbd "C-c j") 'avy-goto-char-timer)
+(global-set-key (kbd "C-c J") 'avy-pop-mark)
 
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c c") 'org-capture)
