@@ -374,6 +374,7 @@
 
 
 ;;; ------------------------ PHP --------------------------
+;; (require 'php-extras)
 (setq php-mode-coding-style 'symfony2)
 (add-hook 'php-mode-hook
           (lambda ()
