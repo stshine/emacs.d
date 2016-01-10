@@ -124,7 +124,6 @@
 
 
 (require 'undo-tree)
-(require 'guide-key)
 (require 'flycheck)
 (pdf-tools-install)
 
