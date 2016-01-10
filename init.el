@@ -48,7 +48,6 @@
 (setq initial-scratch-message "")
 (setq mouse-yank-at-point t)
 (setq kill-whole-line t)
-(setq magit-last-seen-setup-instructions "1.4.0")
 ;; (setq backup-directory-alist
 
 (setq kill-ring-max 500)
