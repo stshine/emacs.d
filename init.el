@@ -385,11 +385,13 @@
 
 
 ;;; ------------------------Org Mode--------------------------
+(require 'org)
 (define-key org-mode-map (kbd "C-c [") nil)
 (define-key org-mode-map (kbd "C-c ]") nil)
 (setq org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")))
 (setq org-use-fast-todo-selection t)
+(setq org-src-fontify-natively t)
 (setq org-todo-state-tags-triggers
       (quote (
               ;;("CANCELLED" ("CANCELLED" . t))
