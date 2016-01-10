@@ -431,13 +431,22 @@
 (setq default-input-method 'chinese-pyim)
 
 
-(set-frame-font "-adobe-Source Code Pro-normal-normal-normal-*-13-*-*-*-m-0-iso10646-1")
-;;(set-frame-font "Consolas-10")
+(setq default-frame-alist
+      '((width . 103)
+        (height . 39)
+        (left . 200)
+        (top . 0)))
+
+(set-frame-font "-adobe-Source Code Pro-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1")
+;; (set-frame-font "-microsoft-Consolas-normal-normal-normal-*-17-*-*-*-m-0-iso10646-1")
+;; (set-frame-font "Consolas-14")
+;; (set-frame-font "Source Code Pro-12")
 
 (dolist (charset '(kana han symbol cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font)
-                    ;; charset "方正黑体_GBK"
-                    charset "Noto Sans CJK SC"))
+                    charset "方正黑体_GBK"
+                    ;; charset "Noto Sans CJK SC"
+                    ))
 
 (set-fontset-font (frame-parameter nil 'font)
 		  'mathematical "STIX")
