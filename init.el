@@ -19,26 +19,28 @@
 (push "~/.local/bin" exec-path)
 (push "~/node_modules/.bin" exec-path)
 
+(add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (load-file "~/.emacs.d/emacs-custom.el")
 (load-file "~/.emacs.d/emacs-func.el")
 
+(require 'show-parens)
+;; (show-parens-mode 1)
 
-;; (menu-bar-mode 0)
+(menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 ;; (display-battery-mode 1)
 (blink-cursor-mode 0)
-(global-linum-mode)
+;; (global-linum-mode)
 (global-undo-tree-mode)
 
 (projectile-global-mode 1)
-(show-paren-mode 1)
 ;; (semantic-mode 1)
-(electric-pair-mode 1)
+(electric-pair-mode -1)
 (auto-image-file-mode)
 
 (setq user-full-name "Pu Xingyu")
-(setq user-mail-address "pu.stshine@email.com")
+(setq user-mail-address "pu.stshine@gmail.com")
 
 (setq column-number-mode t)
 (setq visible-bell t)
