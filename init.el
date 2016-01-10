@@ -269,6 +269,9 @@
       smtpmail-smtp-server "smtp.qq.com"      
       smtpmail-smtp-service 587)
 
+;;; --------------------- EWW Browser ---------------------
+(setq shr-use-fonts nil)
+
 
 ;;; ----------------------- Erc Mode ----------------------
 ;; Interpret mIRC-style color commands in IRC chats
