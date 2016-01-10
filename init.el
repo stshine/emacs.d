@@ -357,6 +357,22 @@
             (flycheck-mode 1)))
 
 
+;;; ------------------------ Rust --------------------------
+(setq racer-rust-src-path "/home/stshine/Programs/rust/src/")
+(setq racer-cmd "/home/stshine/Programs/racer/target/release/racer")
+;; (setq company-racer-executable "/home/stshine/Programs/racer/target/release/racer")
+;; (unless (getenv "RUST_SRC_PATH")
+  ;; (setenv "RUST_SRC_PATH" "/home/stshine/Programs/rust/src/"))
+(add-hook 'rust-mode-hook
+          (lambda ()
+            (racer-mode 1)
+            (eldoc-mode 1)))
+           ;; (set (make-local-variable 'company-backends) '(company-racer))
+            ;; (add-to-list 'company-backends 'company-racer)))
+;; (add-to-list 'load-path "/home/stshine/Programs/racer/editors")
+
+
+
 ;;; ------------------------ PHP --------------------------
 (setq php-mode-coding-style 'symfony2)
 (add-hook 'php-mode-hook
