@@ -416,11 +416,6 @@
 	    ;; set proper indentation for non-standard binding constructs
 	    (mapc (lambda (x) (put x 'scheme-indent-function 1)) *binding-constructs*)))
 
-(setq default-frame-alist
-      '((width . 115)
-        (height . 42)
-        (left . 200)
-        (top . 0)))
 
 
 ;; -------------------- Chinese Setup -------------------------------
