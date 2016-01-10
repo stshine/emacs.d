@@ -418,6 +418,12 @@
 
 
 
+;; ------------------------ Clojure --------------------------
+(require 'cider)
+(add-hook 'cider-mode-hook #'eldoc-mode)
+
+
+
 ;; -------------------- Chinese Setup -------------------------------
 (require 'chinese-pyim)
 (setq pyim-dicts
