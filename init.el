@@ -52,7 +52,7 @@
 ;; (setq backup-directory-alist
 
 (setq kill-ring-max 500)
-(setq default-major-mode 'text-mode)
+(setq-default major-mode 'text-mode)
 (setq-default indent-tabs-mode nil) ;; don't use tabs to indent
 (setq-default tab-width 4) ;; but maintain correct appearance
 ;; Newline at end of file
