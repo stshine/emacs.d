@@ -73,7 +73,7 @@
 ;; smart tab behavior - indent or complete
 (setq tab-always-indent 'complete)
 
-(setq display-time-format "%m-%e %T")
+(setq display-time-format "%T")
 (setq display-time-interval 1)
 (display-time)
 
