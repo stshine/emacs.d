@@ -153,4 +153,12 @@ Switch projects and subprojects from NEXT back to TODO"
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 
+
+;; Defining a function like this makes it possible to type 'clear' in eshell and have it work
+(defun eshell/clear ()
+  (interactive)
+  (let ((inhibit-read-only t))
+    (erase-buffer))
+  (eshell-send-input))
+
 ;;; emacs-func.el ends here

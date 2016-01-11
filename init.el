@@ -395,11 +395,28 @@
 
 
 ;;; ----------------------- Eshell Mode ----------------------
-;; use helm to list eshell history
-(add-hook 'eshell-mode-hook
-          #'(lambda ()
-              (substitute-key-definition 'eshell-list-history 'helm-eshell-history eshell-mode-map)
-              (substitute-key-definition 'eshell-pcomplete 'helm-esh-pcomplete eshell-mode-map)))
+(use-package eshell
+  :defer t
+  :init
+  (progn
+    (setq ;; auto truncate after 20k lines
+          eshell-buffer-maximum-lines 20000
+          ;; history size
+          eshell-history-size 500
+          ;; no duplicates in history
+          eshell-hist-ignoredups t
+          ;; buffer shorthand -> echo foo > #'buffer
+          eshell-buffer-shorthand t
+          ;; my prompt is easy enough to see
+          eshell-highlight-prompt nil
+          ;; treat 'echo' like shell echo
+          eshell-plain-echo-behavior t))
+  :config
+  ;; use helm to list eshell history
+  (add-hook 'eshell-mode-hook
+            #'(lambda ()
+                (substitute-key-definition 'eshell-list-history 'helm-eshell-history eshell-mode-map)
+                (substitute-key-definition 'eshell-pcomplete 'helm-esh-pcomplete eshell-mode-map))))
 
 
 ;;; ----------------------- Web Mode ----------------------
