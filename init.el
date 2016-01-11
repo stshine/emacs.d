@@ -145,6 +145,9 @@
 (ace-link-setup-default)
 
 (popwin-mode t)
+(require 'imenu-list)
+(setq imenu-list-position 'left)
+
 
 ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
 ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
