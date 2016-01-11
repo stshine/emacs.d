@@ -23,7 +23,7 @@
 (load-file "~/.emacs.d/emacs-custom.el")
 (load-file "~/.emacs.d/emacs-func.el")
 
-(require 'show-parens)
+(use-package show-parens)
 ;; (show-parens-mode 1)
 
 (menu-bar-mode 0)
