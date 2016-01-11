@@ -147,7 +147,9 @@
 
 
 (require 'flycheck)
-(pdf-tools-install)
+
+(if (equal window-system 'x)
+    (pdf-tools-install))
 
 
 (use-package paren-face
