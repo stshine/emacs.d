@@ -274,6 +274,10 @@
       mu4e-drafts-folder "/Drafts"
       mu4e-trash-folder  "/Deleted Messages")
 
+(setq mu4e-reply-to-address "hines@augustint.com"
+      user-mail-address "hines@augustint.com"
+      user-full-name  "Hines - August Intl")
+
 (setq mu4e-get-mail-command "mbsync qqmail")
 ;; don't keep message buffers around
 (setq message-kill-buffer-on-exit t)
