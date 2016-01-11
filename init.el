@@ -480,9 +480,9 @@
 
 ;; ------------------------ Elisp  --------------------------
 (add-hook 'emacs-lisp-mode-hook
-	  (lambda ()
-	    (paredit-mode 1)
-        (paren-face-mode 1)))
+          (lambda ()
+            (paredit-mode 1)
+            ))
 
 
 ;; ------------------------ Scheme --------------------------
