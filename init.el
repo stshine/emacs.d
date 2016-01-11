@@ -607,9 +607,12 @@
         (left . 200)
         (top . 0)))
 
-(set-frame-font "-adobe-Source Code Pro-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1")
+
+(pcase system-type
+  ('windows-nt (set-frame-font "Consolas-13"))
+  ('gnu/linux (set-frame-font "-adobe-Source Code Pro-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1")))
+
 ;; (set-frame-font "-microsoft-Consolas-normal-normal-normal-*-17-*-*-*-m-0-iso10646-1")
-;; (set-frame-font "Consolas-14")
 ;; (set-frame-font "Source Code Pro-12")
 
 (dolist (charset '(kana han symbol cjk-misc bopomofo))
