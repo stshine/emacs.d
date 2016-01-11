@@ -475,7 +475,7 @@
 
 (add-hook 'org-mode-hook
           (lambda ()
-            (guide-key/add-local-highlight-command-regexp "org-")))
+            ()))
 
 
 ;; ------------------------ Elisp  --------------------------
