@@ -500,7 +500,7 @@
 		  'symbol "STIX")
 
 (require 'moe-theme)
-(load-theme 'solarized-light)
+(load-theme 'spacemacs-dark)
 
 (sml/setup)
 
