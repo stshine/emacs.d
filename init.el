@@ -178,12 +178,14 @@
 (when (executable-find "curl")
   (setq helm-google-suggest-use-curl-p t))
 
-(setq helm-display-header-line              nil
+(setq helm-ff-auto-update-initial-value t
+      helm-display-header-line              nil
       helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
       helm-buffers-fuzzy-matching           t ; fuzzy matching buffer names when non--nil
       helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
       helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
       helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+      helm-echo-input-in-header-line        t ;
       helm-ff-file-name-history-use-recentf t)
 
 (set-face-attribute 'helm-source-header nil :height 0.1)
@@ -192,6 +194,18 @@
 (helm-adaptive-mode 1)
 ;;(setq helm-autoresize-max-height 50)
 ;;(helm-autoresize-mode 1)
+;; (add-to-list 'helm-boring-file-regexp-list "\\.\\{1,2\\}\\'")
+;; (setq helm-ff-skip-boring-files t)
+
+(defun helm-hide-minibuffer-maybe ()
+  (when (with-helm-buffer helm-echo-input-in-header-line)
+    (let ((ov (make-overlay (point-min) (point-max) nil nil t)))
+      (overlay-put ov 'window (selected-window))
+      (overlay-put ov 'face (let ((bg-color (face-background 'default nil)))
+                              `(:background ,bg-color :foreground ,bg-color)))
+      (setq-local cursor-type nil))))
+
+(add-hook 'helm-minibuffer-set-up-hook 'helm-hide-minibuffer-maybe)
 
 ;;; intergrate projectile with helm.
 (require 'helm-projectile)
