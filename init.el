@@ -255,12 +255,17 @@
 (global-set-key (kbd "<S-down-mouse-1>") 'mouse-save-then-kill)
 (global-set-key (kbd "<C-down-mouse-3>") 'mouse-appearance-menu)
 
+(global-set-key (kbd "<C-tab>") 'ace-window)
+
+(global-set-key (kbd "C-x C-;") 'comment-dwim-2)
+
 ;; ------------------- Language modes -------------------
 (add-to-list 'auto-mode-alist '("\\.rkt$" . racket-mode))
 (add-to-list 'auto-mode-alist '("\\.html$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.phtml$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.blade\\.php$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
 
 
 ;;; --------------------- Mail Settings -------------------
