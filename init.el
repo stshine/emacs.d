@@ -502,5 +502,10 @@
 (require 'moe-theme)
 (load-theme 'spacemacs-dark)
 
-(sml/setup)
+;; (sml/setup)
+(require 'spaceline-config)
+;; (setq powerline-default-separator 'wave)
+;; (setq spaceline-battery-p t)
+;; (setq spaceline-buffer-position-p nil)
+(spaceline-spacemacs-theme)
 
