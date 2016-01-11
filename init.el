@@ -103,6 +103,25 @@
     (setq company-dabbrev-ignore-case nil)
     (global-company-mode)))
 
+;; (require 'smartparens)
+;; (add-to-list 'sp--lisp-modes 'racket-mode)
+;; (require 'smartparens-config)
+;; (smartparens-global-mode 1)
+;; (show-smartparens-global-mode 1)
+;; (show-paren-mode 1)
+
+(require 'clojure-mode)
+;; (--each sp-paredit-bindings
+;;   (define-key lisp-mode-shared-map (read-kbd-macro (car it)) (cdr it))
+;;   (define-key clojure-mode-map (read-kbd-macro (car it)) (cdr it)))
+;; (dolist (sp--lisp-mode-hook
+;;          (mapcar (lambda (x)
+;;                    (intern (concat (symbol-name x) "-hook")))
+;;                  sp--lisp-modes))
+;;   (add-hook sp--lisp-mode-hook
+;;             (lambda ()
+;;               (smartparens-strict-mode 1)
+;;               (paren-face-mode 1))))
 
 
 ;;(require 'geiser)
