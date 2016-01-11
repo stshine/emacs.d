@@ -285,7 +285,7 @@
 ;; (define-key helm-grep-mode-map (kbd "p")  'helm-grep-mode-jump-other-window-backward)
 
 
-(set-face-attribute 'helm-source-header nil :height 0.1)
+;; (set-face-attribute 'helm-source-header nil :height 0.1)
 
 ;;(setq helm-autoresize-max-height 50)
 ;;(helm-autoresize-mode 1)
