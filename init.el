@@ -234,9 +234,20 @@
 (add-hook 'helm-minibuffer-set-up-hook 'helm-hide-minibuffer-maybe)
 
 ;;; intergrate projectile with helm.
-(require 'helm-projectile)
-(setq projectile-completion-system 'helm)
-(helm-projectile-on)
+(use-package helm-projectile
+  :commands (helm-projectile-switch-to-buffer
+	     helm-projectile-find-dir
+	     helm-projectile-dired-find-dir
+	     helm-projectile-recentf
+	     helm-projectile-find-file
+	     helm-projectile-grep
+	     helm-projectile
+	     helm-projectile-switch-project)
+  :init
+  (progn
+    (setq projectile-switch-project-action 'helm-projectile)))
+;; (setq projectile-completion-system 'helm)
+;; (helm-projectile-on)
 
 ;;; semantic config
 ;; (semantic-add-system-include "/usr/include/" 'c-mode)
