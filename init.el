@@ -169,12 +169,6 @@
    ("C-<f8>" . magit-status)))
 
 
-(require 'helm)
-(require 'helm-config)
-(require 'helm-eshell)
-(require 'helm-files)
-(require 'helm-grep)
-
 (company-auctex-init)
 
 (ace-link-setup-default)
