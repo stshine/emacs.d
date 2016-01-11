@@ -435,29 +435,30 @@
 
 
 ;; ------------------------ Scheme --------------------------
-(setq scheme-program-name "racket")
+;; (setq scheme-program-name "racket")
 
 
-(defvar *binding-constructs*
-  '(let-values
-    let*-values
-    hash-for-each
-    letv
-    let\:
-    lambda\:
-    letv*
-    match
-    pmatch
-    for
-    for/list
-    fun
-    record))
+;; (defvar *binding-constructs*
+;;   '(let-values
+;;     let*-values
+;;     hash-for-each
+;;     letv
+;;     let\:
+;;     lambda\:
+;;     letv*
+;;     match
+;;     pmatch
+;;     for
+;;     for/list
+;;     fun
+;;     record))
 
-(add-hook 'scheme-mode-hook
-	  (lambda ()
-	    (paredit-mode 1)
-	    ;; set proper indentation for non-standard binding constructs
-	    (mapc (lambda (x) (put x 'scheme-indent-function 1)) *binding-constructs*)))
+;; (add-hook 'scheme-mode-hook
+;;           (lambda ()
+;;             ;; (paredit-mode 1)
+;;             ;; set proper indentation for non-standard binding constructs
+;;             (mapc (lambda (x) (put x 'scheme-indent-function 1)) *binding-constructs*)))
+
 
 ;; ------------------------ Racket --------------------------
 (add-hook 'racket-mode-hook
