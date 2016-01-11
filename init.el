@@ -32,7 +32,13 @@
 ;; (display-battery-mode 1)
 (blink-cursor-mode 0)
 ;; (global-linum-mode)
-(global-undo-tree-mode)
+
+
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode)
+  :diminish undo-tree-mode)
+
 
 (projectile-global-mode 1)
 ;; (semantic-mode 1)
@@ -140,7 +146,6 @@
     (recentf-mode 1)))
 
 
-(require 'undo-tree)
 (require 'flycheck)
 (pdf-tools-install)
 
