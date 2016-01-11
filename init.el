@@ -133,6 +133,16 @@
     (global-paren-face-mode)))
 
 
+(use-package magit
+  :config
+  (progn
+    (setq magit-repository-directories "~/Programs/")
+    (setq magit-completing-read-function 'helm-completing-read-with-cands-in-buffer))
+  :bind
+  (("<f8>" . magit-dispatch-popup)
+   ("C-<f8>" . magit-status)))
+
+
 (require 'helm)
 (require 'helm-config)
 (require 'helm-eshell)
