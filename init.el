@@ -252,7 +252,9 @@
 ;;; semantic config
 ;; (semantic-add-system-include "/usr/include/" 'c-mode)
 
-(which-key-mode 1)
+(use-package which-key
+  :diminish which-key-mode)
+
 ;;(require 'pager)
 
 (setq org-agenda-files '("~/org/"))
