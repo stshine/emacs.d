@@ -240,7 +240,7 @@
 
 
 ;;; --------------------- Mail Settings -------------------
-(setq mu4e-maildir "~/Mail/qqmail"
+(setq mu4e-maildir "~/Mail/"
       mu4e-sent-folder   "/Sent Messages"
       mu4e-drafts-folder "/Drafts"
       mu4e-trash-folder  "/Deleted Messages")
