@@ -285,9 +285,6 @@
 
 ;; ------------------- Language modes -------------------
 (add-to-list 'auto-mode-alist '("\\.rkt$" . racket-mode))
-(add-to-list 'auto-mode-alist '("\\.html$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.phtml$" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.blade\\.php$" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
 
@@ -420,6 +417,19 @@
 
 
 ;;; ----------------------- Web Mode ----------------------
+(use-package web-mode
+  :defer t
+  :init
+  (use-package company-web)
+  ;; (push '(company-web-html company-css) company-backend)
+  :config
+  :mode
+  (("\\.phtml\\'"      . web-mode)
+   ("\\.html$"         . web-mode)
+   ("\\.htm$"         . web-mode)
+   ("\\.blade\\.php$"  . web-mode)))
+
+
 ;; JSX highlight
 (defadvice web-mode-highlight-part (around tweak-jsx activate)
   (if (equal web-mode-content-type "jsx")
@@ -440,7 +450,7 @@
           (lambda ()
             (when (equal web-mode-content-type "jsx")
               ;; enable flycheck
-              (flycheck-select-checker 'jsxhint-checker))
+              (flycheck-select-checker 'javascript-eslint))
             (emmet-mode 1)
             (flycheck-mode 1)))
 
