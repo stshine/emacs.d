@@ -105,7 +105,6 @@
 
 
 
-(require 'cmuscheme)
 ;;(require 'geiser)
 ;;(setq geiser-active-implementations '(guile))
 
