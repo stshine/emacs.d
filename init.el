@@ -288,15 +288,43 @@
 ;; attempt to show images when viewing messages
 (setq mu4e-view-show-images t)
 
+
 ;;; -------------------- Gnus Settings --------------------
-(setq gnus-select-method '(nntp "news.gmane.org"))
+;; (setq gnus-select-method '(nntp "news.gmane.org"))
+(setq gnus-secondary-select-methods
+      '(
+        (nntp "gmane"
+              (nntp-address "news.gmane.org"))
+        (pop :server "mail.augustint.com"
+             :user "hines" :password "aug608609"
+             :leave t)
+        ))
+
 (setq gnus-asynchronous t)
+
+(setq-default
+  gnus-summary-line-format "%U%R%z %(%&user-date;  %-15,15f  %B%s%)\n"
+  gnus-user-date-format-alist '((t . "%Y-%m-%d %H:%M"))
+  gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
+  gnus-sum-thread-tree-false-root ""
+  gnus-sum-thread-tree-indent ""
+  gnus-sum-thread-tree-leaf-with-other "-> "
+  gnus-sum-thread-tree-root ""
+  gnus-sum-thread-tree-single-leaf "|_ "
+  gnus-sum-thread-tree-vertical "|")
+
+(setq gnus-thread-sort-functions
+      '(
+        (not gnus-thread-sort-by-date)
+        (not gnus-thread-sort-by-number)
+        ))
 
 
 ;; sending mail
+
 (setq message-send-mail-function 'smtpmail-send-it
       smtpmail-stream-type 'starttls
-      smtpmail-smtp-server "smtp.qq.com"      
+      smtpmail-smtp-server "mail.augustint.com"      
       smtpmail-smtp-service 587)
 
 ;;; --------------------- EWW Browser ---------------------
