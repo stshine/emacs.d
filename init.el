@@ -163,7 +163,8 @@
   :config
   (progn
     (setq magit-repository-directories "~/Programs/")
-    (setq magit-completing-read-function 'helm-completing-read-with-cands-in-buffer))
+    ;; (setq magit-completing-read-function 'helm-completing-read-with-cands-in-buffer)
+    )
   :bind
   (("<f8>" . magit-dispatch-popup)
    ("C-<f8>" . magit-status)))
