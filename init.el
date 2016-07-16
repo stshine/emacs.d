@@ -314,6 +314,10 @@
 ;; (semantic-add-system-include "/usr/include/" 'c-mode)
 
 (use-package which-key
+  :config
+  (progn
+    (global-set-key (kbd "C-h C-k") 'which-key-show-top-level)
+    (which-key-mode 1))
   :diminish which-key-mode)
 
 ;;(require 'pager)
