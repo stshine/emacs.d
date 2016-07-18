@@ -449,6 +449,8 @@
     (setq erc-kill-server-buffer-on-quit t)
     ;; open query buffers in the current window
     (setq erc-query-display 'buffer)
+    ;; inhibit showup of join and quit messages
+    (setq erc-hide-list '("JOIN" "QUIT" "PART"))
     ;; exclude boring stuff from tracking
     (erc-track-mode t)
     (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
