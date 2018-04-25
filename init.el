@@ -165,8 +165,9 @@
 (use-package paren-face
   :config
   (progn
-    (set-face-foreground 'parenthesis "DimGray")
-    (global-paren-face-mode)))
+    (add-to-list 'paren-face-modes 'racket-mode)
+    (set-face-foreground 'parenthesis "LightGrey")
+    (global-paren-face-mode 1)))
 
 
 (use-package magit
