@@ -344,8 +344,8 @@
 (global-set-key (kbd "M-n") 'pager-row-down)
 
 
-(global-set-key (kbd "C-c j") 'avy-goto-char-timer)
-(global-set-key (kbd "C-c J") 'avy-pop-mark)
+(global-set-key (kbd "C-z") 'avy-goto-char-timer)
+(global-set-key (kbd "C-c z") 'avy-pop-mark)
 
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c c") 'org-capture)
