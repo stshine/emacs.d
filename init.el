@@ -14,10 +14,11 @@
 (setq-default buffer-file-coding-system 'utf-8-unix)
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 
-(setenv "PATH" (concat (getenv "PATH") ":~/Apps/bin:~/.local/bin:~/node_modules/.bin"))
+(setenv "PATH" (concat (getenv "PATH") ":~/Apps/bin:~/.local/bin:~/node_modules/.bin:~/.cargo/bin"))
 (push "~/Apps/bin" exec-path)
 (push "~/.local/bin" exec-path)
 (push "~/node_modules/.bin" exec-path)
+(push "~/.cargo/bin" exec-path)
 
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (load-file "~/.emacs.d/emacs-custom.el")
