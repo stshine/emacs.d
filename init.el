@@ -1,5 +1,9 @@
+;;; init.el  -*- lexical-binding: t; -*-
+
 (setq custom-file "~/.emacs.d/emacs-custom.el")
 (setq gc-cons-threshold 100000000)
+
+;; (setq url-proxy-services '(("http" . "127.0.0.1:8087")))
 
 (setq package-archives '(("melpa" . "http://melpa.org/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")))
@@ -24,7 +28,10 @@
 (load-file "~/.emacs.d/emacs-custom.el")
 (load-file "~/.emacs.d/emacs-func.el")
 
-(use-package show-parens)
+;; (setq url-gateway-method 'socks)
+;; (setq socks-server '("Default server" "127.0.0.1" 1080 5))
+
+;; (use-package show-parens)
 ;; (show-parens-mode 1)
 
 (menu-bar-mode 0)
