@@ -51,6 +51,7 @@
   :config
   (progn
     (projectile-global-mode 1)
+    (setq projectile-completion-system 'default)
     (setq-default projectile-mode-line
                   '(:eval (concat "[" (projectile-project-name) "]"))))
   )
