@@ -49,7 +49,11 @@
 
 (use-package projectile
   :config
-  (projectile-global-mode 1))
+  (progn
+    (projectile-global-mode 1)
+    (setq-default projectile-mode-line
+                  '(:eval (concat "[" (projectile-project-name) "]"))))
+  )
 
 ;; (semantic-mode 1)
 (electric-pair-mode -1)
