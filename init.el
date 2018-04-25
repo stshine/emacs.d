@@ -40,8 +40,10 @@
   (global-undo-tree-mode)
   :diminish undo-tree-mode)
 
+(use-package projectile
+  :config
+  (projectile-global-mode 1))
 
-(projectile-global-mode 1)
 ;; (semantic-mode 1)
 (electric-pair-mode -1)
 (auto-image-file-mode)
