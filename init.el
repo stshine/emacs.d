@@ -231,13 +231,8 @@
 	  helm-lisp-fuzzy-completion t
 	  helm-recentf-fuzzy-match t
 	  helm-semantic-fuzzy-match t
-	  helm-buffers-fuzzy-matching t)
+	  helm-buffers-fuzzy-matching t))
 
-    (global-set-key (kbd "M-x") 'helm-M-x)
-    (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-    (global-set-key (kbd "C-x b") 'helm-mini)
-    (global-set-key (kbd "C-x C-b") 'helm-buffer-list)
-    (global-set-key (kbd "C-x C-f") 'helm-find-files))
   :config
   (progn
     (defvar helm-source-header-default-background (face-attribute 'helm-source-header :background))
@@ -287,6 +282,11 @@
 
     (define-key helm-command-map (kbd "o") 'helm-swoop)
     (define-key helm-command-map (kbd "g") 'helm-do-ag))
+  :bind (("M-x" . 'helm-M-x)
+         ("M-y" . 'helm-show-kill-ring)
+         ("C-x b" . 'helm-mini)
+         ("C-x C-b" . 'helm-buffer-list)
+         ("C-x C-f" . 'helm-find-files))
   :diminish helm-mode)
 
 
