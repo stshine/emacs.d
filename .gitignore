@@ -1,0 +1,12 @@
+.recentf
+auto-save-list/
+backup/
+bookmarks
+elpa/
+eshell/
+helm-adaptive-history
+projectile-bookmarks.eld
+projectile.cache
+pyim/
+tramp
+url/
