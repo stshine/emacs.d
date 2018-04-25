@@ -157,7 +157,8 @@
     (setq recentf-max-menu-items 15)
     ;; disable recentf-cleanup on Emacs start, because it can cause
     ;; problems with remote files
-    (setq recentf-auto-cleanup 60)
+    (setq recentf-auto-cleanup 300)
+    (add-to-list 'recentf-exclude (expand-file-name package-user-dir))
     (recentf-mode 1)))
 
 
