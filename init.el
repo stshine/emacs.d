@@ -384,7 +384,6 @@
 
 
 ;; ------------------- Language modes -------------------
-(add-to-list 'auto-mode-alist '("\\.rkt$" . racket-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
 
@@ -669,11 +668,10 @@
 
 
 ;; ------------------------ Racket --------------------------
-(add-hook 'racket-mode-hook
-          (lambda ()
-            ;; (paredit-mode 1)
-            ))
-
+(use-package racket-mode
+  :mode "\\.rkt\\'"
+  :hook ((racket-mode . paredit-mode))
+  )
 
 
 ;; ------------------------ Clojure --------------------------
