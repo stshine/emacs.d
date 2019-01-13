@@ -31,9 +31,6 @@
 ;; (setq url-gateway-method 'socks)
 ;; (setq socks-server '("Default server" "127.0.0.1" 1080 5))
 
-;; (use-package show-parens)
-;; (show-parens-mode 1)
-
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
@@ -169,6 +166,11 @@
 (if (equal window-system 'x)
     (pdf-tools-install))
 
+(use-package paren
+  :config
+  (progn
+    (setq show-paren-delay 0.0)
+    (show-paren-mode 1)))
 
 (use-package paren-face
   :config
