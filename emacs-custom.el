@@ -45,7 +45,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (company-php vue-mode php-mode eglot atom-one-dark-theme company-web hackernews elpy diminish typescript-mode pyim toml-mode yaml-mode cmake-mode moe-theme smartparens paren-face racket-mode glsl-mode which-key web-mode use-package spacemacs-theme spaceline solarized-theme ranger racer pdf-tools paredit monokai-theme markdown-mode magit jade imenu-list helm-swoop helm-projectile helm-ag flycheck-rust evil emmet-mode company-tern company-go company-auctex cider ace-link)))
+    (expand-region company-php vue-mode php-mode eglot atom-one-dark-theme company-web hackernews elpy diminish typescript-mode pyim toml-mode yaml-mode cmake-mode moe-theme smartparens paren-face racket-mode glsl-mode which-key web-mode use-package spacemacs-theme spaceline solarized-theme ranger racer pdf-tools paredit monokai-theme markdown-mode magit jade imenu-list helm-swoop helm-projectile helm-ag flycheck-rust evil emmet-mode company-tern company-go company-auctex cider ace-link)))
  '(pos-tip-background-color "#eee8d5")
  '(pos-tip-foreground-color "#586e75")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
