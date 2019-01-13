@@ -737,31 +737,3 @@
 (spaceline-spacemacs-theme)
 
 ;; (add-hook 'buffer-list-update-hook 'neotree-projectile-action)
-
-;; (defun helm-ff-directory-files (directory &optional full)
-;;   "List contents of DIRECTORY.
-;; Argument FULL mean absolute path.
-;; It is same as `directory-files' but always returns the
-;; dotted filename '.' and '..' even on root directories in Windows
-;; systems."
-;;   (setq directory (file-name-as-directory
-;;                    (expand-file-name directory)))
-;;   (let* (file-error
-;;          (ls   (condition-case err
-;;                    (directory-files
-;;                     directory full directory-files-no-dot-files-regexp)
-;;                  ;; Handle file-error from here for Windows
-;;                  ;; because predicates like `file-readable-p' and friends
-;;                  ;; seem broken on emacs for Windows systems (always returns t).
-;;                  ;; This should never be called on GNU/Linux/Unix
-;;                  ;; as the error is properly intercepted in
-;;                  ;; `helm-find-files-get-candidates' by `file-readable-p'.
-;;                  (file-error
-;;                   (prog1
-;;                       (list (format "%s:%s"
-;;                                     (car err)
-;;                                     (mapconcat 'identity (cdr err) " ")))
-;;                     (setq file-error t)))))
-;;         (dot  (concat directory "."))
-;;         (dot2 (concat directory "..")))
-;;     (append ls (and (not file-error) (list dot dot2)))))
