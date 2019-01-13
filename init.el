@@ -123,23 +123,6 @@
     (setq company-dabbrev-ignore-case nil)
     (global-company-mode)))
 
-(require 'clojure-mode)
-;; (--each sp-paredit-bindings
-;;   (define-key lisp-mode-shared-map (read-kbd-macro (car it)) (cdr it))
-;;   (define-key clojure-mode-map (read-kbd-macro (car it)) (cdr it)))
-;; (dolist (sp--lisp-mode-hook
-;;          (mapcar (lambda (x)
-;;                    (intern (concat (symbol-name x) "-hook")))
-;;                  sp--lisp-modes))
-;;   (add-hook sp--lisp-mode-hook
-;;             (lambda ()
-;;               (smartparens-strict-mode 1)
-;;               (paren-face-mode 1))))
-
-
-;;(require 'geiser)
-;;(setq geiser-active-implementations '(guile))
-
 
 (use-package recentf
   :config
@@ -181,6 +164,10 @@
 ;;   (progn
 ;;     (smartparens-global-mode 1)
 ;;     (show-smartparens-global-mode)))
+;;   (add-hook sp--lisp-mode-hook
+;;           (lambda ()
+;;             (smartparens-strict-mode 1)
+;;             (paren-face-mode 1)))
 
 
 (use-package magit
@@ -676,6 +663,7 @@
 
 ;; ------------------------ Clojure --------------------------
 (require 'cider)
+(require 'clojure-mode)
 (add-hook 'cider-mode-hook #'eldoc-mode)
 
 
