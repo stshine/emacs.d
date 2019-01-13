@@ -508,14 +508,23 @@
 (use-package web-mode
   :defer t
   :init
-  (use-package company-web)
+  ;; (use-package company-web)
   ;; (push '(company-web-html company-css) company-backend)
+  :hook
+  (web-mode . (lambda ()
+                (set (make-local-variable 'company-backends) '(company-web-html company-files))
+                (company-mode t)))
   :config
+  (setq web-mode-engines-alist '(("jinja2" . "\\.tera$"))
+        web-mode-markup-indent-offset 2
+        web-mode-css-indent-offset 4
+        web-mode-enable-current-element-highlight t) 
   :mode
   (("\\.phtml\\'"      . web-mode)
    ("\\.html$"         . web-mode)
-   ("\\.htm$"         . web-mode)
-   ("\\.blade\\.php$"  . web-mode)))
+   ("\\.htm$"          . web-mode)
+   ("\\.blade\\.php$"  . web-mode)
+   ("\\.tera$"         . web-mode)))
 
 
 ;; JSX highlight
