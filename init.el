@@ -39,8 +39,7 @@
 (scroll-bar-mode 0)
 ;; (display-battery-mode 1)
 (blink-cursor-mode 0)
-;; (global-linum-mode)
-
+(setq-default display-line-numbers t)
 
 (use-package undo-tree
   :config
