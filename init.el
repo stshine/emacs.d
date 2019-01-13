@@ -87,7 +87,10 @@
 `((".*" ,temporary-file-directory t)))
 
 ;; revert buffers automatically when underlying files are changed externally
-(global-auto-revert-mode t)
+(use-package autorevert
+  :config
+  (global-auto-revert-mode 1)
+  :diminish auto-revert-mode)
 
 ;; smart tab behavior - indent or complete
 (setq tab-always-indent 'complete)
