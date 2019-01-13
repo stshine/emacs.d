@@ -123,13 +123,6 @@
     (setq company-dabbrev-ignore-case nil)
     (global-company-mode)))
 
-;; (require 'smartparens)
-;; (add-to-list 'sp--lisp-modes 'racket-mode)
-;; (require 'smartparens-config)
-;; (smartparens-global-mode 1)
-;; (show-smartparens-global-mode 1)
-;; (show-paren-mode 1)
-
 (require 'clojure-mode)
 ;; (--each sp-paredit-bindings
 ;;   (define-key lisp-mode-shared-map (read-kbd-macro (car it)) (cdr it))
@@ -178,6 +171,16 @@
     (add-to-list 'paren-face-modes 'racket-mode)
     (set-face-foreground 'parenthesis "LightGrey")
     (global-paren-face-mode 1)))
+
+
+;; (use-package smartparens
+;;   :init
+;;   (progn
+;;     (use-package smartparens-config))
+;;   :config
+;;   (progn
+;;     (smartparens-global-mode 1)
+;;     (show-smartparens-global-mode)))
 
 
 (use-package magit
