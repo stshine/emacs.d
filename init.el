@@ -630,6 +630,9 @@
             ()))
 
 
+(use-package paredit
+  :diminish)
+
 ;; ------------------------ Elisp  --------------------------
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
