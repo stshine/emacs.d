@@ -556,13 +556,18 @@
 
 
 ;;; ----------------------- JavaScript ----------------------
-(setq js2-include-node-externs t)
-(add-hook 'js2-mode-hook
-          (lambda ()
-            (js2-imenu-extras-mode 1)
-            ;; (flycheck-mode 1)
-            (tern-mode t)
-            (add-to-list 'company-backends 'company-tern)))
+(use-package js2-mode
+  :config
+  (setq js2-include-node-externs t)
+  :hook
+  (js2-mode . (lambda ()
+                (js2-imenu-extras-mode 1)
+                ;; (flycheck-mode 1)
+                (tern-mode t)
+                (add-to-list 'company-backends 'company-tern)))
+  :mode
+  (("\\.js\\'"         . js2-mode)
+   ("\\.jsx\\'"        . js2-jsx-mode)))
 
 
 ;;; ----------------------- Python ----------------------
