@@ -192,7 +192,7 @@
 
 (use-package helm
   :defer t
-  ;; :ensure helm
+  :ensure t
   ;; :commands (helm-find-files)
   :init
   (progn
@@ -269,25 +269,25 @@
 			  :foreground nil
 			  :background nil
 			  :inherit 'helm-ff-directory))
-    (add-hook 'helm-find-files-before-init-hook 'spacemacs//set-dotted-directory)
-    
-    ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
-    ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
-    ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-    (global-set-key (kbd "C-c h") 'helm-command-prefix)
-    (global-unset-key (kbd "C-x c"))
+    (add-hook 'helm-find-files-before-init-hook 'spacemacs//set-dotted-directory))
 
-    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebihnd tab to do persistent action
-    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
-    (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
-
-    (define-key helm-command-map (kbd "o") 'helm-swoop)
-    (define-key helm-command-map (kbd "g") 'helm-do-ag))
-  :bind (("M-x" . 'helm-M-x)
-         ("M-y" . 'helm-show-kill-ring)
-         ("C-x b" . 'helm-mini)
-         ("C-x C-b" . 'helm-buffer-list)
-         ("C-x C-f" . 'helm-find-files))
+  ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
+  ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
+  ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
+  :bind (("M-x"       . 'helm-M-x)
+         ("M-y"       . 'helm-show-kill-ring)
+         ("C-x c"     .  nil)
+         ("C-c h"     . 'helm-command-prefix)
+         ("C-x b"     . 'helm-mini)
+         ("C-x C-b"   . 'helm-buffer-list)
+         ("C-x C-f"   . 'helm-find-files)
+         :map helm-map
+         ("<tab>"     . 'helm-execute-persistent-action)
+         ("C-i"       . 'helm-execute-persistent-action)
+         ("C-z"       . 'helm-select-action)
+         :map helm-command-map
+         ("o"         . 'helm-swoop)
+         ("g"         . 'helm-do-ag))
   :diminish helm-mode)
 
 
@@ -308,13 +308,13 @@
 ;;; intergrate projectile with helm.
 (use-package helm-projectile
   :commands (helm-projectile-switch-to-buffer
-	     helm-projectile-find-dir
-	     helm-projectile-dired-find-dir
-	     helm-projectile-recentf
-	     helm-projectile-find-file
-	     helm-projectile-grep
-	     helm-projectile
-	     helm-projectile-switch-project)
+	         helm-projectile-find-dir
+	         helm-projectile-dired-find-dir
+	         helm-projectile-recentf
+	         helm-projectile-find-file
+	         helm-projectile-grep
+	         helm-projectile
+	         helm-projectile-switch-project)
   :init
   (progn
     (setq projectile-switch-project-action 'helm-projectile)))
