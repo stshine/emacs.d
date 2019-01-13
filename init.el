@@ -686,14 +686,18 @@
 (add-hook 'haskell-mode-hook 'haskell-doc-mode)
 
 ;; -------------------- Chinese Setup -------------------------------
-(use-package chinese-pyim
+(use-package pyim
   :init
-  (setq pyim-dicts
-        '((:name "default-dict"
-                 :file "~/Documents/pyim-bigdict.pyim"
-                 :coding utf-8-unix)))
+  ;; (setq pyim-dicts
+  ;;       '((:name "default-dict"
+  ;;                :file "~/Documents/pyim-bigdict.pyim"
+  ;;                :coding utf-8-unix)))
   :config
-  (setq default-input-method 'chinese-pyim))
+  (progn
+    (use-package pyim-basedict)
+    (pyim-basedict-enable)
+    (setq default-input-method 'pyim))
+  )
 
 
 (setq default-frame-alist
