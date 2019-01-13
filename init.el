@@ -382,7 +382,6 @@
 
 (global-set-key (kbd "<C-tab>") 'ace-window)
 
-(global-set-key (kbd "C-x C-;") 'comment-dwim-2)
 
 ;; ------------------- Language modes -------------------
 (add-to-list 'auto-mode-alist '("\\.rkt$" . racket-mode))
