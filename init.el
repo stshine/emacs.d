@@ -132,7 +132,7 @@
     (setq recentf-max-menu-items 15)
     ;; disable recentf-cleanup on Emacs start, because it can cause
     ;; problems with remote files
-    (setq recentf-auto-cleanup 300)
+    (setq recentf-auto-cleanup 'never)
     (add-to-list 'recentf-exclude (expand-file-name package-user-dir))
     (recentf-mode 1)))
 
@@ -348,6 +348,8 @@
 ;;   :config
 ;;   (global-set-key (kbd "C-c d") 'youdao-dictionary-search-at-point+))
 
+;; (global-set-key (kbd "<return>") 'newline-and-indent)
+
 (global-set-key (kbd "M-p") 'pager-row-up)
 (global-set-key (kbd "M-n") 'pager-row-down)
 
@@ -371,9 +373,10 @@
 
 
 ;; ------------------- Language modes -------------------
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
 
+
+;; (evil-mode 1)
 
 ;;; --------------------- Mail Settings -------------------
 (setq mu4e-maildir "~/Mail/"
@@ -431,7 +434,7 @@
 
 (setq message-send-mail-function 'smtpmail-send-it
       smtpmail-stream-type 'starttls
-      smtpmail-smtp-server "mail.augustint.com"      
+      smtpmail-smtp-server "mail.augustint.com"
       smtpmail-smtp-service 587)
 
 ;;; --------------------- EWW Browser ---------------------
@@ -702,23 +705,23 @@
 
 
 (setq default-frame-alist
-      '((width . 103)
-        (height . 39)
-        (left . 200)
-        (top . 0)))
+      '((width . 108)
+        (height . 44)
+        (left . 580)
+        (top . 10)))
 
 
 (pcase system-type
   ('windows-nt (set-frame-font "Consolas-13"))
-  ('gnu/linux (set-frame-font "-adobe-Source Code Pro-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1")))
+  ('gnu/linux (set-frame-font "Fira Mono-18")))
 
 ;; (set-frame-font "-microsoft-Consolas-normal-normal-normal-*-17-*-*-*-m-0-iso10646-1")
 ;; (set-frame-font "Source Code Pro-12")
 
 (dolist (charset '(kana han symbol cjk-misc bopomofo))
   (set-fontset-font (frame-parameter nil 'font)
-                    charset "方正黑体_GBK"
-                    ;; charset "Noto Sans CJK SC"
+                    ;; charset "方正黑体_GBK"
+                    charset "Source Han Sans CN"
                     ))
 
 (set-fontset-font (frame-parameter nil 'font)
@@ -727,14 +730,16 @@
 (set-fontset-font (frame-parameter nil 'font)
 		  'symbol "STIX")
 
+(setq-default frame-background-mode 'light)
+
 (require 'moe-theme)
-(load-theme 'spacemacs-dark)
+(load-theme 'solarized-light)
 
 ;; (sml/setup)
 (require 'spaceline-config)
 ;; (setq powerline-default-separator 'wave)
 ;; (setq spaceline-battery-p t)
 ;; (setq spaceline-buffer-position-p nil)
-(spaceline-spacemacs-theme)
+(spaceline-emacs-theme)
 
 ;; (add-hook 'buffer-list-update-hook 'neotree-projectile-action)
