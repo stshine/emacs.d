@@ -561,11 +561,12 @@
 
 ;;; ----------------------- Python ----------------------
 (elpy-enable)
-(setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-(add-hook 'elpy-mode-hook 'flycheck-mode)
+;; (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+;; (add-hook 'elpy-mode-hook 'flycheck-mode)
 (setq flycheck-flake8-maximum-line-length 120)
-(elpy-use-ipython)
-(setq python-shell-interpreter "ipython3")
+;; (setq elpy-rpc-python-command "python3")
+;;(elpy-use-ipython)
+;;(setq python-shell-interpreter "ipython3")
 
 
 ;;; ------------------------ Go --------------------------
