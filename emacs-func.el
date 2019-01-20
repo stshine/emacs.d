@@ -179,4 +179,19 @@ Switch projects and subprojects from NEXT back to TODO"
           (message "File '%s' successfully renamed to '%s'"
                    name (file-name-nondirectory new-name)))))))
 
+(defun capitalize-underline ()
+  "Capitailize an underline word."
+  (interactive)
+  (if (eq (char-after (point)) ?_)
+      (delete-char 1))
+  (capitalize-word 1))
+
+(defun underline-capitalize ()
+  "Turn a capitailized word to an underline one."
+  (interactive)
+  (let ((c (char-after (point))))
+    (if (= c (upcase c))
+        (insert ?_)))
+  (downcase-word 1))
+
 ;;; emacs-func.el ends here
