@@ -9,4 +9,9 @@ projectile-bookmarks.eld
 projectile.cache
 pyim/
 tramp
+server/
 url/
+
+# org
+.org-id-locations
+org-clock-save.el
