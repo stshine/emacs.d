@@ -112,16 +112,15 @@
 
 (use-package company
   :config
-  (progn
-    (setq company-idle-delay 0.2)
-    (setq company-tooltip-limit 10)
-    (setq company-minimum-prefix-length 2)
-    ;; invert the navigation direction if the the completion popup-isearch-match
-    ;; is displayed on top (happens near the bottom of windows)
-    (setq company-tooltip-flip-when-above t)
-    (setq company-dabbrev-downcase nil)
-    (setq company-dabbrev-ignore-case nil)
-    (global-company-mode)))
+  (setq company-idle-delay 0.5)
+  (setq company-tooltip-limit 10)
+  (setq company-minimum-prefix-length 2)
+  ;; invert the navigation direction if the the completion popup-isearch-match
+  ;; is displayed on top (happens near the bottom of windows)
+  (setq company-tooltip-flip-when-above t)
+  (setq company-dabbrev-downcase nil)
+  (setq company-dabbrev-ignore-case nil)
+  (global-company-mode))
 
 
 (use-package recentf
@@ -150,10 +149,9 @@
 
 (use-package paren-face
   :config
-  (progn
-    (add-to-list 'paren-face-modes 'racket-mode)
-    (set-face-foreground 'parenthesis "LightGrey")
-    (global-paren-face-mode 1)))
+  (add-to-list 'paren-face-modes 'racket-mode)
+  (set-face-foreground 'parenthesis "DimGrey")
+  (global-paren-face-mode 1))
 
 
 ;; (use-package smartparens
