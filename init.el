@@ -38,19 +38,6 @@
 (blink-cursor-mode 0)
 (setq-default display-line-numbers t)
 
-(use-package undo-tree
-  :config
-  (global-undo-tree-mode)
-  :diminish undo-tree-mode)
-
-(use-package projectile
-  :config
-  (projectile-global-mode 1)
-  (setq projectile-completion-system 'default)
-  (setq-default projectile-mode-line
-                '(:eval (concat "[" (projectile-project-name) "]")))
-  )
-
 ;; (semantic-mode 1)
 (auto-image-file-mode)
 
@@ -108,86 +95,6 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(use-package company
-  :config
-  (setq company-idle-delay 0.5)
-  (setq company-tooltip-limit 10)
-  (setq company-minimum-prefix-length 2)
-  ;; invert the navigation direction if the the completion popup-isearch-match
-  ;; is displayed on top (happens near the bottom of windows)
-  (setq company-tooltip-flip-when-above t)
-  (setq company-dabbrev-downcase nil)
-  (setq company-dabbrev-ignore-case nil)
-  (global-company-mode))
-
-
-(use-package recentf
-  :config
-  (setq recentf-save-file "~/.emacs.d/.recentf")
-  (setq recentf-max-saved-items 1000)
-  (setq recentf-max-menu-items 15)
-  ;; disable recentf-cleanup on Emacs start, because it can cause
-  ;; problems with remote files
-  (setq recentf-auto-cleanup 'never)
-  (add-to-list 'recentf-exclude (expand-file-name package-user-dir))
-  (recentf-mode 1))
-
-
-(require 'flycheck)
-
-(if (equal window-system 'x)
-    (pdf-tools-install))
-
-
-(electric-pair-mode 1)
-
-
-(use-package paredit
-  :diminish)
-
-
-(use-package paren
-  :config
-  (setq show-paren-delay 0.0)
-  (show-paren-mode 1))
-
-
-(use-package paren-face
-  :config
-  (add-to-list 'paren-face-modes 'racket-mode)
-  (set-face-foreground 'parenthesis "DimGrey")
-  (global-paren-face-mode 1))
-
-
-;; (use-package smartparens
-;;   :init
-;;   (use-package smartparens-config)
-;;   :config
-;;   (smartparens-global-mode 1)
-;;   (show-smartparens-global-mode))
-;;   (add-hook sp--lisp-mode-hook
-;;           (lambda ()
-;;             (smartparens-strict-mode 1)
-;;             (paren-face-mode 1)))
-
-
-(use-package magit
-  :config
-  (setq magit-repository-directories "~/Programs/")
-  ;; (setq magit-completing-read-function 'helm-completing-read-with-cands-in-buffer)
-  :bind
-  (("<f8>" . magit-dispatch-popup)
-   ("C-<f8>" . magit-status)))
-
-
-(company-auctex-init)
-
-(ace-link-setup-default)
-
-(require 'imenu-list)
-(setq imenu-list-position 'left)
-
-;; (popwin-mode t)
 
 (use-package helm
   :defer t
@@ -288,7 +195,6 @@
   :diminish helm-mode)
 
 
-
 ;; (define-key helm-grep-mode-map (kbd "<return>")  'helm-grep-mode-jump-other-window)
 ;; (define-key helm-grep-mode-map (kbd "n")  'helm-grep-mode-jump-other-window-forward)
 ;; (define-key helm-grep-mode-map (kbd "p")  'helm-grep-mode-jump-other-window-backward)
@@ -300,6 +206,21 @@
 ;;(helm-autoresize-mode 1)
 ;; (add-to-list 'helm-boring-file-regexp-list "\\.\\{1,2\\}\\'")
 ;; (setq helm-ff-skip-boring-files t)
+
+
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode)
+  :diminish undo-tree-mode)
+
+
+(use-package projectile
+  :config
+  (projectile-global-mode 1)
+  (setq projectile-completion-system 'default)
+  (setq-default projectile-mode-line
+                '(:eval (concat "[" (projectile-project-name) "]")))
+  )
 
 
 ;;; intergrate projectile with helm.
@@ -316,6 +237,89 @@
   (setq projectile-switch-project-action 'helm-projectile))
 ;; (setq projectile-completion-system 'helm)
 ;; (helm-projectile-on)
+
+
+(use-package company
+  :config
+  (setq company-idle-delay 0.5)
+  (setq company-tooltip-limit 10)
+  (setq company-minimum-prefix-length 2)
+  ;; invert the navigation direction if the the completion popup-isearch-match
+  ;; is displayed on top (happens near the bottom of windows)
+  (setq company-tooltip-flip-when-above t)
+  (setq company-dabbrev-downcase nil)
+  (setq company-dabbrev-ignore-case nil)
+  (global-company-mode))
+
+
+(use-package recentf
+  :config
+  (setq recentf-save-file "~/.emacs.d/.recentf")
+  (setq recentf-max-saved-items 1000)
+  (setq recentf-max-menu-items 15)
+  ;; disable recentf-cleanup on Emacs start, because it can cause
+  ;; problems with remote files
+  (setq recentf-auto-cleanup 'never)
+  (add-to-list 'recentf-exclude (expand-file-name package-user-dir))
+  (recentf-mode 1))
+
+
+(require 'flycheck)
+
+(if (equal window-system 'x)
+    (pdf-tools-install))
+
+
+(electric-pair-mode 1)
+
+
+(use-package paredit
+  :diminish)
+
+
+(use-package paren
+  :config
+  (setq show-paren-delay 0.0)
+  (show-paren-mode 1))
+
+
+(use-package paren-face
+  :config
+  (add-to-list 'paren-face-modes 'racket-mode)
+  (set-face-foreground 'parenthesis "DimGrey")
+  (global-paren-face-mode 1))
+
+
+;; (use-package smartparens
+;;   :init
+;;   (use-package smartparens-config)
+;;   :config
+;;   (smartparens-global-mode 1)
+;;   (show-smartparens-global-mode))
+;;   (add-hook sp--lisp-mode-hook
+;;           (lambda ()
+;;             (smartparens-strict-mode 1)
+;;             (paren-face-mode 1)))
+
+
+(use-package magit
+  :config
+  (setq magit-repository-directories "~/Programs/")
+  ;; (setq magit-completing-read-function 'helm-completing-read-with-cands-in-buffer)
+  :bind
+  (("<f8>" . magit-dispatch-popup)
+   ("C-<f8>" . magit-status)))
+
+
+(company-auctex-init)
+
+(ace-link-setup-default)
+
+(require 'imenu-list)
+(setq imenu-list-position 'left)
+
+;; (popwin-mode t)
+
 
 ;;; semantic config
 ;; (semantic-add-system-include "/usr/include/" 'c-mode)
