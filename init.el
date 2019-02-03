@@ -53,7 +53,6 @@
   )
 
 ;; (semantic-mode 1)
-(electric-pair-mode -1)
 (auto-image-file-mode)
 
 (setq user-full-name "Pu Xingyu")
@@ -142,6 +141,9 @@
     (pdf-tools-install))
 
 
+(electric-pair-mode 1)
+
+
 (use-package paredit
   :diminish)
 
@@ -162,12 +164,10 @@
 
 ;; (use-package smartparens
 ;;   :init
-;;   (progn
-;;     (use-package smartparens-config))
+;;   (use-package smartparens-config)
 ;;   :config
-;;   (progn
-;;     (smartparens-global-mode 1)
-;;     (show-smartparens-global-mode)))
+;;   (smartparens-global-mode 1)
+;;   (show-smartparens-global-mode))
 ;;   (add-hook sp--lisp-mode-hook
 ;;           (lambda ()
 ;;             (smartparens-strict-mode 1)
