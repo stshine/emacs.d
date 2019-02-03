@@ -331,8 +331,6 @@
 
 ;;(require 'pager)
 
-(setq org-agenda-files '("~/org/"))
-
 (define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
 ;; (global-set-key (kbd "M-/") 'hippie-expand)
 
@@ -354,11 +352,6 @@
 
 (global-set-key (kbd "C-z") 'avy-goto-char-timer)
 (global-set-key (kbd "C-c z") 'avy-pop-mark)
-
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c c") 'org-capture)
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c b") 'org-iswitchb)
 
 (global-set-key (kbd "C-=") 'er/expand-region)
 
@@ -617,27 +610,64 @@
 
 
 ;;; ------------------------Org Mode--------------------------
-(require 'org)
-(define-key org-mode-map (kbd "C-c [") nil)
-(define-key org-mode-map (kbd "C-c ]") nil)
-(setq org-todo-keywords
-      '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")))
-(setq org-use-fast-todo-selection t)
-(setq org-src-fontify-natively t)
-(setq org-todo-state-tags-triggers
-      (quote (
-              ;;("CANCELLED" ("CANCELLED" . t))
-              ;;("WAITING" ("WAITING" . t))
-              ;;("HOLD" ("WAITING") ("HOLD" . t))
-              ;;(done ("WAITING") ("HOLD"))
-              ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
-              ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
-              ("DONE" ("WAITING") ("CANCELLED") ("HOLD")))))
-(setq org-clock-in-switch-to-state 'bh/clock-in-to-next)
+(use-package org
+  :bind (("C-c l" . 'org-store-link)
+         ("C-c c" . 'org-capture)
+         ("C-c a" . 'org-agenda)
+         ("C-c b" . 'org-iswitchb)
+         ("<f12> i" . 'bh/punch-in)
+         ("<f12> o" . 'bh/punch-out)
+         :map org-mode-map
+         ("C-c [" . nil)
+         ("C-c ]" . nil))
+  :init
+  (require 'org-clock)
+  (setq org-agenda-files '("~/org/"))
+  :config
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))) 
+  (setq org-todo-keyword-faces
+        (quote (("TODO" :foreground "red" :weight bold)
+                ("NEXT" :foreground "blue" :weight bold)
+                ("DONE" :foreground "forest green" :weight bold)
+                ("WAITING" :foreground "orange" :weight bold)
+                ("HOLD" :foreground "magenta" :weight bold)
+                ("CANCELLED" :foreground "forest green" :weight bold)
+                ("MEETING" :foreground "forest green" :weight bold)
+                ("PHONE" :foreground "forest green" :weight bold))))
+  (setq org-use-fast-todo-selection t)
+  (setq org-src-fontify-natively t)
+  (setq org-todo-state-tags-triggers
+        '(
+          ;;("CANCELLED" ("CANCELLED" . t))
+          ;;("WAITING" ("WAITING" . t))
+          ;;("HOLD" ("WAITING") ("HOLD" . t))
+          ;;(done ("WAITING") ("HOLD"))
+          ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
+          ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
+          ("DONE" ("WAITING") ("CANCELLED") ("HOLD"))))
+  ;; Resume clocking task when emacs is restarted
+  (org-clock-persistence-insinuate)
+  ;; Resume clocking task on clock-in if the clock is open
+  (setq org-clock-in-resume t)
+  ;; Sometimes I change tasks I'm clocking quickly - this removes clocked tasks with 0:00 duration
+  (setq org-clock-out-remove-zero-time-clocks t)
+  ;; Clock out when moving task to a done state
+  (setq org-clock-out-when-done t)
+  ;; Save the running clock and all clock history when exiting Emacs, load it on startup
+  (setq org-clock-persist t)
+  ;; Do not prompt to resume an active clock
+  (setq org-clock-persist-query-resume nil)
+  ;; Change tasks to NEXT when clocking in
+  (setq org-clock-in-switch-to-state 'bh/clock-in-to-next)
+  ;; Enable auto clock resolution for finding open clocks
+  (setq org-clock-auto-clock-resolution 'when-no-clock-is-running)
 
-(add-hook 'org-mode-hook
-          (lambda ()
-            ()))
+  (setq bh/keep-clock-running nil)
+  :hook
+  ((org-clock-out . bh/clock-out-maybe))
+  ;; (add-hook 'org-clock-out-hook 'bh/clock-out-maybe 'append)  
+  )
 
 
 (use-package paredit
