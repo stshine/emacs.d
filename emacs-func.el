@@ -1,4 +1,4 @@
-;;; emacs-func.el --- Some useful functions and commands
+;;; emacs-func.el -*- lexical-binding: t; -*- --- Some useful functions and commands
 
 ;;; Commentary:
 ;; This file contain functions that both I wrote and collected from the internet.
