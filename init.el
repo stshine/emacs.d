@@ -45,11 +45,10 @@
 
 (use-package projectile
   :config
-  (progn
-    (projectile-global-mode 1)
-    (setq projectile-completion-system 'default)
-    (setq-default projectile-mode-line
-                  '(:eval (concat "[" (projectile-project-name) "]"))))
+  (projectile-global-mode 1)
+  (setq projectile-completion-system 'default)
+  (setq-default projectile-mode-line
+                '(:eval (concat "[" (projectile-project-name) "]")))
   )
 
 ;; (semantic-mode 1)
@@ -124,15 +123,14 @@
 
 (use-package recentf
   :config
-  (progn
-    (setq recentf-save-file "~/.emacs.d/.recentf")
-    (setq recentf-max-saved-items 1000)
-    (setq recentf-max-menu-items 15)
-    ;; disable recentf-cleanup on Emacs start, because it can cause
-    ;; problems with remote files
-    (setq recentf-auto-cleanup 'never)
-    (add-to-list 'recentf-exclude (expand-file-name package-user-dir))
-    (recentf-mode 1)))
+  (setq recentf-save-file "~/.emacs.d/.recentf")
+  (setq recentf-max-saved-items 1000)
+  (setq recentf-max-menu-items 15)
+  ;; disable recentf-cleanup on Emacs start, because it can cause
+  ;; problems with remote files
+  (setq recentf-auto-cleanup 'never)
+  (add-to-list 'recentf-exclude (expand-file-name package-user-dir))
+  (recentf-mode 1))
 
 
 (require 'flycheck)
@@ -150,9 +148,8 @@
 
 (use-package paren
   :config
-  (progn
-    (setq show-paren-delay 0.0)
-    (show-paren-mode 1)))
+  (setq show-paren-delay 0.0)
+  (show-paren-mode 1))
 
 
 (use-package paren-face
@@ -176,10 +173,8 @@
 
 (use-package magit
   :config
-  (progn
-    (setq magit-repository-directories "~/Programs/")
-    ;; (setq magit-completing-read-function 'helm-completing-read-with-cands-in-buffer)
-    )
+  (setq magit-repository-directories "~/Programs/")
+  ;; (setq magit-completing-read-function 'helm-completing-read-with-cands-in-buffer)
   :bind
   (("<f8>" . magit-dispatch-popup)
    ("C-<f8>" . magit-status)))
@@ -199,81 +194,79 @@
   :ensure t
   ;; :commands (helm-find-files)
   :init
-  (progn
-    (use-package helm-config)
-    (setq helm-prevent-escaping-from-minibuffer t
-          helm-bookmark-show-location t
-          helm-display-header-line nil
-          helm-always-two-windows t
-          helm-echo-input-in-header-line t
-          helm-imenu-execute-action-at-once-if-one nil
-          helm-ff-auto-update-initial-value t
-          helm-display-header-line              nil
-          helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-          helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-          helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-          helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-          helm-ff-file-name-history-use-recentf t)
-    
-    (when (executable-find "curl")
-      (setq helm-google-suggest-use-curl-p t))
-    
-    ;; hide minibuffer in Helm session, since we use the header line already
-    (defun helm-hide-minibuffer-maybe ()
-      (when (with-helm-buffer helm-echo-input-in-header-line)
-	(let ((ov (make-overlay (point-min) (point-max) nil nil t)))
-	  (overlay-put ov 'window (selected-window))
-	  (overlay-put ov 'face (let ((bg-color (face-background 'default nil)))
-				  `(:background ,bg-color :foreground ,bg-color)))
-	  (setq-local cursor-type nil))))
-    (add-hook 'helm-minibuffer-set-up-hook 'helm-hide-minibuffer-maybe)
-    
-    ;; fuzzy matching setting
-    (setq helm-M-x-fuzzy-match t
-	  helm-apropos-fuzzy-match t
-	  helm-file-cache-fuzzy-match t
-	  helm-imenu-fuzzy-match t
-	  helm-lisp-fuzzy-completion t
-	  helm-recentf-fuzzy-match t
-	  helm-semantic-fuzzy-match t
-	  helm-buffers-fuzzy-matching t))
+  (use-package helm-config)
+  (setq helm-prevent-escaping-from-minibuffer t
+        helm-bookmark-show-location t
+        helm-display-header-line nil
+        helm-always-two-windows t
+        helm-echo-input-in-header-line t
+        helm-imenu-execute-action-at-once-if-one nil
+        helm-ff-auto-update-initial-value t
+        helm-display-header-line              nil
+        helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+        helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+        helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+        helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+        helm-ff-file-name-history-use-recentf t)
+
+  (when (executable-find "curl")
+    (setq helm-google-suggest-use-curl-p t))
+
+  ;; hide minibuffer in Helm session, since we use the header line already
+  (defun helm-hide-minibuffer-maybe ()
+    (when (with-helm-buffer helm-echo-input-in-header-line)
+	  (let ((ov (make-overlay (point-min) (point-max) nil nil t)))
+	    (overlay-put ov 'window (selected-window))
+	    (overlay-put ov 'face (let ((bg-color (face-background 'default nil)))
+				                `(:background ,bg-color :foreground ,bg-color)))
+	    (setq-local cursor-type nil))))
+  (add-hook 'helm-minibuffer-set-up-hook 'helm-hide-minibuffer-maybe)
+
+  ;; fuzzy matching setting
+  (setq helm-M-x-fuzzy-match t
+	    helm-apropos-fuzzy-match t
+	    helm-file-cache-fuzzy-match t
+	    helm-imenu-fuzzy-match t
+	    helm-lisp-fuzzy-completion t
+	    helm-recentf-fuzzy-match t
+	    helm-semantic-fuzzy-match t
+	    helm-buffers-fuzzy-matching t)
 
   :config
-  (progn
-    (defvar helm-source-header-default-background (face-attribute 'helm-source-header :background))
-    (defvar helm-source-header-default-foreground (face-attribute 'helm-source-header :foreground))
-    (defvar helm-source-header-default-box (face-attribute 'helm-source-header :box))
-    (defvar helm-source-header-default-height (face-attribute 'helm-source-header :height))
+  (defvar helm-source-header-default-background (face-attribute 'helm-source-header :background))
+  (defvar helm-source-header-default-foreground (face-attribute 'helm-source-header :foreground))
+  (defvar helm-source-header-default-box (face-attribute 'helm-source-header :box))
+  (defvar helm-source-header-default-height (face-attribute 'helm-source-header :height))
 
-    (defun helm-toggle-header-line ()
-      "Hide the `helm' header is there is only one source."
-      (if (> (length helm-sources) 1)
+  (defun helm-toggle-header-line ()
+    "Hide the `helm' header is there is only one source."
+    (if (> (length helm-sources) 1)
+	    (set-face-attribute 'helm-source-header
+			                nil
+			                :foreground helm-source-header-default-foreground
+			                :background helm-source-header-default-background
+			                :box helm-source-header-default-box
+			                :height helm-source-header-default-height)
 	  (set-face-attribute 'helm-source-header
-			      nil
-			      :foreground helm-source-header-default-foreground
-			      :background helm-source-header-default-background
-			      :box helm-source-header-default-box
-			      :height helm-source-header-default-height)
-	(set-face-attribute 'helm-source-header
-			    nil
-			    :foreground (face-attribute 'helm-selection :background)
-			    :background (face-attribute 'helm-selection :background)
-			    :box nil
-			    :height 0.1)))
-    (add-hook 'helm-before-initialize-hook 'helm-toggle-header-line)
-    (helm-mode 1)
-    (helm-adaptive-mode 1)
-    (helm-locate-set-command)
-    (setq helm-locate-fuzzy-match (string-match "locate" helm-locate-command))
+			              nil
+			              :foreground (face-attribute 'helm-selection :background)
+			              :background (face-attribute 'helm-selection :background)
+			              :box nil
+			              :height 0.1)))
+  (add-hook 'helm-before-initialize-hook 'helm-toggle-header-line)
+  (helm-mode 1)
+  (helm-adaptive-mode 1)
+  (helm-locate-set-command)
+  (setq helm-locate-fuzzy-match (string-match "locate" helm-locate-command))
 
-    (defun spacemacs//set-dotted-directory ()
-      "Set the face of diretories for `.' and `..'"
-      (set-face-attribute 'helm-ff-dotted-directory
-			  nil
-			  :foreground nil
-			  :background nil
-			  :inherit 'helm-ff-directory))
-    (add-hook 'helm-find-files-before-init-hook 'spacemacs//set-dotted-directory))
+  (defun spacemacs//set-dotted-directory ()
+    "Set the face of diretories for `.' and `..'"
+    (set-face-attribute 'helm-ff-dotted-directory
+			            nil
+			            :foreground nil
+			            :background nil
+			            :inherit 'helm-ff-directory))
+  (add-hook 'helm-find-files-before-init-hook 'spacemacs//set-dotted-directory)
 
   ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
   ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
@@ -320,8 +313,7 @@
 	         helm-projectile
 	         helm-projectile-switch-project)
   :init
-  (progn
-    (setq projectile-switch-project-action 'helm-projectile)))
+  (setq projectile-switch-project-action 'helm-projectile))
 ;; (setq projectile-completion-system 'helm)
 ;; (helm-projectile-on)
 
@@ -330,9 +322,8 @@
 
 (use-package which-key
   :config
-  (progn
-    (global-set-key (kbd "C-h C-k") 'which-key-show-top-level)
-    (which-key-mode 1))
+  (global-set-key (kbd "C-h C-k") 'which-key-show-top-level)
+  (which-key-mode 1)
   :diminish which-key-mode)
 
 ;;(require 'pager)
@@ -445,37 +436,36 @@
   ;; utf-8 always and forever
   (setq erc-server-coding-system '(utf-8 . utf-8))
   :config
-  (progn
-    ;; Interpret mIRC-style color commands in IRC chats
-    (setq erc-interpret-mirc-color t)
-    ;; The following are commented out by default, but users of other
-    ;; non-Emacs IRC clients might find them useful.
-    ;; Kill buffers for channels after /part
-    (setq erc-kill-buffer-on-part t)
-    ;; Kill buffers for private queries after quitting the server
-    (setq erc-kill-queries-on-quit t)
-    ;; Kill buffers for server messages after quitting the server
-    (setq erc-kill-server-buffer-on-quit t)
-    ;; open query buffers in the current window
-    (setq erc-query-display 'buffer)
-    ;; inhibit showup of join and quit messages
-    (setq erc-hide-list '("JOIN" "QUIT" "PART"))
-    ;; exclude boring stuff from tracking
-    (erc-track-mode t)
-    (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
-                                    "324" "329" "332" "333" "353" "477"))
-    (setq erc-save-buffer-on-part t)
-    ;; FIXME - this advice is wrong and is causing problems on Emacs exit
-    ;; (defadvice save-buffers-kill-emacs (before save-logs (arg) activate)
-    ;; (save-some-buffers t (lambda () (when (eq major-mode 'erc-mode) t))))
-    ;; truncate long irc buffers
-    (erc-truncate-mode +1)
-    ;; autoaway setup
-    (use-package erc-autoaway
-      :config
-      (setq erc-auto-discard-away t)
-      (setq erc-autoaway-idle-seconds 600)
-      (setq erc-autoaway-use-emacs-idle t))))
+  ;; Interpret mIRC-style color commands in IRC chats
+  (setq erc-interpret-mirc-color t)
+  ;; The following are commented out by default, but users of other
+  ;; non-Emacs IRC clients might find them useful.
+  ;; Kill buffers for channels after /part
+  (setq erc-kill-buffer-on-part t)
+  ;; Kill buffers for private queries after quitting the server
+  (setq erc-kill-queries-on-quit t)
+  ;; Kill buffers for server messages after quitting the server
+  (setq erc-kill-server-buffer-on-quit t)
+  ;; open query buffers in the current window
+  (setq erc-query-display 'buffer)
+  ;; inhibit showup of join and quit messages
+  (setq erc-hide-list '("JOIN" "QUIT" "PART"))
+  ;; exclude boring stuff from tracking
+  (erc-track-mode t)
+  (setq erc-track-exclude-types '("JOIN" "NICK" "PART" "QUIT" "MODE"
+                                  "324" "329" "332" "333" "353" "477"))
+  (setq erc-save-buffer-on-part t)
+  ;; FIXME - this advice is wrong and is causing problems on Emacs exit
+  ;; (defadvice save-buffers-kill-emacs (before save-logs (arg) activate)
+  ;; (save-some-buffers t (lambda () (when (eq major-mode 'erc-mode) t))))
+  ;; truncate long irc buffers
+  (erc-truncate-mode +1)
+  ;; autoaway setup
+  (use-package erc-autoaway
+    :config
+    (setq erc-auto-discard-away t)
+    (setq erc-autoaway-idle-seconds 600)
+    (setq erc-autoaway-use-emacs-idle t)))
 
 
 
@@ -483,19 +473,18 @@
 (use-package eshell
   :defer t
   :init
-  (progn
-    (setq ;; auto truncate after 20k lines
-          eshell-buffer-maximum-lines 20000
-          ;; history size
-          eshell-history-size 500
-          ;; no duplicates in history
-          eshell-hist-ignoredups t
-          ;; buffer shorthand -> echo foo > #'buffer
-          eshell-buffer-shorthand t
-          ;; my prompt is easy enough to see
-          eshell-highlight-prompt nil
-          ;; treat 'echo' like shell echo
-          eshell-plain-echo-behavior t))
+  (setq ;; auto truncate after 20k lines
+   eshell-buffer-maximum-lines 20000
+   ;; history size
+   eshell-history-size 500
+   ;; no duplicates in history
+   eshell-hist-ignoredups t
+   ;; buffer shorthand -> echo foo > #'buffer
+   eshell-buffer-shorthand t
+   ;; my prompt is easy enough to see
+   eshell-highlight-prompt nil
+   ;; treat 'echo' like shell echo
+   eshell-plain-echo-behavior t)
   :config
   ;; use helm to list eshell history
   (add-hook 'eshell-mode-hook
@@ -736,11 +725,9 @@
   ;;                :file "~/Documents/pyim-bigdict.pyim"
   ;;                :coding utf-8-unix)))
   :config
-  (progn
-    (use-package pyim-basedict)
-    (pyim-basedict-enable)
-    (setq default-input-method 'pyim))
-  )
+  (use-package pyim-basedict)
+  (pyim-basedict-enable)
+  (setq default-input-method 'pyim))
 
 
 (setq default-frame-alist
