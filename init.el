@@ -141,11 +141,17 @@
 (if (equal window-system 'x)
     (pdf-tools-install))
 
+
+(use-package paredit
+  :diminish)
+
+
 (use-package paren
   :config
   (progn
     (setq show-paren-delay 0.0)
     (show-paren-mode 1)))
+
 
 (use-package paren-face
   :config
@@ -669,9 +675,6 @@
   ;; (add-hook 'org-clock-out-hook 'bh/clock-out-maybe 'append)  
   )
 
-
-(use-package paredit
-  :diminish)
 
 ;; ------------------------ Elisp  --------------------------
 (add-hook 'emacs-lisp-mode-hook
