@@ -748,8 +748,13 @@
 
 
 (pcase system-type
-  ('windows-nt (set-frame-font "Consolas-13"))
-  ('gnu/linux (set-frame-font "Fira Mono-18")))
+  ('windows-nt
+   (progn
+     (set-frame-font "Consolas-14")
+     (setq tramp-default-method "plink")
+     ))
+  ('gnu/linux
+   (set-frame-font "Fira Mono-18")))
 
 ;; (set-frame-font "-microsoft-Consolas-normal-normal-normal-*-17-*-*-*-m-0-iso10646-1")
 ;; (set-frame-font "Source Code Pro-12")
