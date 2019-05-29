@@ -207,6 +207,17 @@
 ;; (add-to-list 'helm-boring-file-regexp-list "\\.\\{1,2\\}\\'")
 ;; (setq helm-ff-skip-boring-files t)
 
+;; (use-package counsel
+;;   :config
+;;   (setq ivy-use-virtual-buffers t)
+;;   (setq enable-recursive-minibuffers t)
+;;   (ivy-mode 1)
+;;   :bind
+;;   (("\C-s" . swiper)
+;;    ("M-x" . counsel-M-x)
+;;    ("C-x C-f" . counsel-find-file)
+;;    ("C-x b" . ivy-switch-buffer)))
+
 
 (use-package undo-tree
   :config
