@@ -214,29 +214,21 @@
   :diminish undo-tree-mode)
 
 
-(use-package projectile
-  :config
-  (projectile-global-mode 1)
-  (setq projectile-completion-system 'default)
-  (setq-default projectile-mode-line
-                '(:eval (concat "[" (projectile-project-name) "]")))
-  )
-
-
 ;;; intergrate projectile with helm.
 (use-package helm-projectile
-  :commands (helm-projectile-switch-to-buffer
-	         helm-projectile-find-dir
-	         helm-projectile-dired-find-dir
-	         helm-projectile-recentf
-	         helm-projectile-find-file
-	         helm-projectile-grep
-	         helm-projectile
-	         helm-projectile-switch-project)
+  :defer t
   :init
-  (setq projectile-switch-project-action 'helm-projectile))
-;; (setq projectile-completion-system 'helm)
-;; (helm-projectile-on)
+  (use-package projectile)
+  :config
+  (setq projectile-mode-line-function
+        (lambda ()
+          (concat "[" (projectile-project-name) "]")))
+  (setq projectile-completion-system 'helm)
+  (setq projectile-switch-project-action 'helm-projectile)
+  (projectile-mode 1)
+  (helm-projectile-on)
+  :bind
+  (("C-c p" . projectile-command-map)))
 
 
 (use-package company
