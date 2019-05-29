@@ -329,8 +329,9 @@
 
 (use-package which-key
   :config
-  (global-set-key (kbd "C-h C-k") 'which-key-show-top-level)
   (which-key-mode 1)
+  :bind
+  (("C-h C-k" . 'which-key-show-top-level))
   :diminish which-key-mode)
 
 ;;(require 'pager)
