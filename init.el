@@ -241,7 +241,8 @@
   (setq company-tooltip-flip-when-above t)
   (setq company-dabbrev-downcase nil)
   (setq company-dabbrev-ignore-case nil)
-  (global-company-mode))
+  (global-company-mode)
+  :diminish company-mode)
 
 
 (use-package recentf
