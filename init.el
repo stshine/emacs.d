@@ -50,8 +50,6 @@
 (setq initial-scratch-message "")
 (setq mouse-yank-at-point t)
 (setq kill-whole-line t)
-;; (setq backup-directory-alist
-
 (setq kill-ring-max 500)
 (setq-default major-mode 'text-mode)
 (setq-default indent-tabs-mode nil) ;; don't use tabs to indent
