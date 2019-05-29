@@ -768,10 +768,10 @@
 (set-fontset-font (frame-parameter nil 'font)
 		  'symbol "STIX")
 
-(setq-default frame-background-mode 'light)
+(setq-default frame-background-mode 'dark)
 
 (require 'moe-theme)
-(load-theme 'solarized-light)
+(load-theme 'spacemacs-dark)
 
 ;; (sml/setup)
 (require 'spaceline-config)
