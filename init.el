@@ -97,44 +97,47 @@
   ;; :commands (helm-find-files)
   :init
   (use-package helm-config)
+  :config
   (setq helm-prevent-escaping-from-minibuffer t
-        helm-bookmark-show-location t
-        helm-display-header-line nil
-        helm-always-two-windows t
-        helm-echo-input-in-header-line t
-        helm-imenu-execute-action-at-once-if-one nil
-        helm-ff-auto-update-initial-value t
-        helm-display-header-line              nil
-        helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+        helm-split-window-default-side   'above
+        ;; open helm buffer inside current window, not occupy whole other window
+        helm-split-window-inside-p            t
+        helm-always-two-windows               t
+        helm-echo-input-in-header-line        t
+        helm-autoresize-max-height           50
+        helm-display-header-line            nil
+        helm-bookmark-show-location           t
+        ;; helm-imenu-execute-action-at-once-if-one nil
+        helm-ff-auto-update-initial-value     t
         helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
         helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
         helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
         helm-ff-file-name-history-use-recentf t)
 
+  (helm-autoresize-mode t)
   (when (executable-find "curl")
-    (setq helm-google-suggest-use-curl-p t))
+    (setq helm-net-prefer-curl t))
 
   ;; hide minibuffer in Helm session, since we use the header line already
   (defun helm-hide-minibuffer-maybe ()
     (when (with-helm-buffer helm-echo-input-in-header-line)
-	  (let ((ov (make-overlay (point-min) (point-max) nil nil t)))
-	    (overlay-put ov 'window (selected-window))
-	    (overlay-put ov 'face (let ((bg-color (face-background 'default nil)))
-				                `(:background ,bg-color :foreground ,bg-color)))
-	    (setq-local cursor-type nil))))
+      (let ((ov (make-overlay (point-min) (point-max) nil nil t)))
+        (overlay-put ov 'window (selected-window))
+        (overlay-put ov 'face (let ((bg-color (face-background 'default nil)))
+    			                `(:background ,bg-color :foreground ,bg-color)))
+        (setq-local cursor-type nil))))
   (add-hook 'helm-minibuffer-set-up-hook 'helm-hide-minibuffer-maybe)
 
   ;; fuzzy matching setting
   (setq helm-M-x-fuzzy-match t
-	    helm-apropos-fuzzy-match t
-	    helm-file-cache-fuzzy-match t
-	    helm-imenu-fuzzy-match t
-	    helm-lisp-fuzzy-completion t
-	    helm-recentf-fuzzy-match t
-	    helm-semantic-fuzzy-match t
-	    helm-buffers-fuzzy-matching t)
+  ;;       helm-apropos-fuzzy-match t
+  ;;       helm-file-cache-fuzzy-match t
+  ;;       helm-imenu-fuzzy-match t
+  ;;       helm-lisp-fuzzy-completion t
+  ;;       helm-recentf-fuzzy-match t
+  ;;       helm-semantic-fuzzy-match t
+        helm-buffers-fuzzy-matching t)
 
-  :config
   (defvar helm-source-header-default-background (face-attribute 'helm-source-header :background))
   (defvar helm-source-header-default-foreground (face-attribute 'helm-source-header :foreground))
   (defvar helm-source-header-default-box (face-attribute 'helm-source-header :box))
@@ -143,31 +146,31 @@
   (defun helm-toggle-header-line ()
     "Hide the `helm' header is there is only one source."
     (if (> (length helm-sources) 1)
-	    (set-face-attribute 'helm-source-header
-			                nil
-			                :foreground helm-source-header-default-foreground
-			                :background helm-source-header-default-background
-			                :box helm-source-header-default-box
-			                :height helm-source-header-default-height)
-	  (set-face-attribute 'helm-source-header
-			              nil
-			              :foreground (face-attribute 'helm-selection :background)
-			              :background (face-attribute 'helm-selection :background)
-			              :box nil
-			              :height 0.1)))
+        (set-face-attribute 'helm-source-header
+    		                nil
+    		                :foreground helm-source-header-default-foreground
+    		                :background helm-source-header-default-background
+    		                :box helm-source-header-default-box
+    		                :height helm-source-header-default-height)
+      (set-face-attribute 'helm-source-header
+    		              nil
+    		              :foreground (face-attribute 'helm-selection :background)
+    		              :background (face-attribute 'helm-selection :background)
+    		              :box nil
+    		              :height 0.1)))
   (add-hook 'helm-before-initialize-hook 'helm-toggle-header-line)
   (helm-mode 1)
   (helm-adaptive-mode 1)
-  (helm-locate-set-command)
-  (setq helm-locate-fuzzy-match (string-match "locate" helm-locate-command))
+  ;; (helm-locate-set-command)
+  ;; (setq helm-locate-fuzzy-match (string-match "locate" helm-locate-command))
 
   (defun spacemacs//set-dotted-directory ()
     "Set the face of diretories for `.' and `..'"
     (set-face-attribute 'helm-ff-dotted-directory
-			            nil
-			            :foreground nil
-			            :background nil
-			            :inherit 'helm-ff-directory))
+    		            nil
+    		            :foreground nil
+    		            :background nil
+    		            :inherit 'helm-ff-directory))
   (add-hook 'helm-find-files-before-init-hook 'spacemacs//set-dotted-directory)
 
   ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
@@ -184,11 +187,11 @@
          ("<tab>"     . 'helm-execute-persistent-action)
          ("C-i"       . 'helm-execute-persistent-action)
          ("C-z"       . 'helm-select-action)
+         ("C-c C-l"   . 'helm-minibuffer-history)
          :map helm-command-map
          ("o"         . 'helm-swoop)
          ("g"         . 'helm-do-ag))
   :diminish helm-mode)
-
 
 ;; (define-key helm-grep-mode-map (kbd "<return>")  'helm-grep-mode-jump-other-window)
 ;; (define-key helm-grep-mode-map (kbd "n")  'helm-grep-mode-jump-other-window-forward)
@@ -197,8 +200,6 @@
 
 ;; (set-face-attribute 'helm-source-header nil :height 0.1)
 
-;;(setq helm-autoresize-max-height 50)
-;;(helm-autoresize-mode 1)
 ;; (add-to-list 'helm-boring-file-regexp-list "\\.\\{1,2\\}\\'")
 ;; (setq helm-ff-skip-boring-files t)
 
@@ -339,7 +340,6 @@
 
 ;;(require 'pager)
 
-(define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
 ;; (global-set-key (kbd "M-/") 'hippie-expand)
 
 
