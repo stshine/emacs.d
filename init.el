@@ -54,8 +54,8 @@
 (setq-default major-mode 'text-mode)
 (setq-default indent-tabs-mode nil) ;; don't use tabs to indent
 (setq-default tab-width 4) ;; but maintain correct appearance
-;; Newline at end of file
 (setq save-interprogram-paste-before-kill t)
+;; Newline at end of file
 (setq require-final-newline t)
 ;; delete the selection with a keypress
 (delete-selection-mode t)
