@@ -77,7 +77,7 @@
 
 (setq display-time-format "%T")
 (setq display-time-interval 1)
-(display-time)
+(display-time-mode 1)
 
 (setq bookmark-save-flag 1)
 (setq bookmark-default-file "~/.emacs.d/bookmarks")
