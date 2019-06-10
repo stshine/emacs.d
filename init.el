@@ -313,7 +313,13 @@
 
 (company-auctex-init)
 
-(ace-link-setup-default)
+(use-package ace-link
+  :ensure t
+  :config
+  (ace-link-setup-default)
+  :bind
+  (("C-z" . avy-goto-char-timer)
+   ("C-c z" . avy-pop-mark)))
 
 (require 'imenu-list)
 (setq imenu-list-position 'left)
@@ -351,9 +357,6 @@
 (global-set-key (kbd "M-p") 'pager-row-up)
 (global-set-key (kbd "M-n") 'pager-row-down)
 
-
-(global-set-key (kbd "C-z") 'avy-goto-char-timer)
-(global-set-key (kbd "C-c z") 'avy-pop-mark)
 
 (global-set-key (kbd "C-=") 'er/expand-region)
 
