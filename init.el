@@ -60,11 +60,6 @@
 ;; delete the selection with a keypress
 (delete-selection-mode t)
 (setq frame-title-format "%b - emacs")
-;; store all backup and autosave files in the tmp dir
-(setq backup-directory-alist
-`((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-`((".*" ,temporary-file-directory t)))
 
 ;; revert buffers automatically when underlying files are changed externally
 (use-package autorevert
@@ -85,7 +80,9 @@
 (setq
    backup-by-copying t      ; don't clobber symlinks
    backup-directory-alist
-    '(("." . "~/.emacs.d/backup"))    ; don't litter my fs tree
+   '(("." . "~/.emacs.d/backup"))    ; don't litter my fs tree
+   auto-save-file-name-transforms
+   `((".*" ,temporary-file-directory t))
    delete-old-versions t
    kept-new-versions 3
    kept-old-versions 2
