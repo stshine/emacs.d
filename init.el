@@ -96,7 +96,6 @@
   (helm-command-prefix-key "C-c h"))
 
 (use-package helm
-  :defer t
   :ensure t
   ;; :commands (helm-find-files)
   :init
