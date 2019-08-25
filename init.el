@@ -253,11 +253,11 @@
 
 
 (use-package recentf
-  :init
-  (setq recentf-save-file "~/.emacs.d/.recentf"
-        recentf-max-saved-items 1500
-        recentf-max-menu-items 15
-        recentf-auto-cleanup 600)
+  :custom
+  (recentf-save-file "~/.emacs.d/.recentf")
+  (recentf-max-saved-items 1500)
+  (recentf-max-menu-items 15)
+  (recentf-auto-cleanup 600)
   :config
   (add-to-list 'recentf-exclude (expand-file-name package-user-dir))
   (recentf-mode 1))
