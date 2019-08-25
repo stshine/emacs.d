@@ -320,6 +320,11 @@
 (require 'imenu-list)
 (setq imenu-list-position 'left)
 
+
+(use-package treemacs
+  :bind
+  ([f9] . treemacs))
+
 ;; (popwin-mode t)
 
 
