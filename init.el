@@ -253,13 +253,12 @@
 
 
 (use-package recentf
+  :init
+  (setq recentf-save-file "~/.emacs.d/.recentf"
+        recentf-max-saved-items 1500
+        recentf-max-menu-items 15
+        recentf-auto-cleanup 600)
   :config
-  (setq recentf-save-file "~/.emacs.d/.recentf")
-  (setq recentf-max-saved-items 1000)
-  (setq recentf-max-menu-items 15)
-  ;; disable recentf-cleanup on Emacs start, because it can cause
-  ;; problems with remote files
-  (setq recentf-auto-cleanup 'never)
   (add-to-list 'recentf-exclude (expand-file-name package-user-dir))
   (recentf-mode 1))
 
