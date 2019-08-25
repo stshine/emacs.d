@@ -91,12 +91,15 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 
+(use-package helm-config
+  :custom
+  (helm-command-prefix-key "C-c h"))
+
 (use-package helm
   :defer t
   :ensure t
   ;; :commands (helm-find-files)
   :init
-  (use-package helm-config)
   :config
   (setq helm-prevent-escaping-from-minibuffer t
         helm-split-window-default-side   'above
@@ -178,8 +181,6 @@
   ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
   :bind (("M-x"       . 'helm-M-x)
          ("M-y"       . 'helm-show-kill-ring)
-         ("C-x c"     .  nil)
-         ("C-c h"     . 'helm-command-prefix)
          ("C-x b"     . 'helm-mini)
          ("C-x C-b"   . 'helm-buffer-list)
          ("C-x C-f"   . 'helm-find-files)
