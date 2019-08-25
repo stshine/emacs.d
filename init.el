@@ -338,11 +338,6 @@
 ;; (global-set-key (kbd "M-/") 'hippie-expand)
 
 
-
-(setq projectile-switch-project-action 'neotree-projectile-action)
-(setq neo-theme 'arrow)
-(global-set-key [f9] 'neotree-toggle)
-
 ;; (use-package youdao-dictionary
 ;;   :config
 ;;   (global-set-key (kbd "C-c d") 'youdao-dictionary-search-at-point+))
