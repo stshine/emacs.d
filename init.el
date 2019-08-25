@@ -223,19 +223,15 @@
 
 ;;; intergrate projectile with helm.
 (use-package helm-projectile
-  :defer t
-  :init
-  (use-package projectile)
   :config
   (setq projectile-mode-line-function
         (lambda ()
           (concat "[" (projectile-project-name) "]")))
-  (setq projectile-completion-system 'helm)
-  (setq projectile-switch-project-action 'helm-projectile)
+  ;; (setq projectile-completion-system 'helm)
   (projectile-mode 1)
   (helm-projectile-on)
-  :bind
-  (("C-c p" . projectile-command-map)))
+  :bind-keymap
+  ("C-c p" . projectile-command-map))
 
 
 (use-package company
