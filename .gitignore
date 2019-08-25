@@ -1,6 +1,8 @@
 .recentf
+emacs-custom.el
 auto-save-list/
 backup/
+.cache/
 bookmarks
 elpa/
 eshell/
