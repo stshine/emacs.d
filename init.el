@@ -223,6 +223,8 @@
 
 ;;; intergrate projectile with helm.
 (use-package helm-projectile
+  :custom
+  (projectile-cache-file "~/.emacs.d/.cache/projectile.cache")
   :config
   (setq projectile-mode-line-function
         (lambda ()
