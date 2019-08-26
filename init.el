@@ -250,7 +250,7 @@
 
 (use-package recentf
   :custom
-  (recentf-save-file "~/.emacs.d/.recentf")
+  (recentf-save-file "~/.emacs.d/.cache/recentf")
   (recentf-max-saved-items 1500)
   (recentf-max-menu-items 15)
   (recentf-auto-cleanup 600)
