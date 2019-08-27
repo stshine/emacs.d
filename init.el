@@ -262,11 +262,13 @@
   (recentf-mode 1))
 
 
-(require 'flycheck)
+(use-package flycheck
+ :diminish)
 
-(if (equal window-system 'x)
-    (pdf-tools-install))
-
+(use-package pdf-tools
+  :magic ("%PDF" . pdf-view-mode)
+  :config
+  (pdf-tools-install :no-query))
 
 (electric-pair-mode 1)
 
@@ -363,11 +365,7 @@
 (global-set-key (kbd "<S-down-mouse-1>") 'mouse-save-then-kill)
 (global-set-key (kbd "<C-down-mouse-3>") 'mouse-appearance-menu)
 
-(global-set-key (kbd "<C-tab>") 'ace-window)
-
-
-;; ------------------- Language modes -------------------
-(add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
+;; (global-set-key (kbd "<C-tab>") 'ace-window)
 
 
 ;; (evil-mode 1)
