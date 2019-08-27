@@ -88,6 +88,7 @@
    kept-old-versions 2
    version-control t)       ; use versioned backups
 
+(setq cache-dir (expand-file-name ".cache" user-emacs-directory))
 (fset 'yes-or-no-p 'y-or-n-p)
 
 
