@@ -100,6 +100,18 @@
   (save-place-mode 1))
 
 
+(use-package savehist
+  :config
+  (setq savehist-additional-variables
+        ;; search entries
+        '(search-ring regexp-search-ring)
+        ;; save every minute
+        savehist-autosave-interval 60
+        ;; keep the home clean
+        savehist-file (expand-file-name "savehist" cache-dir))
+  (savehist-mode 1))
+
+
 (use-package helm-config
   :custom
   (helm-command-prefix-key "C-c h"))
