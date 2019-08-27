@@ -273,4 +273,11 @@ as the default task."
         (insert ?_)))
   (downcase-word 1))
 
+(define-globalized-minor-mode
+  smartparens-paredit-global-mode
+  smartparens-strict-mode
+  (lambda ()
+    (when (member major-mode sp-lisp-modes)
+      (smartparens-strict-mode 1))))
+
 ;;; emacs-func.el ends here
