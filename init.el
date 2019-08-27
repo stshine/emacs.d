@@ -92,6 +92,17 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 
+(use-package recentf
+  :custom
+  (recentf-save-file "~/.emacs.d/.cache/recentf")
+  (recentf-max-saved-items 1500)
+  (recentf-max-menu-items 15)
+  (recentf-auto-cleanup 600)
+  :config
+  (add-to-list 'recentf-exclude (expand-file-name package-user-dir))
+  (recentf-mode 1))
+
+
 ;; saveplace remembers your location in a file when saving files
 (use-package saveplace
   :config
@@ -270,17 +281,6 @@
   (setq company-dabbrev-ignore-case nil)
   (global-company-mode 1)
   :diminish company-mode)
-
-
-(use-package recentf
-  :custom
-  (recentf-save-file "~/.emacs.d/.cache/recentf")
-  (recentf-max-saved-items 1500)
-  (recentf-max-menu-items 15)
-  (recentf-auto-cleanup 600)
-  :config
-  (add-to-list 'recentf-exclude (expand-file-name package-user-dir))
-  (recentf-mode 1))
 
 
 (use-package flycheck
