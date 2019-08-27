@@ -92,6 +92,14 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 
+;; saveplace remembers your location in a file when saving files
+(use-package saveplace
+  :config
+  (setq save-place-file (expand-file-name "saveplace" cache-dir))
+  ;; activate it for all buffers
+  (save-place-mode 1))
+
+
 (use-package helm-config
   :custom
   (helm-command-prefix-key "C-c h"))
@@ -660,7 +668,7 @@
 ;; ------------------------ Elisp  --------------------------
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
-            (paredit-mode 1)
+            ;; (paredit-mode 1)
             ))
 
 
