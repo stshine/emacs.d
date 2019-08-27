@@ -270,18 +270,6 @@
   :config
   (pdf-tools-install :no-query))
 
-(electric-pair-mode 1)
-
-
-(use-package paredit
-  :diminish)
-
-
-(use-package paren
-  :config
-  (setq show-paren-delay 0.0)
-  (show-paren-mode 1))
-
 
 (use-package paren-face
   :config
@@ -290,16 +278,16 @@
   (global-paren-face-mode 1))
 
 
-;; (use-package smartparens
-;;   :init
-;;   (use-package smartparens-config)
-;;   :config
-;;   (smartparens-global-mode 1)
-;;   (show-smartparens-global-mode))
-;;   (add-hook sp--lisp-mode-hook
-;;           (lambda ()
-;;             (smartparens-strict-mode 1)
-;;             (paren-face-mode 1)))
+(use-package smartparens-config
+  :after paren-face
+  :ensure smartparens
+  :config
+  (smartparens-global-mode 1)
+  (show-smartparens-global-mode 1)
+  (smartparens-paredit-global-mode 1)
+  :diminish smartparens-mode)
+  ;; (-each sp-lisp-modes (lambda (mode)
+                         ;; (set-face-foreground 'sp-pair-overlay-face "DimGrey")))
 
 
 (use-package magit
