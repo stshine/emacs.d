@@ -666,12 +666,7 @@
   :hook
   ((org-clock-out . bh/clock-out-maybe))
   ;; (add-hook 'org-clock-out-hook 'bh/clock-out-maybe 'append)  
-  :bind (("C-c l" . 'org-store-link)
-         ("C-c c" . 'org-capture)
-         ("C-c a" . 'org-agenda)
-         ("C-c b" . 'org-iswitchb)
-         ("<f12> i" . 'bh/punch-in)
-         ("<f12> o" . 'bh/punch-out)
+  :bind (([f12] . 'org-dispatch)
          :map org-mode-map
          ("C-c [" . nil)
          ("C-c ]" . nil)))
