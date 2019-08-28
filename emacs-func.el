@@ -280,4 +280,18 @@ as the default task."
     (when (member major-mode sp-lisp-modes)
       (smartparens-strict-mode 1))))
 
+
+(use-package transient
+  :ensure t)
+
+(define-transient-command org-dispatch ()
+  "Invoke common Org mode commands"
+  ["Org mode commands"
+   [("l" "Store link" org-store-link)
+    ("c" "Capture" org-capture)
+    ("a" "Agenda" org-agenda)
+    ("b" "Switch buffer" org-switchb)
+    ("i" "Punch in" bh/punch-in)
+    ("o" "Punch out" bh/punch-out)]])
+
 ;;; emacs-func.el ends here
