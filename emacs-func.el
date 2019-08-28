@@ -193,33 +193,6 @@ as the default task."
              (not org-clock-resolving-clocks-due-to-idleness))
     (bh/clock-in-parent-task)))
 
-;;; --------------- xref for Rust --------------
-(defun racer--xref-find-definitions (id)
-  (let ((line-number         (number-to-string (count-lines (point-min) (min (1+ (point)) (point-max)))))
-        (column-number       (number-to-string (- (point) (line-beginning-position))))
-        (source-path  company-racer-temp-file))
-    (write-region nil nil company-racer-temp-file nil 0)
-    (let* ((lines (process-lines company-racer-executable
-                                 "find-definition"
-                                 line-number
-                                 column-number
-                                 source-path))
-           (candidates (cl-loop for line in lines
-                                for candidate = (company-racer-xref-location line)
-                                unless (null candidate)
-                                collect (xref-make "" candidate))))
-      candidates)))
-
-
-(defun racer-xref-find (action id)
-  (pcase action
-    (`definitions (racer--xref-find-definitions id))))
-
-
-(defun company-racer-xref-location (line)
-  "Return a xref location from a racer output LINE."
-  (when (string-match "^MATCH \\([^,]+\\),\\([^,]+\\),\\([^,]+\\),\\([^,]+\\).*$" line)
-	(xref-make-file-location  (match-string 4 line) (string-to-number (match-string 2 line)) (string-to-number (match-string 3 line)))))
 
 ;;; -----------------------------------------------
 (defun prelude-copy-file-name-to-clipboard ()
