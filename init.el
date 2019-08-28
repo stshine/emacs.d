@@ -337,7 +337,7 @@
 
 (use-package treemacs
   :bind
-  ([f9] . treemacs))
+  ([f12] . treemacs))
 
 ;; (popwin-mode t)
 
@@ -666,7 +666,7 @@
   :hook
   ((org-clock-out . bh/clock-out-maybe))
   ;; (add-hook 'org-clock-out-hook 'bh/clock-out-maybe 'append)  
-  :bind (([f12] . 'org-dispatch)
+  :bind (([f9] . 'org-dispatch)
          :map org-mode-map
          ("C-c [" . nil)
          ("C-c ]" . nil)))
