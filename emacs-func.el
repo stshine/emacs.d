@@ -262,9 +262,28 @@ as the default task."
   ["Org mode commands"
    [("l" "Store link" org-store-link)
     ("c" "Capture" org-capture)
+    ("t" "Time" org-times)
     ("a" "Agenda" org-agenda)
     ("b" "Switch buffer" org-switchb)
     ("i" "Punch in" bh/punch-in)
     ("o" "Punch out" bh/punch-out)]])
+
+(define-transient-command org-times ()
+  "Invoke Org clock commands"
+  ["Common clock commands"
+   [("." "Insert timestamp" org-time-stamp)
+    ("s" "Start timer" org-timer-start)
+    ("p" "Stop timer" org-timer-stop)
+    ("t" "Insert timer" org-timer)
+    ("C-s" "Insert scheduled" org-schedule)
+    ("C-d" "Insert deadline" org-deadline)
+    ("i" "Clock in" org-clock-in)
+    ("o" "Clock out" org-clock-out)
+    ("x" "Clock last" org-clock-in-last)
+    ("j" "Clock jump" org-clock-goto)
+    ("q" "Cancel clock" org-clock-cancel)
+    ("d" "Display clock" org-clock-display)
+    ("r" "Clock report" org-clock-report)
+    ("z" "Resolve clocks" org-resolve-clocks)]])
 
 ;;; emacs-func.el ends here
