@@ -337,6 +337,11 @@ as the default task."
     ("n" "Create table" org-table-create)
     ("s" "Sort table" org-table-sort-lines)]])
 
+(define-transient-command org-babels ()
+  "Invoke org bable commands"
+  ["Bable commands"
+   [("n" "Next block" org-babel-next-src-block)
+    ("p" "Previous block" org-babel-previous-src-block)]])
 
 (define-transient-command org-inserts ()
   "Insert org elements"
