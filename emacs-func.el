@@ -266,6 +266,7 @@ as the default task."
     ("a" "Agenda" org-agenda)
     ("b" "Switch buffer" org-switchb)
     ("i" "Punch in" bh/punch-in)
+    ("t" "Table commands" org-tables)
     ("x" "Toggle element" org-toggles)
     ("s" "Editing subtrees" org-subtrees)
     ("o" "Punch out" bh/punch-out)]])
@@ -315,5 +316,24 @@ as the default task."
     ("r" "Refile" org-refile)
     ("s" "Create sparse tree" org-sparse-tree)
     ("S" "Sort" org-sort)]])
+
+(define-transient-command org-tables ()
+  "Invoke org table comands"
+  ["Common table commands"
+   [("a" "Align table commands" org-table-align)
+    ("b" "Blank field" org-table-blank-field)
+    ("d" "Delete row" org-table-kill-row)
+    ("k" "Delete column" org-table-delete-column)
+    ("e" "Eval formula" org-table-eval-formula)
+    ("E" "Export table" org-table-export)
+    ("h" "Previous field" org-table-previous-field)
+    ("H" "Move column left" org-table-move-column-left)
+    ("j" "Next row" org-table-next-row)
+    ("J" "Move row down" org-table-move-row-down)
+    ("K" "Move row up" org-table-move-row-up)
+    ("l" "Next field" org-table-next-field)
+    ("L" "Move column right" org-table-move-column-right)
+    ("n" "Create table" org-table-create)
+    ("s" "Sort table" org-table-sort-lines)]])
 
 ;;; emacs-func.el ends here
