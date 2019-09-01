@@ -265,10 +265,11 @@ as the default task."
     ("c" "Time" org-times)
     ("a" "Agenda" org-agenda)
     ("b" "Switch buffer" org-switchb)
-    ("i" "Punch in" bh/punch-in)
     ("t" "Table commands" org-tables)
+    ("i" "Insert element" org-inserts)
     ("x" "Toggle element" org-toggles)
     ("s" "Editing subtrees" org-subtrees)
+    ("p" "Punch in" bh/punch-in)
     ("o" "Punch out" bh/punch-out)]])
 
 (define-transient-command org-times ()
@@ -335,5 +336,20 @@ as the default task."
     ("L" "Move column right" org-table-move-column-right)
     ("n" "Create table" org-table-create)
     ("s" "Sort table" org-table-sort-lines)]])
+
+
+(define-transient-command org-inserts ()
+  "Insert org elements"
+  ["Common insert commands"
+   [("d" "Insert drawer" org-insert-drawer)
+    ("e" "Set effort" org-set-effort)
+    ("f" "Insert footnote" org-footnote-new)
+    ("h" "Insert heading" org-insert-heading)
+    ("i" "Insert item" org-insert-item)
+    ("l" "Insert link" org-insert-link)
+    ("n" "Insert note" org-add-note)
+    ("p" "Set property" org-set-property)
+    ("s" "Insert subheading" org-insert-subheading)
+    ("t" "Insert tags" org-set-tags)]])
 
 ;;; emacs-func.el ends here
