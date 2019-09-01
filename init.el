@@ -621,7 +621,7 @@
 (use-package org
   :init
   (require 'org-clock)
-  (setq org-agenda-files '("~/org/"))
+  (setq org-agenda-files '("~/OneDrive/org"))
   :config
   (setq org-todo-keywords
         '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))) 
