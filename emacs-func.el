@@ -261,8 +261,8 @@ as the default task."
   "Invoke common Org mode commands"
   ["Org mode commands"
    [("l" "Store link" org-store-link)
-    ("c" "Capture" org-capture)
-    ("t" "Time" org-times)
+    ("C" "Capture" org-capture)
+    ("c" "Time" org-times)
     ("a" "Agenda" org-agenda)
     ("b" "Switch buffer" org-switchb)
     ("i" "Punch in" bh/punch-in)
@@ -274,17 +274,17 @@ as the default task."
   "Invoke Org clock commands"
   ["Common clock commands"
    [("." "Insert timestamp" org-time-stamp)
-    ("s" "Start timer" org-timer-start)
+    ("t" "Start timer" org-timer-start)
     ("p" "Stop timer" org-timer-stop)
     ("t" "Insert timer" org-timer)
-    ("C-s" "Insert scheduled" org-schedule)
-    ("C-d" "Insert deadline" org-deadline)
+    ("s" "Insert scheduled" org-schedule)
+    ("d" "Insert deadline" org-deadline)
     ("i" "Clock in" org-clock-in)
     ("o" "Clock out" org-clock-out)
-    ("x" "Clock last" org-clock-in-last)
+    ("I" "Clock last" org-clock-in-last)
     ("j" "Clock jump" org-clock-goto)
     ("q" "Cancel clock" org-clock-cancel)
-    ("d" "Display clock" org-clock-display)
+    ("D" "Display clock" org-clock-display)
     ("r" "Clock report" org-clock-report)
     ("z" "Resolve clocks" org-resolve-clocks)]])
 
