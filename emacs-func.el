@@ -267,6 +267,7 @@ as the default task."
     ("b" "Switch buffer" org-switchb)
     ("i" "Punch in" bh/punch-in)
     ("x" "Toggle element" org-toggles)
+    ("s" "Editing subtrees" org-subtrees)
     ("o" "Punch out" bh/punch-out)]])
 
 (define-transient-command org-times ()
@@ -297,5 +298,22 @@ as the default task."
     ("T" "Toggle todo tree" org-show-todo-tree)
     ("t" "Toggle todo" org-todo)
     ("m" "Toggle math view" org-toggle-latex-fragment)]])
+
+(define-transient-command org-subtrees ()
+  "Edit org subtrees"
+  ["Common tree editing commands"
+   [("a" "Toggle archive tag" org-toggle-archive-tag)
+    ("A" "Archive subtree" org-archive-subtree)
+    ("b" "Indirect subtree" org-tree-to-indirect-buffer)
+    ("k" "Kill subtree" org-cut-subtree)
+    ("h" "Promote subtree" org-promote-subtree)
+    ("j" "Move subtree down" org-move-subtree-down)
+    ("k" "Move subtree up" org-move-subtree-up)
+    ("l" "Demote subtree" org-demote-subtree)
+    ("n" "Narrow to subtree" org-narrow-to-subtree)
+    ("N" "Widen subtree" widen)
+    ("r" "Refile" org-refile)
+    ("s" "Create sparse tree" org-sparse-tree)
+    ("S" "Sort" org-sort)]])
 
 ;;; emacs-func.el ends here
