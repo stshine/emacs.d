@@ -266,6 +266,7 @@ as the default task."
     ("a" "Agenda" org-agenda)
     ("b" "Switch buffer" org-switchb)
     ("i" "Punch in" bh/punch-in)
+    ("x" "Toggle element" org-toggles)
     ("o" "Punch out" bh/punch-out)]])
 
 (define-transient-command org-times ()
@@ -285,5 +286,16 @@ as the default task."
     ("d" "Display clock" org-clock-display)
     ("r" "Clock report" org-clock-report)
     ("z" "Resolve clocks" org-resolve-clocks)]])
+
+(define-transient-command org-toggles ()
+  "Toggle org elements"
+  ["common toggle commands"
+   [("c" "Toggle checkbox" org-toggle-checkbox)
+    ("e" "Toggle pretties" org-toggle-pretty-entities)
+    ("i" "Toggle inline" org-toggle-inline-images)
+    ("l" "Toggle link" org-toggle-link-display)
+    ("T" "Toggle todo tree" org-show-todo-tree)
+    ("t" "Toggle todo" org-todo)
+    ("m" "Toggle math view" org-toggle-latex-fragment)]])
 
 ;;; emacs-func.el ends here
