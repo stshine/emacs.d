@@ -253,6 +253,13 @@
   :diminish undo-tree-mode)
 
 
+(use-package mwim
+  :ensure t
+  :bind
+  (("C-a" . mwim-beginning-of-code-or-line)
+   ("C-e" . mwim-end-of-code-or-line)))
+
+
 ;;; intergrate projectile with helm.
 (use-package helm-projectile
   :custom
