@@ -493,7 +493,8 @@
 (use-package eshell
   :defer t
   :init
-  (setq ;; auto truncate after 20k lines
+  (setq
+   ;; auto truncate after 20k lines
    eshell-buffer-maximum-lines 20000
    ;; history size
    eshell-history-size 500
@@ -507,10 +508,11 @@
    eshell-plain-echo-behavior t)
   :config
   ;; use helm to list eshell history
-  (add-hook 'eshell-mode-hook
-            #'(lambda ()
-                (substitute-key-definition 'eshell-list-history 'helm-eshell-history eshell-mode-map)
-                (substitute-key-definition 'eshell-pcomplete 'helm-esh-pcomplete eshell-mode-map))))
+  :bind
+  (("C-`" . eshell)
+   :map eshell-mode-map
+   ([remap eshell-list-history] . helm-eshell-history)
+   ([remap eshell-pcomplete] . helm-esh-pcomplete)))
 
 
 ;;; ----------------------- Web Mode ----------------------
