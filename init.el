@@ -578,18 +578,17 @@ directories."
   (js2-mode . (lambda ()
                 (js2-imenu-extras-mode 1)
                 ;; (flycheck-mode 1)
-                (tern-mode t)
-                (add-to-list 'company-backends 'company-tern)))
+                ))
   :mode
   (("\\.js\\'"         . js2-mode)
    ("\\.jsx\\'"        . js2-jsx-mode)))
 
 
 ;;; ----------------------- Python ----------------------
-(elpy-enable)
+;; (elpy-enable)
 ;; (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
 ;; (add-hook 'elpy-mode-hook 'flycheck-mode)
-(setq flycheck-flake8-maximum-line-length 120)
+;; (setq flycheck-flake8-maximum-line-length 120)
 ;; (setq elpy-rpc-python-command "python3")
 ;;(elpy-use-ipython)
 ;;(setq python-shell-interpreter "ipython3")
@@ -612,9 +611,7 @@ directories."
   (rust-mode . (lambda ()
                  ;; (setq rust-format-on-save t)
                  (subword-mode 1)
-                 ;; (racer-mode 1)
                  ))
-  :diminish racer-mode
   :mode "\\.rs\\'")
 
 
