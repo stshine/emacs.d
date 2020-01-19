@@ -260,6 +260,7 @@ directories."
 
 
 (use-package undo-tree
+  :ensure t
   :config
   (global-undo-tree-mode)
   :diminish undo-tree-mode)
@@ -365,6 +366,7 @@ directories."
 ;; (semantic-add-system-include "/usr/include/" 'c-mode)
 
 (use-package which-key
+  :ensure t
   :config
   (which-key-mode 1)
   :bind
@@ -641,7 +643,7 @@ directories."
 ;;; ------------------------Org Mode--------------------------
 (use-package org
   :init
-  (require 'org-clock)
+  ;; (require 'org-clock)
   (setq org-agenda-files '("~/OneDrive/org"))
   :config
   (setq org-todo-keywords
