@@ -528,6 +528,29 @@ directories."
    ([remap eshell-list-history] . helm-eshell-history)
    ([remap eshell-pcomplete] . helm-esh-pcomplete)))
 
+;; (diminish 'eldoc-mode)
+
+
+(use-package lsp-mode
+  :requires (flycheck company)
+  :commands lsp
+  ;; :ensure lsp-ui
+  :init
+  (setq lsp-session-file "~/.emacs.d/.session/.lsp-session-v1")
+  :config
+  (setq lsp-prefer-flymake nil)
+  :hook ((js2-mode python-mode rust-mode typescript-mode) . lsp)
+  :diminish lsp-mode)
+
+(use-package company-lsp)
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package company-lsp :commands company-lsp)
+(use-package helm-lsp :commands helm-lsp-workspace-symbol)
+;; (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+;; optionally if you want to use debugger
+;; (use-package dap-mode)
+
+
 
 ;;; ----------------------- Web Mode ----------------------
 (use-package web-mode
@@ -615,15 +638,6 @@ directories."
   :mode "\\.rs\\'")
 
 
-;; (use-package lsp-mode
-;;     :init
-;;     (add-hook 'prog-mode-hook 'lsp-mode)
-;;     :config
-;;     (use-package lsp-flycheck
-;;         :ensure f ; comes with lsp-mode
-;;         :after flycheck))
-;; (use-package lsp-rust
-;;     :after lsp-mode)
 
 
 
