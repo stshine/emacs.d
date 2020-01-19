@@ -549,7 +549,8 @@ directories."
    ("\\.html$"         . web-mode)
    ("\\.htm$"          . web-mode)
    ("\\.blade\\.php$"  . web-mode)
-   ("\\.tera$"         . web-mode)))
+   ("\\.tera$"         . web-mode))
+  :diminish emmet-mode)
 
 
 ;; JSX highlight
