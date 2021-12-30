@@ -341,8 +341,9 @@ directories."
   (("<f8>" . magit-dispatch)
    ("C-<f8>" . magit-status)))
 
-
-(company-auctex-init)
+(use-package company-auctex
+  :config
+  (company-auctex-init))
 
 (use-package ace-link
   :config
@@ -351,8 +352,9 @@ directories."
   (("C-z" . avy-goto-char-timer)
    ("C-c z" . avy-pop-mark)))
 
-(require 'imenu-list)
-(setq imenu-list-position 'left)
+(use-package imenu-list
+  :config
+  (setq imenu-list-position 'left))
 
 
 (use-package treemacs
@@ -617,14 +619,12 @@ directories."
 
 
 ;;; ------------------------ Go --------------------------
-(require 'go-mode)
-(require 'company-go)
-(add-hook 'go-mode-hook
-          (lambda ()
-            (set (make-local-variable 'company-backends) '(company-go))
-            (go-eldoc-setup)
-            (subword-mode t)
-            (flycheck-mode 1)))
+(use-package go-mode
+  :hook
+  (go-mode . (lambda ()
+               (go-eldoc-setup)
+               (subword-mode t)
+               (flycheck-mode 1))))
 
 
 ;;; ------------------------ Rust --------------------------
