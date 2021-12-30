@@ -8,6 +8,7 @@
 (setq package-archives '(("melpa" . "http://melpa.org/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")))
 (setq package-enable-at-startup nil)
+(custom-set-variables '(package-gnupghome-dir "~/.emacs.d/elpa/gnupg"))
 (package-initialize)
 (require 'use-package)
 
