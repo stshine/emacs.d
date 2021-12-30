@@ -16,6 +16,7 @@
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 (require 'use-package)
+(custom-set-variables '(use-package-always-ensure t))
 
 (prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -266,14 +267,12 @@ directories."
 
 
 (use-package undo-tree
-  :ensure t
   :config
   (global-undo-tree-mode)
   :diminish undo-tree-mode)
 
 
 (use-package mwim
-  :ensure t
   :bind
   (("C-a" . mwim-beginning-of-code-or-line)
    ("C-e" . mwim-end-of-code-or-line)))
@@ -338,7 +337,6 @@ directories."
 
 
 (use-package magit
-  :ensure t
   :config
   (setq magit-repository-directories "~/Programs/")
   ;; (setq magit-completing-read-function 'helm-completing-read-with-cands-in-buffer)
@@ -350,7 +348,6 @@ directories."
 (company-auctex-init)
 
 (use-package ace-link
-  :ensure t
   :config
   (ace-link-setup-default)
   :bind
@@ -372,7 +369,6 @@ directories."
 ;; (semantic-add-system-include "/usr/include/" 'c-mode)
 
 (use-package which-key
-  :ensure t
   :config
   (which-key-mode 1)
   :bind
