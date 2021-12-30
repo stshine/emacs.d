@@ -38,8 +38,10 @@
 ;; (setq socks-server '("Default server" "127.0.0.1" 1080 5))
 
 (menu-bar-mode 0)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
+(when (display-graphic-p)
+  (tool-bar-mode 0)
+  (scroll-bar-mode 0))
+
 ;; (display-battery-mode 1)
 (blink-cursor-mode 0)
 (setq-default display-line-numbers t)
