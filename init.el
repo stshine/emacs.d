@@ -142,14 +142,11 @@ directories."
   (savehist-mode 1))
 
 
-(use-package helm-config
-  :custom
-  (helm-command-prefix-key "C-c h"))
-
 (use-package helm
-  :ensure t
   ;; :commands (helm-find-files)
   :init
+  :custom
+  (helm-command-prefix-key "C-c h")
   :config
   (setq helm-prevent-escaping-from-minibuffer t
         helm-split-window-default-side   'above
