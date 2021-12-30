@@ -111,16 +111,14 @@
   (recentf-mode 1))
 
 
-(use-package x-win
-  :config
-  (let ((session-dir "~/.emacs.d/.session/"))
+(let ((session-dir "~/.emacs.d/.session/"))
     `(progn
        (make-directory ,session-dir t)
        (defun emacs-session-filename (session-id)
          "Construct a filename to save the session in based on SESSION-ID.
 This function overrides the one on `x-win' to use `no-littering'
 directories."
-         (expand-file-name session-id ,session-dir)))))
+         (expand-file-name session-id ,session-dir))))
 
 
 ;; saveplace remembers your location in a file when saving files
