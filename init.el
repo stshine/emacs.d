@@ -10,6 +10,11 @@
 (setq package-enable-at-startup nil)
 (custom-set-variables '(package-gnupghome-dir "~/.emacs.d/elpa/gnupg"))
 (package-initialize)
+
+(unless package-archive-contents
+  (package-refresh-contents))
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
 (require 'use-package)
 
 (prefer-coding-system       'utf-8)
