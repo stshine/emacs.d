@@ -540,7 +540,7 @@ directories."
   (setq lsp-session-file "~/.emacs.d/.session/.lsp-session-v1")
   :config
   (setq lsp-prefer-flymake nil)
-  :hook ((js2-mode python-mode rust-mode typescript-mode) . lsp)
+  :hook ((js2-mode python-mode typescript-mode) . lsp)
   :diminish lsp-mode)
 
 (use-package lsp-ui :commands lsp-ui-mode)
@@ -626,13 +626,12 @@ directories."
 
 
 ;;; ------------------------ Rust --------------------------
-(use-package rust-mode
+(use-package rustic
   :hook
   (rust-mode . (lambda ()
                  ;; (setq rust-format-on-save t)
                  (subword-mode 1)
-                 ))
-  :mode "\\.rs\\'")
+                 )))
 
 
 
