@@ -815,3 +815,9 @@ directories."
 (spaceline-emacs-theme)
 
 ;; (add-hook 'buffer-list-update-hook 'neotree-projectile-action)
+
+
+;; Start server.
+(require 'server)
+(unless (server-running-p)
+  (server-start))
