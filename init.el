@@ -146,28 +146,29 @@ directories."
   ;; :commands (helm-find-files)
   :init
   :custom
-  (helm-command-prefix-key "C-c h")
+  (helm-command-prefix-key         "C-c h")
+  (helm-prevent-escaping-from-minibuffer t)
+  (helm-split-window-default-side   'above)
+  ;; open helm buffer inside current window, not occupy whole other window
+  (helm-split-window-inside-p            t)
+  (helm-always-two-windows               t)
+  (helm-echo-input-in-header-line        t)
+  (helm-autoresize-max-height           50)
+  (helm-display-header-line            nil)
+  (helm-bookmark-show-location           t)
+  ;; (helm-imenu-execute-action-at-once-if-one nil)
+  (helm-ff-auto-update-initial-value     t)
+  ;; move to end or beginning of source when reaching top or bottom of source.
+  (helm-move-to-line-cycle-in-source     t)
+  ;; search for library in `require' and `declare-function' sexp.
+  (helm-ff-search-library-in-sexp        t)
+  ;; scroll 8 lines other window using M-<next>/M-<prior>
+  (helm-scroll-amount                    8)
+  (helm-ff-file-name-history-use-recentf t)
   :config
-  (setq helm-prevent-escaping-from-minibuffer t
-        helm-split-window-default-side   'above
-        ;; open helm buffer inside current window, not occupy whole other window
-        helm-split-window-inside-p            t
-        helm-always-two-windows               t
-        helm-echo-input-in-header-line        t
-        helm-autoresize-max-height           50
-        helm-display-header-line            nil
-        helm-bookmark-show-location           t
-        ;; helm-imenu-execute-action-at-once-if-one nil
-        helm-ff-auto-update-initial-value     t
-        helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-        helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-        helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-        helm-ff-file-name-history-use-recentf t)
-
   (helm-autoresize-mode t)
   (when (executable-find "curl")
     (setq helm-net-prefer-curl t))
-
   ;; hide minibuffer in Helm session, since we use the header line already
   (defun helm-hide-minibuffer-maybe ()
     (when (with-helm-buffer helm-echo-input-in-header-line)
