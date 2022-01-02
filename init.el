@@ -370,9 +370,6 @@ directories."
 ;; (popwin-mode t)
 
 
-;;; semantic config
-;; (semantic-add-system-include "/usr/include/" 'c-mode)
-
 (use-package which-key
   :config
   (which-key-mode 1)
