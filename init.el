@@ -361,7 +361,9 @@ directories."
   (setq imenu-list-position 'left))
 
 
-(use-package treemacs
+(use-package lsp-treemacs
+  :config
+  (lsp-treemacs-sync-mode 1)
   :bind
   ([f12] . treemacs))
 
