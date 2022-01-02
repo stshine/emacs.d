@@ -348,6 +348,8 @@ directories."
   (company-auctex-init))
 
 (use-package ace-link
+  :custom
+  (avy-timeout-seconds 0.3)
   :config
   (ace-link-setup-default)
   :bind
