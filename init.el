@@ -1,7 +1,8 @@
 ;;; init.el  -*- lexical-binding: t; -*-
 
 (setq custom-file "~/.emacs.d/emacs-custom.el")
-(setq gc-cons-threshold 100000000)
+(setq gc-cons-threshold (* 100 1024 1024))
+(setq read-process-output-max (* 1 1024 1024))
 
 ;; (setq url-proxy-services '(("http" . "127.0.0.1:8087")))
 
