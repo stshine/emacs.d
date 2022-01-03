@@ -576,42 +576,35 @@ directories."
 ;;; ----------------------- Web Mode ----------------------
 (use-package web-mode
   :defer t
+  :ensure emmet-mode
   :init
-  ;; (use-package company-web)
-  ;; (push '(company-web-html company-css) company-backend)
-  :hook
-  (web-mode . (lambda ()
-                (set (make-local-variable 'company-backends) '(company-web-html company-files))
-                (company-mode t)))
+  :custom
+  (web-mode-markup-indent-offset 2)
+  (web-mode-css-indent-offset 4)
+  (web-mode-enable-current-element-highlight t)
   :config
-  (setq web-mode-engines-alist '(("jinja2" . "\\.tera$"))
-        web-mode-markup-indent-offset 2
-        web-mode-css-indent-offset 4
-        web-mode-enable-current-element-highlight t) 
+  (setq web-mode-engines-alist '(("jinja2" . "\\.tera$")))
   :mode
-  (("\\.phtml\\'"      . web-mode)
-   ("\\.html$"         . web-mode)
-   ("\\.htm$"          . web-mode)
+  (("\\.html?$"        . web-mode)
+   ("\\.phtml\\'"      . web-mode)
    ("\\.blade\\.php$"  . web-mode)
    ("\\.tera$"         . web-mode))
-  :diminish emmet-mode)
+  :hook
+  (web-mode . (lambda ()
+                (when (equal web-mode-content-type "jsx")
+                  ;; enable flycheck
+                  (flycheck-select-checker 'javascript-eslint))
+                (emmet-mode 1)
+                (lsp)))
+  :delight emmet-mode)
 
 
 ;; JSX highlight
-(defadvice web-mode-highlight-part (around tweak-jsx activate)
-  (if (equal web-mode-content-type "jsx")
-      (let ((web-mode-enable-part-face nil))
-        ad-do-it)
-    ad-do-it))
-
-
-(add-hook 'web-mode-hook
-          (lambda ()
-            (when (equal web-mode-content-type "jsx")
-              ;; enable flycheck
-              (flycheck-select-checker 'javascript-eslint))
-            (emmet-mode 1)
-            (flycheck-mode 1)))
+;; (defadvice web-mode-highlight-part (around tweak-jsx activate)
+;;   (if (equal web-mode-content-type "jsx")
+;;       (let ((web-mode-enable-part-face nil))
+;;         ad-do-it)
+;;     ad-do-it))
 
 
 ;;; ----------------------- JavaScript ----------------------
