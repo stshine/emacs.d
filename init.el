@@ -629,6 +629,15 @@ directories."
 ;; (setq elpy-rpc-python-command "python3")
 ;;(elpy-use-ipython)
 ;;(setq python-shell-interpreter "ipython3")
+(use-package python
+  :ensure lsp-pyright
+  :custom
+  (python-indent-guess-indent-offset-verbose nil)
+  :hook
+  (python-mode . (lambda ()
+                   (require 'lsp-pyright)
+                   (pyvenv-activate (lsp-pyright-locate-venv))
+                   (lsp))))
 
 
 ;;; ------------------------ Go --------------------------
