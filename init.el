@@ -75,7 +75,7 @@
 (use-package autorevert
   :config
   (global-auto-revert-mode 1)
-  :diminish auto-revert-mode)
+  :delight auto-revert-mode)
 
 ;; smart tab behavior - indent or complete
 (setq tab-always-indent 'complete)
@@ -241,7 +241,7 @@ directories."
          :map helm-command-map
          ("o"         . 'helm-swoop)
          ("g"         . 'helm-do-ag))
-  :diminish helm-mode)
+  :delight helm-mode)
 
 ;; (define-key helm-grep-mode-map (kbd "<return>")  'helm-grep-mode-jump-other-window)
 ;; (define-key helm-grep-mode-map (kbd "n")  'helm-grep-mode-jump-other-window-forward)
@@ -268,7 +268,7 @@ directories."
 (use-package undo-tree
   :config
   (global-undo-tree-mode)
-  :diminish undo-tree-mode)
+  :delight undo-tree-mode)
 
 
 (use-package mwim
@@ -312,7 +312,7 @@ directories."
   (smartparens-global-mode 1)
   (show-smartparens-global-mode 1)
   (smartparens-paredit-global-mode 1)
-  :diminish smartparens-mode)
+  :delight smartparens-mode)
   ;; (-each sp-lisp-modes (lambda (mode)
                          ;; (set-face-foreground 'sp-pair-overlay-face "DimGrey")))
 
@@ -350,7 +350,7 @@ directories."
   (which-key-mode 1)
   :bind
   (("C-h C-k" . 'which-key-show-top-level))
-  :diminish which-key-mode)
+  :delight which-key-mode)
 
 ;;(require 'pager)
 
@@ -529,7 +529,7 @@ directories."
 
 
 (use-package flycheck
-  :diminish)
+  :delight)
 
 
 (use-package lsp-mode
@@ -547,7 +547,7 @@ directories."
         ("<tab>" . company-complete-selection)
         :map lsp-mode-map
         ("<tab>" . company-indent-or-complete-common))
-  :diminish lsp-mode)
+  :delight lsp-mode)
 
 (use-package lsp-ui
   :commands lsp-ui-mode
