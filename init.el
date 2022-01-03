@@ -481,31 +481,33 @@ directories."
     (setq erc-autoaway-use-emacs-idle t)))
 
 
-
 ;;; ----------------------- Eshell Mode ----------------------
-(use-package eshell
-  :defer t
-  :init
+;; Eshell has some special loading mechanisms, so we need to use
+;; this special hooks to configure it.
+(defun configure-eshell ()
   (setq
    ;; auto truncate after 20k lines
    eshell-buffer-maximum-lines 20000
    ;; history size
-   eshell-history-size 500
+   eshell-history-size 5000
    ;; no duplicates in history
    eshell-hist-ignoredups t
-   ;; buffer shorthand -> echo foo > #'buffer
-   eshell-buffer-shorthand t
    ;; my prompt is easy enough to see
    eshell-highlight-prompt nil
    ;; treat 'echo' like shell echo
    eshell-plain-echo-behavior t)
+  ;; cannot simply done use use-package :bind.
+  (bind-key [remap eshell-list-history] #'helm-eshell-history eshell-command-map)
+  (bind-key [remap eshell-pcomplete] #'helm-esh-pcomplete eshell-command-map))
+
+(use-package eshell
+  :defer t
   :config
-  ;; use helm to list eshell history
+  (delq 'eshell-banner eshell-modules-list)
+  :hook
+  (eshell-first-time-mode . configure-eshell)
   :bind
-  (("C-`" . eshell)
-   :map eshell-mode-map
-   ([remap eshell-list-history] . helm-eshell-history)
-   ([remap eshell-pcomplete] . helm-esh-pcomplete)))
+  (("C-`" . #'eshell)))
 
 ;; (diminish 'eldoc-mode)
 
