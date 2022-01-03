@@ -251,7 +251,8 @@ as the default task."
   smartparens-strict-mode
   (lambda ()
     (when (member major-mode sp-lisp-modes)
-      (smartparens-strict-mode 1))))
+      (smartparens-strict-mode 1)
+      (sp-use-paredit-bindings))))
 
 
 (use-package transient
