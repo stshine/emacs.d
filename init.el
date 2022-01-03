@@ -291,25 +291,6 @@ directories."
   ("C-c p" . projectile-command-map))
 
 
-(use-package company
-  :custom
-  (company-idle-delay 0.3)
-  (company-tooltip-limit 10)
-  (company-minimum-prefix-length 2)
-  ;; invert the navigation direction if the the completion popup-isearch-match
-  ;; is displayed on top (happens near the bottom of windows)
-  (company-tooltip-flip-when-above t)
-  (company-tooltip-align-annotations t)
-  (company-dabbrev-downcase nil)
-  (company-dabbrev-ignore-case nil)
-  :config
-  (global-company-mode 1)
-  :diminish company-mode)
-
-
-(use-package flycheck
- :diminish)
-
 (use-package pdf-tools
   :magic ("%PDF" . pdf-view-mode)
   :config
@@ -359,13 +340,6 @@ directories."
 (use-package imenu-list
   :config
   (setq imenu-list-position 'left))
-
-
-(use-package lsp-treemacs
-  :config
-  (lsp-treemacs-sync-mode 1)
-  :bind
-  ([f12] . treemacs))
 
 ;; (popwin-mode t)
 
@@ -535,22 +509,66 @@ directories."
 ;; (diminish 'eldoc-mode)
 
 
+(use-package company
+  :ensure company-box
+  :custom
+  (company-idle-delay 0.3)
+  (company-tooltip-limit 10)
+  (company-minimum-prefix-length 2)
+  ;; invert the navigation direction if the the completion popup-isearch-match
+  ;; is displayed on top (happens near the bottom of windows)
+  (company-tooltip-flip-when-above t)
+  (company-tooltip-align-annotations t)
+  (company-dabbrev-downcase nil)
+  (company-dabbrev-ignore-case nil)
+  :hook
+  (company-mode . company-box-mode)
+  (emacs-lisp-mode . company-mode)
+  :delight (company-mode) (company-box-mode))
+
+
+(use-package flycheck
+  :diminish)
+
+
 (use-package lsp-mode
   :requires (flycheck company)
   :commands lsp
   ;; :ensure lsp-ui
-  :init
-  (setq lsp-session-file "~/.emacs.d/.session/.lsp-session-v1")
-  :config
-  (setq lsp-prefer-flymake nil)
-  :hook ((js2-mode python-mode typescript-mode) . lsp)
+  :custom
+  (lsp-session-file "~/.emacs.d/.session/.lsp-session-v1")
+  :hook (lsp-mode .  (lambda ()
+                       (company-mode 1)
+                       (flycheck-mode 1)
+                       (lsp-enable-which-key-integration)))
+  :bind
+  (:map company-active-map
+        ("<tab>" . company-complete-selection)
+        :map lsp-mode-map
+        ("<tab>" . company-indent-or-complete-common))
   :diminish lsp-mode)
 
-(use-package lsp-ui :commands lsp-ui-mode)
+(use-package lsp-ui
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-doc-position 'bottom)
+  :bind
+  (:map lsp-ui-mode-map
+        ([remap xref-find-references] . #'lsp-ui-peek-find-references)))
+
 (use-package helm-lsp :commands helm-lsp-workspace-symbol)
-;; (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 ;; optionally if you want to use debugger
 ;; (use-package dap-mode)
+
+
+(use-package lsp-treemacs
+  :config
+  (lsp-treemacs-sync-mode 1)
+  :hook
+  (treemacs-mode . (lambda ()
+                     (display-line-numbers-mode 0)))
+  :bind
+  ([f12] . treemacs))
 
 
 
