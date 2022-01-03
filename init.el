@@ -131,14 +131,14 @@ directories."
 
 
 (use-package savehist
+  :custom
+  ;; search entries
+  (savehist-additional-variables '(search-ring regexp-search-ring))
+  ;; save every minute
+  (savehist-autosave-interval 60)
+  ;; keep the home clean
+  (savehist-file (expand-file-name "savehist" cache-dir))
   :config
-  (setq savehist-additional-variables
-        ;; search entries
-        '(search-ring regexp-search-ring)
-        ;; save every minute
-        savehist-autosave-interval 60
-        ;; keep the home clean
-        savehist-file (expand-file-name "savehist" cache-dir))
   (savehist-mode 1))
 
 
