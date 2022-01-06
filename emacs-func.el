@@ -358,7 +358,8 @@ as the default task."
     ("n" "Insert note" org-add-note)
     ("p" "Set property" org-set-property)
     ("s" "Insert subheading" org-insert-subheading)
-    ("t" "Insert tags" org-set-tags)]])
+    ("t" "Insert structured template" org-insert-structure-template)
+    ("g" "Insert tags" org-set-tags-command)]])
 
 (transient-define-prefix org-roams ()
   "Org Roam Commands"
