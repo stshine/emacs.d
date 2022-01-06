@@ -270,6 +270,7 @@ as the default task."
     ("i" "Insert element" org-inserts)
     ("x" "Toggle element" org-toggles)
     ("s" "Editing subtrees" org-subtrees)
+    ("r" "Org Roam" org-roams)
     ("p" "Punch in" bh/punch-in)
     ("o" "Punch out" bh/punch-out)]])
 
@@ -357,5 +358,15 @@ as the default task."
     ("p" "Set property" org-set-property)
     ("s" "Insert subheading" org-insert-subheading)
     ("t" "Insert tags" org-set-tags)]])
+
+(transient-define-prefix org-roams ()
+  "Org Roam Commands"
+  ["Org Roam Commands"
+   [("i" "Insert roam node" org-roam-node-insert)
+    ("I" "Create Node on heading" org-id-get-create)
+    ("l" "Roam buffer" org-roam-buffer-toggle)
+    ("/" "Find roam node" org-roam-node-find)
+    ("c" "Capture roam node" org-roam-capture)
+    ("r" "Roam refile" org-roam-refile)]])
 
 ;;; emacs-func.el ends here
