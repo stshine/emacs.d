@@ -676,24 +676,27 @@ directories."
 
 ;;; ------------------------Org Mode--------------------------
 (use-package org
-  :init
+  :custom
   ;; (require 'org-clock)
-  (setq org-agenda-files '("~/OneDrive/org"))
-  :config
-  (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)"))) 
-  (setq org-todo-keyword-faces
-        (quote (("TODO" :foreground "red" :weight bold)
-                ("NEXT" :foreground "blue" :weight bold)
-                ("DONE" :foreground "forest green" :weight bold)
-                ("WAITING" :foreground "orange" :weight bold)
-                ("HOLD" :foreground "magenta" :weight bold)
-                ("CANCELLED" :foreground "forest green" :weight bold)
-                ("MEETING" :foreground "forest green" :weight bold)
-                ("PHONE" :foreground "forest green" :weight bold))))
-  (setq org-use-fast-todo-selection t)
-  (setq org-src-fontify-natively t)
-  (setq org-todo-state-tags-triggers
+  (org-agenda-files '("~/OneDrive/org"))
+  (org-default-notes-file "~/OneDrive/org/tasks.org")
+  (org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)" "CANCELLED(c)")))
+  ;; (org-todo-keyword-faces
+  ;;  `(("TODO" :foreground "red" :weight bold)
+  ;;   ("NEXT" :foreground "blue" :weight bold)
+  ;;   ("DONE" :foreground "forest green" :weight bold)
+  ;;   ("WAITING" :foreground "orange" :weight bold)
+  ;;   ("HOLD" :foreground "magenta" :weight bold)
+  ;;   ("CANCELLED" :foreground "forest green" :weight bold)
+  ;;   ("MEETING" :foreground "forest green" :weight bold)
+  ;;   ("PHONE" :foreground "forest green" :weight bold)))
+  (org-capture-templates
+   `(("t" "Task" entry (file+headline "" "Tasks")
+      "* TODO %?\n %U\n %a\n %i" :empty-lines 1)
+     ("j" "Journal" entry (file+olp+datetree "~/OneDrive/org/Journal.org")
+      "* %U - %^{heading} %^g\n %?\n %i\n" :empty-lines 1)))
+  (org-refile-targets '(("Archive.org" :maxlevel . 1)))
+  (org-todo-state-tags-triggers
         '(
           ;;("CANCELLED" ("CANCELLED" . t))
           ;;("WAITING" ("WAITING" . t))
@@ -702,31 +705,45 @@ directories."
           ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
           ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
           ("DONE" ("WAITING") ("CANCELLED") ("HOLD"))))
+  (org-use-fast-todo-selection t)
+  (org-src-fontify-natively t)
+  ;; Resume clocking task on clock-in if the clock is open
+  (org-clock-in-resume t)
+  ;; Sometimes I change tasks I'm clocking quickly - this removes clocked tasks with 0:00 duration
+  (org-clock-out-remove-zero-time-clocks t)
+  ;; Clock out when moving task to a done state
+  (org-clock-out-when-done t)
+  ;; Save the running clock and all clock history when exiting Emacs, load it on startup
+  (org-clock-persist t)
+  ;; Do not prompt to resume an active clock
+  (org-clock-persist-query-resume nil)
+  ;; Change tasks to NEXT when clocking in
+  (org-clock-in-switch-to-state 'bh/clock-in-to-next)
+  ;; Enable auto clock resolution for finding open clocks
+  (org-clock-auto-clock-resolution 'when-no-clock-is-running)
+  ;; Org export settings
+  (org-latex-compiler "xelatex")
+  :custom-face
+  (org-block ((t (:foreground nil :inherit 'fixed-pitch))))
+  (org-table ((t (:inherit (shadow fixed-pitch)))))
+  (org-verbatim ((t (:inherit (shadow fixed-pitch)))))
+  (org-code ((t (:inherit (shadow fixed-pitch)))))
+  (org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+  (org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
+  :config
+  (setq bh/keep-clock-running nil)
   ;; Resume clocking task when emacs is restarted
   (org-clock-persistence-insinuate)
-  ;; Resume clocking task on clock-in if the clock is open
-  (setq org-clock-in-resume t)
-  ;; Sometimes I change tasks I'm clocking quickly - this removes clocked tasks with 0:00 duration
-  (setq org-clock-out-remove-zero-time-clocks t)
-  ;; Clock out when moving task to a done state
-  (setq org-clock-out-when-done t)
-  ;; Save the running clock and all clock history when exiting Emacs, load it on startup
-  (setq org-clock-persist t)
-  ;; Do not prompt to resume an active clock
-  (setq org-clock-persist-query-resume nil)
-  ;; Change tasks to NEXT when clocking in
-  (setq org-clock-in-switch-to-state 'bh/clock-in-to-next)
-  ;; Enable auto clock resolution for finding open clocks
-  (setq org-clock-auto-clock-resolution 'when-no-clock-is-running)
-
-  (setq bh/keep-clock-running nil)
   :hook
-  ((org-clock-out . bh/clock-out-maybe))
-  ;; (add-hook 'org-clock-out-hook 'bh/clock-out-maybe 'append)  
-  :bind (([f9] . 'org-dispatch)
+  (org-clock-out . bh/clock-out-maybe)
+  (org-mode . (lambda ()
+                ;; (org-indent-mode 1)
+                (variable-pitch-mode 1)))
+  :bind (([f7] . 'org-dispatch)
          :map org-mode-map
          ("C-c [" . nil)
-         ("C-c ]" . nil)))
+         ("C-c ]" . nil))
+  :delight org-indent-mode)
 
 
 ;; ------------------------ Elisp  --------------------------
