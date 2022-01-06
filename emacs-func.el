@@ -258,7 +258,7 @@ as the default task."
 (use-package transient
   :ensure t)
 
-(define-transient-command org-dispatch ()
+(transient-define-prefix org-dispatch ()
   "Invoke common Org mode commands"
   ["Org mode commands"
    [("l" "Store link" org-store-link)
@@ -273,7 +273,7 @@ as the default task."
     ("p" "Punch in" bh/punch-in)
     ("o" "Punch out" bh/punch-out)]])
 
-(define-transient-command org-times ()
+(transient-define-prefix org-times ()
   "Invoke Org clock commands"
   ["Common clock commands"
    [("." "Insert timestamp" org-time-stamp)
@@ -291,7 +291,7 @@ as the default task."
     ("r" "Clock report" org-clock-report)
     ("z" "Resolve clocks" org-resolve-clocks)]])
 
-(define-transient-command org-toggles ()
+(transient-define-prefix org-toggles ()
   "Toggle org elements"
   ["common toggle commands"
    [("c" "Toggle checkbox" org-toggle-checkbox)
@@ -302,7 +302,7 @@ as the default task."
     ("t" "Toggle todo" org-todo)
     ("m" "Toggle math view" org-toggle-latex-fragment)]])
 
-(define-transient-command org-subtrees ()
+(transient-define-prefix org-subtrees ()
   "Edit org subtrees"
   ["Common tree editing commands"
    [("a" "Toggle archive tag" org-toggle-archive-tag)
@@ -319,7 +319,7 @@ as the default task."
     ("s" "Create sparse tree" org-sparse-tree)
     ("S" "Sort" org-sort)]])
 
-(define-transient-command org-tables ()
+(transient-define-prefix org-tables ()
   "Invoke org table comands"
   ["Common table commands"
    [("a" "Align table commands" org-table-align)
@@ -338,13 +338,13 @@ as the default task."
     ("n" "Create table" org-table-create)
     ("s" "Sort table" org-table-sort-lines)]])
 
-(define-transient-command org-babels ()
+(transient-define-prefix org-babels ()
   "Invoke org bable commands"
   ["Bable commands"
    [("n" "Next block" org-babel-next-src-block)
     ("p" "Previous block" org-babel-previous-src-block)]])
 
-(define-transient-command org-inserts ()
+(transient-define-prefix org-inserts ()
   "Insert org elements"
   ["Common insert commands"
    [("d" "Insert drawer" org-insert-drawer)
