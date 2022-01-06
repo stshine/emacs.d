@@ -276,21 +276,22 @@ as the default task."
 
 (transient-define-prefix org-times ()
   "Invoke Org clock commands"
-  ["Common clock commands"
-   [("." "Insert timestamp" org-time-stamp)
-    ("t" "Start timer" org-timer-start)
-    ("p" "Stop timer" org-timer-stop)
-    ("t" "Insert timer" org-timer)
+  [["Clock commands"
     ("s" "Insert scheduled" org-schedule)
     ("d" "Insert deadline" org-deadline)
-    ("i" "Clock in" org-clock-in)
-    ("o" "Clock out" org-clock-out)
+    ("i" "Clock in" org-clock-in :if-not org-clock-is-active)
+    ("o" "Clock out" org-clock-out :if org-clock-is-active)
     ("I" "Clock last" org-clock-in-last)
-    ("j" "Clock jump" org-clock-goto)
+    ("j" "Clock jump" org-clock-goto :if org-clock-is-active)
     ("q" "Cancel clock" org-clock-cancel)
     ("D" "Display clock" org-clock-display)
     ("r" "Clock report" org-clock-report)
-    ("z" "Resolve clocks" org-resolve-clocks)]])
+    ("z" "Resolve clocks" org-resolve-clocks)]
+   ["Timer commands"
+    ("." "Insert timestamp" org-time-stamp)
+    ("t" "Start timer" org-timer-start)
+    ("p" "Stop timer" org-timer-stop)
+    ("t" "Insert timer" org-timer)]])
 
 (transient-define-prefix org-toggles ()
   "Toggle org elements"
