@@ -271,6 +271,7 @@ as the default task."
     ("x" "Toggle element" org-toggles)
     ("s" "Editing subtrees" org-subtrees)
     ("r" "Org Roam" org-roams)
+    ("e" "Org export" org-export-dispatch)
     ("p" "Punch in" bh/punch-in)
     ("o" "Punch out" bh/punch-out)]])
 
