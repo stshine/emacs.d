@@ -660,9 +660,6 @@ directories."
                  )))
 
 
-
-
-
 ;;; ------------------------ PHP --------------------------
 ;; (require 'php-extras)
 (setq php-mode-coding-style 'symfony2)
@@ -745,6 +742,21 @@ directories."
          ("C-c ]" . nil))
   :delight org-indent-mode)
 
+
+(use-package org-roam
+  :custom
+  (org-roam-directory "~/OneDrive/org-roam/")
+  (org-roam-complete-everywhere t)
+  :config
+  (org-roam-setup))
+
+(use-package org-roam-ui
+  :custom
+  (org-roam-ui-sync-theme t)
+  (org-roam-ui-follow t)
+  (org-roam-ui-update-on-save t)
+  (org-roam-ui-open-on-start t)
+  :delight org-roam-ui-mode)
 
 ;; ------------------------ Elisp  --------------------------
 (add-hook 'emacs-lisp-mode-hook
