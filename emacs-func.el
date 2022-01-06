@@ -258,23 +258,6 @@ as the default task."
 (use-package transient
   :ensure t)
 
-(transient-define-prefix org-dispatch ()
-  "Invoke common Org mode commands"
-  ["Org mode commands"
-   [("l" "Store link" org-store-link)
-    ("C" "Capture" org-capture)
-    ("c" "Time" org-times)
-    ("a" "Agenda" org-agenda)
-    ("b" "Switch buffer" org-switchb)
-    ("t" "Table commands" org-tables)
-    ("i" "Insert element" org-inserts)
-    ("x" "Toggle element" org-toggles)
-    ("s" "Editing subtrees" org-subtrees)
-    ("r" "Org Roam" org-roams)
-    ("e" "Org export" org-export-dispatch)
-    ("p" "Punch in" bh/punch-in)
-    ("o" "Punch out" bh/punch-out)]])
-
 (transient-define-prefix org-times ()
   "Invoke Org clock commands"
   [["Clock commands"
@@ -371,5 +354,22 @@ as the default task."
     ("/" "Find roam node" org-roam-node-find)
     ("c" "Capture roam node" org-roam-capture)
     ("r" "Roam refile" org-roam-refile)]])
+
+(transient-define-prefix org-dispatch ()
+  "Invoke common Org mode commands"
+  ["Org mode commands"
+   [("l" "Store link" org-store-link)
+    ("C" "Capture" org-capture)
+    ("c" "Time" org-times)
+    ("a" "Agenda" org-agenda)
+    ("b" "Switch buffer" org-switchb)
+    ("t" "Table commands" org-tables)
+    ("i" "Insert element" org-inserts)
+    ("x" "Toggle element" org-toggles)
+    ("s" "Editing subtrees" org-subtrees)
+    ("r" "Org Roam" org-roams)
+    ("e" "Org export" org-export-dispatch)
+    ("p" "Punch in" bh/punch-in)
+    ("o" "Punch out" bh/punch-out)]])
 
 ;;; emacs-func.el ends here
