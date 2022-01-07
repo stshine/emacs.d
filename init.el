@@ -692,7 +692,16 @@ directories."
       "* TODO %?\n %U\n %a\n %i" :empty-lines 1)
      ("j" "Journal" entry (file+olp+datetree "~/OneDrive/org/Journal.org")
       "* %U - %^{heading} %^g\n %?\n %i\n" :empty-lines 1)))
-  (org-refile-targets '(("Archive.org" :maxlevel . 1)))
+  ;; Refile to any of agenda files with leve up to 1.
+  (org-refile-targets '((org-agenda-files :maxlevel . 1)))
+  ;; Include file name in the refile path
+  (org-refile-use-outline-path 'file)
+  ;; Show the refile paths in one step
+  (org-outline-path-complete-in-steps nil)
+  ;; Allow to create new targets when refiling
+  (org-refile-allow-creating-parent-nodes 'confirm)
+  ;; Archive to a single file of datetree
+  (org-archive-location "~/OneDrive/org/Archive.org::datetree/* %s")
   (org-todo-state-tags-triggers
         '(
           ;;("CANCELLED" ("CANCELLED" . t))
