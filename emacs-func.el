@@ -313,11 +313,19 @@ as the default task."
 
 (transient-define-prefix org-edits ()
   "Editing"
-  [("<RET>" "Confirm" transient-quit-all)
-   ("," "Promote" org-metaleft)
-   ("." "Demote" org-metaright)
-   ("<" "Promote subtree" org-shiftmetaleft)
-   (">" "Demote subtree" org-shiftmetaright)])
+  [["Move heading"
+    ("<RET>" "Confirm" transient-quit-all)
+    ("N" "Move down" org-move-item-down)
+    ("P" "Move up" org-move-item-up)
+    ("," "Promote" org-metaleft)
+    ("." "Demote" org-metaright)
+    ("<" "Promote subtree" org-shiftmetaleft)
+    (">" "Demote subtree" org-shiftmetaright)]
+   ["Edit heading"
+    ("t" "Set todo" org-todo)
+    ("g" "Set tags" org-set-tags-command)
+    ("p" "Set property" org-set-property)
+    ("," "Set priority" org-priority)]])
 
 (transient-define-prefix org-tables ()
   "Common table commands"
@@ -327,13 +335,14 @@ as the default task."
    ("k" "Delete column" org-table-delete-column)
    ("e" "Eval formula" org-table-eval-formula)
    ("E" "Export table" org-table-export)
+   ("n" "Next row" next-line :transient t)
+   ("N" "Move row down" org-table-move-row-down)
+   ("p" "Previous row" previous-line :transient t)
+   ("P" "Move row up" org-table-move-row-up)
    ("h" "Previous field" org-table-previous-field)
-   ("H" "Move column left" org-table-move-column-left)
-   ("j" "Next row" org-table-next-row)
-   ("J" "Move row down" org-table-move-row-down)
-   ("K" "Move row up" org-table-move-row-up)
    ("l" "Next field" org-table-next-field)
-   ("L" "Move column right" org-table-move-column-right)
+   ("<" "Move column left" org-table-move-column-left)
+   (">" "Move column right" org-table-move-column-right)
    ("n" "Create table" org-table-create)
    ("s" "Sort table" org-table-sort-lines)])
 
@@ -371,20 +380,21 @@ as the default task."
   "Invoke common Org mode commands"
   [["Org mode entries"
     ("a" "Agenda" org-agenda)
-    ("C" "Capture" org-capture)
+    ("c" "Capture" org-capture)
     ("l" "Store link" org-store-link)
     ("b" "Switch buffer" org-switchb)]
    ["Commands" :if org-buffer-p
-    ("w" "Refile" org-refile)]
+    ("w" "Refile" org-refile)
+    ("v" "Archive" org-archive-subtree-default-with-confirmation)
+    ("e" "Editing" org-edits)]
    ["Dispatchs"
-    ("c" "Time" org-times)
+    ("." "Time and clock" org-times)
     ("t" "Table commands" org-tables)
     ("i" "Insert element" org-inserts)
     ("x" "Toggle element" org-toggles)
     ("s" "Editing subtrees" org-subtrees)
     ("r" "Org Roam" org-roams)
-    ("E" "Org export" org-export-dispatch)
-    ]
+    ("E" "Org export" org-export-dispatch)]
    ["Clocking"
     ("g" "Goto Clocking" org-clock-goto)
     ("p" "Punch in" bh/punch-in)
