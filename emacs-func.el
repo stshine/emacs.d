@@ -365,18 +365,24 @@ as the default task."
 
 (transient-define-prefix org-dispatch ()
   "Invoke common Org mode commands"
-  ["Org mode commands"
-   [("l" "Store link" org-store-link)
-    ("C" "Capture" org-capture)
-    ("c" "Time" org-times)
+  [["Org mode entries"
     ("a" "Agenda" org-agenda)
-    ("b" "Switch buffer" org-switchb)
+    ("C" "Capture" org-capture)
+    ("l" "Store link" org-store-link)
+    ("b" "Switch buffer" org-switchb)]
+   ["Commands" :if org-buffer-p
+    ("w" "Refile" org-refile)]
+   ["Dispatchs"
+    ("c" "Time" org-times)
     ("t" "Table commands" org-tables)
     ("i" "Insert element" org-inserts)
     ("x" "Toggle element" org-toggles)
     ("s" "Editing subtrees" org-subtrees)
     ("r" "Org Roam" org-roams)
-    ("e" "Org export" org-export-dispatch)
+    ("E" "Org export" org-export-dispatch)
+    ]
+   ["Clocking"
+    ("g" "Goto Clocking" org-clock-goto)
     ("p" "Punch in" bh/punch-in)
     ("o" "Punch out" bh/punch-out)]])
 
