@@ -58,6 +58,14 @@ The effect is that the cursor stays in the same position on the screen."
   (move-to-column pager-temporary-goal-column))
 
 ;; --------------------------- Org mode functions -----------------------
+(defun org-buffer-p (&optional buffer)
+  "Return t if BUFFER is an org buffer.
+If BUFFER is not specified, use the current buffer."
+  (let ((buffer (or buffer (current-buffer))))
+    (with-current-buffer buffer
+      (derived-mode-p 'org-mode))))
+
+
 (defvar bh/keep-clock-running nil)
 
 (defun bh/is-task-p ()
