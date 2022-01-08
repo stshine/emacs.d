@@ -145,6 +145,7 @@ directories."
 
 (use-package helm
   ;; :commands (helm-find-files)
+  :ensure helm-swoop
   :init
   :custom
   (helm-command-prefix-key         "C-c h")
