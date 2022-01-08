@@ -367,8 +367,9 @@ directories."
 (global-set-key (kbd "M-p") 'pager-row-up)
 (global-set-key (kbd "M-n") 'pager-row-down)
 
-
-(global-set-key (kbd "C-=") 'er/expand-region)
+(use-package expand-region
+  :bind
+  ("C-=" . er/expand-region))
 
 ;; ------------------- Mouse key bindings ---------------
 (global-set-key (kbd "<mouse-3>") 'mouse-major-mode-menu)
