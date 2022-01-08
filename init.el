@@ -774,7 +774,7 @@ directories."
 
 (use-package org-roam
   :custom
-  (org-roam-directory "~/OneDrive/org-roam/")
+  (org-roam-directory "~/Documents/org-roam/")
   (org-roam-complete-everywhere t)
   :config
   (org-roam-setup))
