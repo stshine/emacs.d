@@ -689,9 +689,11 @@ directories."
   ;;   ("PHONE" :foreground "forest green" :weight bold)))
   (org-capture-templates
    `(("t" "Task" entry (file+headline "" "Tasks")
-      "* TODO %?\n %U\n %a\n %i" :empty-lines 1)
+      "* TODO %?\n %U\n %a\n %i" :empty-lines-before 1)
      ("j" "Journal" entry (file+olp+datetree "~/OneDrive/org/Journal.org")
-      "* %U - %^{heading} %^g\n %?\n %i\n" :empty-lines 1)))
+      "* %U - %^{heading} %^g\n %?\n %i\n")
+     ("n" "Note" entry (file "~/OneDrive/org/notes.org")
+      "* %^{heading} %^g\n %?\n %i\n%a")))
   (org-agenda-custom-commands
    `(("n" "Agenda and all TODOs"
      ((agenda #1="")
