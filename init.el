@@ -692,6 +692,24 @@ directories."
       "* TODO %?\n %U\n %a\n %i" :empty-lines 1)
      ("j" "Journal" entry (file+olp+datetree "~/OneDrive/org/Journal.org")
       "* %U - %^{heading} %^g\n %?\n %i\n" :empty-lines 1)))
+  (org-agenda-custom-commands
+   `(("n" "Agenda and all TODOs"
+     ((agenda #1="")
+      (alltodo #1#)))
+     ("y" "List TODO entries sort by time" todo "TODO"
+         ((org-agenda-sorting-strategy '(priority-down time-up))))
+     (" " "Agenda"
+      ((agenda ""
+               ((org-agenda-span 'day)
+                (org-deadline-warning-days 365)))
+       (todo "NEXT"
+             ((org-agenda-overriding-header "In progress")))
+       (todo "TODO"
+             ((org-agenda-overriding-header "To refile")
+              (org-agenda-files '("~/OneDrive/org/tasks.org"))))
+       (tags-todo "work"
+                  ((org-agenda-overriding-header "Works")))
+      nil))))
   ;; Refile to any of agenda files with leve up to 1.
   (org-refile-targets '((org-agenda-files :maxlevel . 1)))
   ;; Include file name in the refile path
