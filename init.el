@@ -671,6 +671,7 @@ directories."
 
 ;;; ------------------------Org Mode--------------------------
 (use-package org
+  :ensure helm-org
   :custom
   ;; (require 'org-clock)
   (org-agenda-files '("~/OneDrive/org"))
@@ -756,6 +757,9 @@ directories."
   (org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
   :config
   (setq bh/keep-clock-running nil)
+  (require 'helm-org)
+  (add-to-list 'helm-completing-read-handlers-alist '(org-capture . helm-org-completing-read-tags))
+  (add-to-list 'helm-completing-read-handlers-alist '(org-set-tags . helm-org-completing-read-tags))
   ;; Resume clocking task when emacs is restarted
   (org-clock-persistence-insinuate)
   :hook
