@@ -673,10 +673,11 @@ directories."
 (use-package org
   :ensure helm-org
   :custom
-  ;; (require 'org-clock)
-  (org-agenda-files '("~/OneDrive/org"))
-  (org-default-notes-file "~/OneDrive/org/tasks.org")
-  (org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)" "CANCELLED(c)")))
+  (org-directory "~/OneDrive/org/")
+  (org-agenda-files `(,org-directory))
+  (org-default-notes-file (expand-file-name "tasks.org" org-directory))
+  (org-agenda-diary-file (expand-file-name "Journal.org" org-directory))
+  (org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)" "CANCELLED(c@/!)")))
   ;; (org-todo-keyword-faces
   ;;  `(("TODO" :foreground "red" :weight bold)
   ;;   ("NEXT" :foreground "blue" :weight bold)
