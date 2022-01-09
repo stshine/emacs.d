@@ -38,6 +38,8 @@
 
 ;; (setq url-gateway-method 'socks)
 ;; (setq socks-server '("Default server" "127.0.0.1" 1080 5))
+(setq user-full-name "Pu Xingyu")
+(setq user-mail-address "pu.stshine@gmail.com")
 
 (menu-bar-mode 1)
 (when (display-graphic-p)
@@ -48,11 +50,7 @@
 (blink-cursor-mode 0)
 (setq-default display-line-numbers t)
 
-;; (semantic-mode 1)
-(auto-image-file-mode)
-
-(setq user-full-name "Pu Xingyu")
-(setq user-mail-address "pu.stshine@gmail.com")
+(auto-image-file-mode 1)
 
 (setq column-number-mode t)
 (setq visible-bell t)
@@ -387,9 +385,7 @@ directories."
       mu4e-drafts-folder "/Drafts"
       mu4e-trash-folder  "/Deleted Messages")
 
-(setq mu4e-reply-to-address "hines@augustint.com"
-      user-mail-address "hines@augustint.com"
-      user-full-name  "Hines - August Intl")
+(setq mu4e-reply-to-address "hines@augustint.com")
 
 (setq mu4e-get-mail-command "mbsync qqmail")
 ;; don't keep message buffers around
@@ -542,10 +538,10 @@ directories."
   ;; :ensure lsp-ui
   :custom
   (lsp-session-file "~/.emacs.d/.session/.lsp-session-v1")
-  :hook (lsp-mode .  (lambda ()
-                       (company-mode 1)
-                       (flycheck-mode 1)
-                       (lsp-enable-which-key-integration)))
+  :hook (lsp-mode . (lambda ()
+                      (company-mode 1)
+                      (flycheck-mode 1)
+                      (lsp-enable-which-key-integration)))
   :bind
   (:map company-active-map
         ("<tab>" . company-complete-selection)
