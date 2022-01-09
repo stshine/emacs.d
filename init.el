@@ -677,7 +677,25 @@ directories."
   (org-agenda-files `(,org-directory))
   (org-default-notes-file (expand-file-name "tasks.org" org-directory))
   (org-agenda-diary-file (expand-file-name "Journal.org" org-directory))
+  ;; Archive to a single file of datetree
+  (org-archive-location "~/OneDrive/org/Archive.org::datetree/* %s")
   (org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)" "CANCELLED(c@/!)")))
+  (org-todo-state-tags-triggers
+        '(("CANCELLED" ("CANCELLED" . t))
+          ;;("WAITING" ("WAITING" . t))
+          ;;("HOLD" ("WAITING") ("HOLD" . t))
+          (done ("WAITING") ("HOLD"))
+          ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
+          ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
+          ("DONE" ("WAITING") ("CANCELLED") ("HOLD"))))
+  (org-use-fast-todo-selection t)
+  (org-src-fontify-natively t)
+  ;; Record closed timestamp when a task is DONE
+  (org-log-done 'time)
+  ;; Insert stage change notes into a drawer
+  (org-log-into-drawer t)
+  ;; No effect when `org-log-into-drawer' is non-nil.
+  (org-log-state-notes-insert-after-drawers nil)
   ;; (org-todo-keyword-faces
   ;;  `(("TODO" :foreground "red" :weight bold)
   ;;   ("NEXT" :foreground "blue" :weight bold)
@@ -728,25 +746,6 @@ directories."
   (org-outline-path-complete-in-steps nil)
   ;; Allow to create new targets when refiling
   (org-refile-allow-creating-parent-nodes 'confirm)
-  ;; Archive to a single file of datetree
-  (org-archive-location "~/OneDrive/org/Archive.org::datetree/* %s")
-  (org-todo-state-tags-triggers
-        '(
-          ;;("CANCELLED" ("CANCELLED" . t))
-          ;;("WAITING" ("WAITING" . t))
-          ;;("HOLD" ("WAITING") ("HOLD" . t))
-          ;;(done ("WAITING") ("HOLD"))
-          ("TODO" ("WAITING") ("CANCELLED") ("HOLD"))
-          ("NEXT" ("WAITING") ("CANCELLED") ("HOLD"))
-          ("DONE" ("WAITING") ("CANCELLED") ("HOLD"))))
-  (org-use-fast-todo-selection t)
-  (org-src-fontify-natively t)
-  ;; Record closed timestamp when a task is DONE
-  (org-log-done 'time)
-  ;; Insert stage change notes into a drawer
-  (org-log-into-drawer t)
-  ;; No effect when `org-log-into-drawer' is non-nil.
-  (org-log-state-notes-insert-after-drawers nil)
   ;; Resume clocking task on clock-in if the clock is open
   (org-clock-in-resume t)
   ;; Removes clocked tasks with duration less than one minute
