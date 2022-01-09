@@ -741,9 +741,15 @@ directories."
           ("DONE" ("WAITING") ("CANCELLED") ("HOLD"))))
   (org-use-fast-todo-selection t)
   (org-src-fontify-natively t)
+  ;; Record closed timestamp when a task is DONE
+  (org-log-done 'time)
+  ;; Insert stage change notes into a drawer
+  (org-log-into-drawer t)
+  ;; No effect when `org-log-into-drawer' is non-nil.
+  (org-log-state-notes-insert-after-drawers nil)
   ;; Resume clocking task on clock-in if the clock is open
   (org-clock-in-resume t)
-  ;; Sometimes I change tasks I'm clocking quickly - this removes clocked tasks with 0:00 duration
+  ;; Removes clocked tasks with duration less than one minute
   (org-clock-out-remove-zero-time-clocks t)
   ;; Clock out when moving task to a done state
   (org-clock-out-when-done t)
