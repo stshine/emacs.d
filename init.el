@@ -690,10 +690,12 @@ directories."
   (org-capture-templates
    `(("t" "Task" entry (file+headline "" "Tasks")
       "* TODO %?\n %U\n %a\n %i" :empty-lines-before 1)
-     ("j" "Journal" entry (file+olp+datetree "~/OneDrive/org/Journal.org")
+     ("j" "Journal" entry (file+olp+datetree "Journal.org")
       "* %U - %^{heading} %^g\n %?\n %i\n")
-     ("n" "Note" entry (file "~/OneDrive/org/notes.org")
-      "* %^{heading} %^g\n %?\n %i\n%a")))
+     ("n" "Note" entry (file "notes.org")
+      "* %^{heading} \n %?\n %i\n%a" :empty-lines 1)
+     ("m" "Meeting" entry (file "")
+      "* DONE Meeting with %?\n %U\n" :clock-in t :clock-resume t)))
   (org-agenda-custom-commands
    `(("n" "Agenda and all TODOs"
      ((agenda #1="")
