@@ -702,18 +702,24 @@ directories."
       (alltodo #1#)))
      ("y" "List TODO entries sort by time" todo "TODO"
          ((org-agenda-sorting-strategy '(priority-down time-up))))
-     (" " "Agenda"
+     (" " "GTD Agenda"
       ((agenda ""
                ((org-agenda-span 'day)
                 (org-deadline-warning-days 365)))
        (todo "NEXT"
-             ((org-agenda-overriding-header "In progress")))
+             ((org-agenda-overriding-header "In Progress")))
        (todo "TODO"
-             ((org-agenda-overriding-header "To refile")
-              (org-agenda-files '("~/OneDrive/org/tasks.org"))))
+             ((org-agenda-overriding-header "Inbox")
+              (org-agenda-files '(,(expand-file-name "tasks.org" org-directory)))))
        (tags-todo "work"
                   ((org-agenda-overriding-header "Works")))
-      nil))))
+       nil))))
+  ;; Format for org agenda column view
+  (org-columns-default-format "%40ITEM(Task) %Effort(EE){:} %CLOCKSUM(Time Spent) %SCHEDULED(Scheduled) %DEADLINE(Deadline)")
+  ;; Make agenda more compact
+  (setq org-agenda-block-separator nil)
+  ;; Display agenda with log
+  (org-agenda-start-with-log-mode t)
   ;; Refile to any of agenda files with leve up to 1.
   (org-refile-targets '((org-agenda-files :maxlevel . 1)))
   ;; Include file name in the refile path
