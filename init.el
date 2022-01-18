@@ -728,14 +728,19 @@ directories."
      (" " "GTD Agenda"
       ((agenda ""
                ((org-agenda-span 'day)
-                (org-deadline-warning-days 365)))
+                (org-deadline-warning-days 365)
+                ;; Display agenda with log
+                (org-agenda-start-with-log-mode t)))
        (todo "NEXT"
              ((org-agenda-overriding-header "In Progress")))
-       (todo "TODO"
+       (alltodo ""
              ((org-agenda-overriding-header "Inbox")
               (org-agenda-files '(,(expand-file-name "tasks.org" org-directory)))))
        (tags-todo "work"
                   ((org-agenda-overriding-header "Works")))
+       (tags "PRIORITY=\"A\""
+             ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+              (org-agenda-overriding-header "A-priority")))
        nil))))
   ;; Format for org agenda column view
   (org-columns-default-format "%40ITEM(Task) %Effort(EE){:} %CLOCKSUM(Time Spent) %SCHEDULED(Scheduled) %DEADLINE(Deadline)")
