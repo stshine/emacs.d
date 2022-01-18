@@ -311,7 +311,11 @@ directories."
   :config
   (smartparens-global-mode 1)
   (show-smartparens-global-mode 1)
-  (smartparens-paredit-global-mode 1)
+  :hook
+  (smartparens-mode . (lambda ()
+                        (when (member major-mode sp-lisp-modes)
+                          (smartparens-strict-mode 1)
+                          (sp-use-paredit-bindings))))
   :delight smartparens-mode)
   ;; (-each sp-lisp-modes (lambda (mode)
                          ;; (set-face-foreground 'sp-pair-overlay-face "DimGrey")))
