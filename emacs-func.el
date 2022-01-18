@@ -65,6 +65,18 @@ If BUFFER is not specified, use the current buffer."
     (with-current-buffer buffer
       (derived-mode-p 'org-mode))))
 
+(defvar org-clocking-stack '())
+
+(defun org-clock-out-resume-interrupted ()
+  "If there is interrupted clocks when we are clocking out, the clocking into it."
+  ;; `org-clock-clocking-in' indicates that we are doing a clocking in
+  ;; while running this clock out hook.
+  (if org-clock-clocking-in
+      (push (copy-marker org-clock-interrupted-task) org-clocking-stack)
+    (let ((previous-clock (pop org-clocking-stack)))
+      (if previous-clock
+          (org-with-point-at previous-clock
+            (org-clock-in))))))
 
 (defvar bh/keep-clock-running nil)
 

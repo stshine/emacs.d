@@ -777,7 +777,8 @@ directories."
   ;; Resume clocking task when emacs is restarted
   (org-clock-persistence-insinuate)
   :hook
-  (org-clock-out . bh/clock-out-maybe)
+  ;;   (org-clock-out . bh/clock-out-maybe)
+  (org-clock-out . org-clock-out-resume-interrupted)
   (org-mode . (lambda ()
                 ;; (org-indent-mode 1)
                 (variable-pitch-mode 1)))
