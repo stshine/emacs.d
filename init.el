@@ -13,10 +13,11 @@
 (custom-set-variables '(package-gnupghome-dir "~/.emacs.d/elpa/gnupg"))
 (package-initialize)
 
-(unless package-archive-contents
-  (package-refresh-contents))
+;; Ensure use-package is available.
 (unless (package-installed-p 'use-package)
-  (package-install 'use-package))
+  (package-refresh-contents)
+  (package-install 'use-package)
+  (package-install 'delight))
 (require 'use-package)
 (custom-set-variables '(use-package-always-ensure t))
 
