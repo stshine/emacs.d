@@ -186,27 +186,18 @@ directories."
   ;;       helm-semantic-fuzzy-match t
         helm-buffers-fuzzy-matching t)
 
-  (defvar helm-source-header-default-background (face-attribute 'helm-source-header :background))
-  (defvar helm-source-header-default-foreground (face-attribute 'helm-source-header :foreground))
-  (defvar helm-source-header-default-box (face-attribute 'helm-source-header :box))
-  (defvar helm-source-header-default-height (face-attribute 'helm-source-header :height))
-
   (defun helm-toggle-header-line ()
     "Hide the `helm' header is there is only one source."
-    (if (> (length helm-sources) 1)
-        (set-face-attribute 'helm-source-header
-    		                nil
-    		                :foreground helm-source-header-default-foreground
-    		                :background helm-source-header-default-background
-    		                :box helm-source-header-default-box
-    		                :height helm-source-header-default-height)
-      (set-face-attribute 'helm-source-header
-    		              nil
-    		              :foreground (face-attribute 'helm-selection :background)
-    		              :background (face-attribute 'helm-selection :background)
-    		              :box nil
-    		              :height 0.1)))
-  (add-hook 'helm-before-initialize-hook 'helm-toggle-header-line)
+    (with-helm-buffer
+      (let ((cookie (face-remap-add-relative
+                     'helm-source-header
+                     :foreground (face-attribute 'helm-selection :background)
+                     :background (face-attribute 'helm-selection :background)
+                     :box nil
+                     :height 0.1)))
+        (if (> (length helm-sources) 1)
+            (face-remap-remove-relative cookie)))))
+  (add-hook 'helm-after-initialize-hook #'helm-toggle-header-line)
   (helm-mode 1)
   (helm-adaptive-mode 1)
   ;; (helm-locate-set-command)
