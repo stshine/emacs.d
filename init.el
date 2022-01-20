@@ -166,6 +166,9 @@ directories."
   ;; scroll 8 lines other window using M-<next>/M-<prior>
   (helm-scroll-amount                    8)
   (helm-ff-file-name-history-use-recentf t)
+  :custom-face
+  ;; Set the face of diretories for `.' and `..'
+  (helm-ff-dotted-directory ((t (:foreground nil :background nil :inherit 'helm-ff-directory))))
   :config
   (helm-autoresize-mode t)
   (when (executable-find "curl")
@@ -209,14 +212,6 @@ directories."
   ;; (helm-locate-set-command)
   ;; (setq helm-locate-fuzzy-match (string-match "locate" helm-locate-command))
 
-  (defun spacemacs//set-dotted-directory ()
-    "Set the face of diretories for `.' and `..'"
-    (set-face-attribute 'helm-ff-dotted-directory
-    		            nil
-    		            :foreground nil
-    		            :background nil
-    		            :inherit 'helm-ff-directory))
-  (add-hook 'helm-find-files-before-init-hook 'spacemacs//set-dotted-directory)
 
   ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
   ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
