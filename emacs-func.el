@@ -18,6 +18,12 @@
 		  (region-end)))
 
 
+(defun first-avail-font (&rest fonts)
+  "Accept multiple font family names and return the first available one."
+  (let ((system-font-list (font-family-list)))
+    (--first (member it system-font-list) fonts)))
+
+
 (defvar pager-temporary-goal-column 0
   "Similat to temporary-goal-column byt used by the pager.el functions")
 ;(make-variable-buffer-local 'pager-temporary-goal-column)
