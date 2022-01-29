@@ -869,26 +869,25 @@ directories."
 (pcase system-type
   ('windows-nt
    (progn
-     (set-frame-font "Consolas-14")
-     (setq tramp-default-method "plink")
-     ))
+     (setq tramp-default-method "plink")))
   ('gnu/linux
-   (set-frame-font "Fira Mono-18")))
+   ))
 
-;; (set-frame-font "-microsoft-Consolas-normal-normal-normal-*-17-*-*-*-m-0-iso10646-1")
-;; (set-frame-font "Source Code Pro-12")
+(defvar monospace-font (first-avail-font "Fira Code" "Consolas" "SF Mono" "DejaVu Sans Mono"))
+(defvar serif-font (first-avail-font "Source Serif Pro" "Georgia" "Libertine"))
+(defvar sans-font (first-avail-font "Lato" "Segoe UI" "SF Pro Text" "Helvetica Neue"))
+(defvar chinese-font (first-avail-font "Microsoft YaHei UI" "PingFang SC" "Noto Sans SC"))
+(defvar math-font (first-avail-font "STIX" "Cambria Math" "Apple Symbols" "Noto Sans Math"))
+(defvar symbol-font (first-avail-font "Segoe UI Symbol" "Apple Symbols" "Noto Sans Symbols"))
+
+(set-face-attribute 'default nil :font monospace-font :height 120 :weight 'regular)
+(set-face-attribute 'fixed-pitch nil :font monospace-font :height 120 :weight 'regular)
+(set-face-attribute 'variable-pitch nil :font serif-font :height 120 :weight 'regular)
 
 (dolist (charset '(kana han symbol cjk-misc bopomofo))
-  (set-fontset-font (frame-parameter nil 'font)
-                    ;; charset "方正黑体_GBK"
-                    charset "Source Han Sans CN"
-                    ))
-
-(set-fontset-font (frame-parameter nil 'font)
-		  'mathematical "STIX")
-
-(set-fontset-font (frame-parameter nil 'font)
-		  'symbol "STIX")
+  (set-fontset-font t charset chinese-font))
+(set-fontset-font t 'mathematical math-font)
+(set-fontset-font t 'symbol symbol-font nil 'prepend)
 
 (setq-default frame-background-mode 'dark)
 
