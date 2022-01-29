@@ -127,6 +127,31 @@
 ;; (setq socks-server '("Default server" "127.0.0.1" 1080 5))
 
 
+(defvar monospace-font (first-avail-font "Fira Code" "Consolas" "SF Mono" "DejaVu Sans Mono"))
+(defvar serif-font (first-avail-font "Source Serif Pro" "Georgia" "Libertine"))
+(defvar sans-font (first-avail-font "Lato" "Segoe UI" "SF Pro Text" "Helvetica Neue"))
+(defvar chinese-font (first-avail-font "Microsoft YaHei UI" "PingFang SC" "Noto Sans SC"))
+(defvar math-font (first-avail-font "STIX" "Cambria Math" "Apple Symbols" "Noto Sans Math"))
+(defvar symbol-font (first-avail-font "Segoe UI Symbol" "Apple Symbols" "Noto Sans Symbols"))
+
+(set-face-attribute 'default nil :font monospace-font :height 120 :weight 'regular)
+(set-face-attribute 'fixed-pitch nil :font monospace-font :height 120 :weight 'regular)
+(set-face-attribute 'variable-pitch nil :font serif-font :height 120 :weight 'regular)
+
+(dolist (charset '(kana han symbol cjk-misc bopomofo))
+  (set-fontset-font t charset chinese-font))
+(set-fontset-font t 'mathematical math-font)
+(set-fontset-font t 'symbol symbol-font nil 'prepend)
+
+(load-theme 'solo-jazz)
+
+(use-package spaceline
+  :custom
+  (powerline-default-separator 'arrow)
+  :config
+  (spaceline-emacs-theme)
+  (spaceline-helm-mode 1))
+
 ;; revert buffers automatically when underlying files are changed externally
 (use-package autorevert
   :config
@@ -920,35 +945,6 @@ directories."
      (setq tramp-default-method "plink")))
   ('gnu/linux
    ))
-
-(defvar monospace-font (first-avail-font "Fira Code" "Consolas" "SF Mono" "DejaVu Sans Mono"))
-(defvar serif-font (first-avail-font "Source Serif Pro" "Georgia" "Libertine"))
-(defvar sans-font (first-avail-font "Lato" "Segoe UI" "SF Pro Text" "Helvetica Neue"))
-(defvar chinese-font (first-avail-font "Microsoft YaHei UI" "PingFang SC" "Noto Sans SC"))
-(defvar math-font (first-avail-font "STIX" "Cambria Math" "Apple Symbols" "Noto Sans Math"))
-(defvar symbol-font (first-avail-font "Segoe UI Symbol" "Apple Symbols" "Noto Sans Symbols"))
-
-(set-face-attribute 'default nil :font monospace-font :height 120 :weight 'regular)
-(set-face-attribute 'fixed-pitch nil :font monospace-font :height 120 :weight 'regular)
-(set-face-attribute 'variable-pitch nil :font serif-font :height 120 :weight 'regular)
-
-(dolist (charset '(kana han symbol cjk-misc bopomofo))
-  (set-fontset-font t charset chinese-font))
-(set-fontset-font t 'mathematical math-font)
-(set-fontset-font t 'symbol symbol-font nil 'prepend)
-
-(require 'moe-theme)
-(load-theme 'spacemacs-dark)
-
-;; (sml/setup)
-(require 'spaceline-config)
-;; (setq powerline-default-separator 'wave)
-;; (setq spaceline-battery-p t)
-;; (setq spaceline-buffer-position-p nil)
-(spaceline-emacs-theme)
-
-;; (add-hook 'buffer-list-update-hook 'neotree-projectile-action)
-
 
 ;; Start server.
 (require 'server)
