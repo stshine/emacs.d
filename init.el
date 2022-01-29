@@ -134,11 +134,12 @@
   :delight auto-revert-mode)
 
 
-(setq bookmark-save-flag 1)
-(setq bookmark-default-file "~/.emacs.d/bookmarks")
-
 (setq cache-dir (expand-file-name "cache" user-emacs-directory))
 
+(use-package bookmark
+  :custom
+  (bookmark-save-flag 1)
+  (bookmark-default-file (expand-file-name "bookmarks" cache-dir)))
 
 (use-package recentf
   :custom
@@ -205,6 +206,7 @@ directories."
   ;; scroll 8 lines other window using M-<next>/M-<prior>
   (helm-scroll-amount                    8)
   (helm-ff-file-name-history-use-recentf t)
+  (helm-adaptive-history-file (expand-file-name "helm-adaptive-history" cache-dir))
   :custom-face
   ;; Set the face of diretories for `.' and `..'
   (helm-ff-dotted-directory ((t (:foreground nil :background nil :inherit 'helm-ff-directory))))
@@ -298,7 +300,8 @@ directories."
 ;;; intergrate projectile with helm.
 (use-package helm-projectile
   :custom
-  (projectile-cache-file "~/.emacs.d/.cache/projectile.cache")
+  (projectile-cache-file (expand-file-name "projectile.cache" cache-dir))
+  (projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" cache-dir))
   :config
   (setq projectile-mode-line-function
         (lambda ()
@@ -340,9 +343,10 @@ directories."
 
 
 (use-package magit
+  :custom
+  (transient-history-file (expand-file-name "transient/history.el" cache-dir))
   :config
-  (setq magit-repository-directories "~/Programs/")
-  ;; (setq magit-completing-read-function 'helm-completing-read-with-cands-in-buffer)
+  (setq magit-repository-directories '(("~/Programs/" . 1)))
   :bind
   (("<f8>" . magit-dispatch)
    ("C-<f8>" . magit-status)))
@@ -560,7 +564,7 @@ directories."
   :commands lsp
   ;; :ensure lsp-ui
   :custom
-  (lsp-session-file "~/.emacs.d/.session/.lsp-session-v1")
+  (lsp-session-file (expand-file-name ".lsp-session-v1" cache-dir))
   :hook (lsp-mode . (lambda ()
                       (company-mode 1)
                       (flycheck-mode 1)
@@ -586,6 +590,8 @@ directories."
 
 
 (use-package lsp-treemacs
+  :custom
+  (treemacs-persist-file (expand-file-name "treemacs-persist" cache-dir))
   :config
   (lsp-treemacs-sync-mode 1)
   :hook
@@ -782,6 +788,7 @@ directories."
   (org-clock-out-when-done t)
   ;; Save the running clock and all clock history when exiting Emacs, load it on startup
   (org-clock-persist t)
+  (org-clock-persist-file (expand-file-name "org-clock-save.el" cache-dir))
   ;; Do not prompt to resume an active clock
   (org-clock-persist-query-resume nil)
   ;; Change tasks to NEXT when clocking in
@@ -820,6 +827,7 @@ directories."
 (use-package org-roam
   :custom
   (org-roam-directory "~/Documents/org-roam/")
+  (org-roam-db-location (expand-file-name "org-roam.db" cache-dir))
   (org-roam-complete-everywhere t)
   :config
   (org-roam-setup))
@@ -891,6 +899,8 @@ directories."
   ;;       '((:name "default-dict"
   ;;                :file "~/Documents/pyim-bigdict.pyim"
   ;;                :coding utf-8-unix)))
+  :custom
+  (pyim-dcache-directory (expand-file-name "pyim/dcache" cache-dir))
   :config
   (use-package pyim-basedict)
   (pyim-basedict-enable)
@@ -926,8 +936,6 @@ directories."
   (set-fontset-font t charset chinese-font))
 (set-fontset-font t 'mathematical math-font)
 (set-fontset-font t 'symbol symbol-font nil 'prepend)
-
-(setq-default frame-background-mode 'dark)
 
 (require 'moe-theme)
 (load-theme 'spacemacs-dark)

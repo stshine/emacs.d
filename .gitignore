@@ -1,19 +1,11 @@
 auto-save-list/
-backup/
-.cache/
-.session/
-bookmarks
+cache/
 elpa/
 eshell/
-helm-adaptive-history
-projectile-bookmarks.eld
-pyim/
 tramp
 server/
-transient/
 url/
-emacs-custom.el
+/emacs-custom.el
 
 # org
 .org-id-locations
-org-clock-save.el
