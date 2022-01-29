@@ -1,6 +1,8 @@
 ;;; init.el  -*- lexical-binding: t; -*-
 
-(setq custom-file "~/.emacs.d/emacs-custom.el")
+(setq custom-file (locate-user-emacs-file "emacs-custom.el"))
+(load custom-file t)
+
 (setq gc-cons-threshold (* 100 1024 1024))
 (setq read-process-output-max (* 1 1024 1024))
 
@@ -10,7 +12,7 @@
                          ("nongnu" . "https://elpa.nongnu.org/nongnu/")
                          ("melpa" . "http://melpa.org/packages/")))
 (setq package-enable-at-startup nil)
-(custom-set-variables '(package-gnupghome-dir "~/.emacs.d/elpa/gnupg"))
+(setq package-gnupghome-dir "~/.emacs.d/elpa/gnupg")
 (package-initialize)
 
 ;; Ensure use-package is available.
@@ -19,7 +21,8 @@
   (package-install 'use-package)
   (package-install 'delight))
 (require 'use-package)
-(custom-set-variables '(use-package-always-ensure t))
+(setq use-package-always-ensure t)
+(setq use-package-verbose t)
 
 (prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -34,42 +37,95 @@
 (push "~/node_modules/.bin" exec-path)
 (push "~/.cargo/bin" exec-path)
 
-(add-to-list 'load-path "~/.emacs.d/site-lisp/")
-(load-file "~/.emacs.d/emacs-custom.el")
+(add-to-list 'load-path (locate-user-emacs-file "site-lisp/"))
 (load-file "~/.emacs.d/emacs-func.el")
+
+
+(use-package emacs
+  :custom
+  ;; User name
+  (user-full-name "Pu Xingyu")
+  ;; User email address
+  (user-mail-address "pu.stshine@gmail.com")
+  ;;; UI tweaks
+  ;; Set background
+  (frame-background-mode 'light)
+  ;; Inhibit startup screen and message
+  (inhibit-startup-message t)
+  (initial-scratch-message nil)
+  ;; Disable toolbar and scrollbar
+  (menu-bar-mode t)
+  (tool-bar-mode nil)
+  (scroll-bar-mode nil)
+  ;; (display-battery-mode 1)
+  ;; Disable cursor blinking
+  (blink-cursor-mode nil)
+  ;; Flash emacs instead of bell rings
+  (visible-bell t)
+  ;; Display line numbers
+  (display-line-numbers t)
+  ;; Show column number in modeline
+  (column-number-mode t)
+  ;; We use smartparens to show parenthesis
+  (show-paren-mode nil)
+  ;; Show image file as image in buffer
+  (auto-image-file-mode 1)
+  ;; Display time in modeline
+  (display-time-format "%T")
+  (display-time-interval 1)
+  (display-time-mode t)
+  ;;; Editing settings
+  ;; Set default major mode
+  (major-mode 'text-mode)
+  ;; Set displayed tab width
+  (tab-width 4)
+  ;; Smart tab behavior: complete
+  (tab-always-indent 'complete)
+  ;; Do not insert tabs when doing indentation
+  (indent-tabs-mode nil)
+  ;; Consider a period followed by a single space to be end of sentence.
+  (sentence-end-double-space nil)
+  ;; Show trailing whitespace of a line
+  (show-trailing-whitespace t)
+  ;; Visually indicate empty lines after the buffer end
+  (indicate-empty-lines t)
+  ;; Always expect newline at end of a file
+  (require-final-newline t)
+  ;;; Killing and yanking settings
+  ;; Increase length of kill ring
+  (kill-ring-max 500)
+  ;; delete the selection with a keypress
+  (delete-selection-mode t)
+  ;; `kill-line' kills the whole line at the start of a line
+  (kill-whole-line t)
+  ;; Save unsaved clipboard into kill ring before kill operation
+  (save-interprogram-paste-before-kill t)
+  ;; Mouse yank at point instead of click
+  (mouse-yank-at-point t)
+  ;;; File backup settings
+  ;; don't clobber symlinks
+  (backup-by-copying t)
+  ;; don't litter my fs tree
+  (backup-directory-alist `(("." . ,(locate-user-emacs-file "cache/backup/"))))
+  (auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+  (delete-old-versions t)
+  (kept-new-versions 3)
+  (kept-old-versions 2)
+  ;; use versioned backups
+  (version-control t)
+  :config
+  (setq frame-title-format "%b - emacs")
+  ;; Expect "y" or "n" when ask a yes-or-no question
+  (fset 'yes-or-no-p 'y-or-n-p)
+  ;;; Encoding settings
+  (prefer-coding-system 'utf-8)
+  ;; (set-language-environment "UTF-8")
+  (setq-default buffer-file-coding-system 'utf-8-unix)
+  :delight eldoc-mode)
 
 ;; (setq url-gateway-method 'socks)
 ;; (setq socks-server '("Default server" "127.0.0.1" 1080 5))
-(setq user-full-name "Pu Xingyu")
-(setq user-mail-address "pu.stshine@gmail.com")
 
-(menu-bar-mode 1)
-(when (display-graphic-p)
-  (tool-bar-mode 0)
-  (scroll-bar-mode 0))
-
-;; (display-battery-mode 1)
-(blink-cursor-mode 0)
-(setq-default display-line-numbers t)
-
-(auto-image-file-mode 1)
-
-(setq column-number-mode t)
-(setq visible-bell t)
-(setq inhibit-startup-message t)
-(setq initial-scratch-message "")
-(setq mouse-yank-at-point t)
-(setq kill-whole-line t)
-(setq kill-ring-max 500)
-(setq-default major-mode 'text-mode)
-(setq-default indent-tabs-mode nil) ;; don't use tabs to indent
-(setq-default tab-width 4) ;; but maintain correct appearance
-(setq save-interprogram-paste-before-kill t)
-;; Newline at end of file
-(setq require-final-newline t)
-;; delete the selection with a keypress
-(delete-selection-mode t)
-(setq frame-title-format "%b - emacs")
 
 ;; revert buffers automatically when underlying files are changed externally
 (use-package autorevert
@@ -77,34 +133,16 @@
   (global-auto-revert-mode 1)
   :delight auto-revert-mode)
 
-;; smart tab behavior - indent or complete
-(setq tab-always-indent 'complete)
-
-(setq display-time-format "%T")
-(setq display-time-interval 1)
-(display-time-mode 1)
 
 (setq bookmark-save-flag 1)
 (setq bookmark-default-file "~/.emacs.d/bookmarks")
 
-(setq
-   backup-by-copying t      ; don't clobber symlinks
-   backup-directory-alist
-   '(("." . "~/.emacs.d/backup"))    ; don't litter my fs tree
-   auto-save-file-name-transforms
-   `((".*" ,temporary-file-directory t))
-   delete-old-versions t
-   kept-new-versions 3
-   kept-old-versions 2
-   version-control t)       ; use versioned backups
-
-(setq cache-dir (expand-file-name ".cache" user-emacs-directory))
-(fset 'yes-or-no-p 'y-or-n-p)
+(setq cache-dir (expand-file-name "cache" user-emacs-directory))
 
 
 (use-package recentf
   :custom
-  (recentf-save-file "~/.emacs.d/.cache/recentf")
+  (recentf-save-file (locate-user-emacs-file "cache/recentf"))
   (recentf-max-saved-items 1500)
   (recentf-max-menu-items 15)
   (recentf-auto-cleanup 600)
