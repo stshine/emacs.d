@@ -121,6 +121,13 @@
   (prefer-coding-system 'utf-8)
   ;; (set-language-environment "UTF-8")
   (setq-default buffer-file-coding-system 'utf-8-unix)
+  :bind
+  (("M-p" . 'pager-row-up)
+   ("M-n" . 'pager-row-down)
+   ;; Mouse key bindings
+   ("<mouse-3>" .  'mouse-major-mode-menu)
+   ("<S-down-mouse-1>" . 'mouse-save-then-kill)
+   ("<C-down-mouse-3>" . 'mouse-appearance-menu))
   :delight eldoc-mode)
 
 ;; (setq url-gateway-method 'socks)
@@ -405,31 +412,19 @@ directories."
 
 ;;(require 'pager)
 
-;; (global-set-key (kbd "M-/") 'hippie-expand)
-
-
 ;; (use-package youdao-dictionary
 ;;   :config
 ;;   (global-set-key (kbd "C-c d") 'youdao-dictionary-search-at-point+))
 
 ;; (global-set-key (kbd "<return>") 'newline-and-indent)
 
-(global-set-key (kbd "M-p") 'pager-row-up)
-(global-set-key (kbd "M-n") 'pager-row-down)
-
 (use-package expand-region
   :bind
   ("C-=" . er/expand-region))
 
-;; ------------------- Mouse key bindings ---------------
-(global-set-key (kbd "<mouse-3>") 'mouse-major-mode-menu)
-(global-set-key (kbd "<S-down-mouse-1>") 'mouse-save-then-kill)
-(global-set-key (kbd "<C-down-mouse-3>") 'mouse-appearance-menu)
-
 ;; (global-set-key (kbd "<C-tab>") 'ace-window)
-
-
 ;; (evil-mode 1)
+
 
 ;;; --------------------- Mail Settings -------------------
 (setq mu4e-maildir "~/Mail/"
