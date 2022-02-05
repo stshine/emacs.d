@@ -17,6 +17,13 @@
   (comment-region (region-beginning)
 		  (region-end)))
 
+(require 'dash)
+
+
+(defun cache-path (file-path)
+  (let ((cache-dir (locate-user-emacs-file "cache")))
+    (expand-file-name file-path cache-dir)))
+
 
 (defun first-avail-font (&rest fonts)
   "Accept multiple font family names and return the first available one."
