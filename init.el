@@ -8,11 +8,14 @@
 
 ;; (setq url-proxy-services '(("http" . "127.0.0.1:8087")))
 
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+(require 'package)
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-                         ("melpa" . "http://melpa.org/packages/")))
-(setq package-enable-at-startup nil)
-(setq package-gnupghome-dir "~/.emacs.d/elpa/gnupg")
+                         ("melpa" . "https://melpa.org/packages/")))
+(setq package-archive-priorities '(("gnu" . 10)
+                                   ("nongnu" . 5)
+                                   ("melpa" . 0)))
+(setq package-gnupghome-dir (locate-user-emacs-file "elpa/gnupg/"))
 (package-initialize)
 
 ;; Ensure use-package is available.
