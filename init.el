@@ -109,7 +109,7 @@
   ;; don't clobber symlinks
   (backup-by-copying t)
   ;; don't litter my fs tree
-  (backup-directory-alist `(("." . ,(locate-user-emacs-file "cache/backup/"))))
+  (backup-directory-alist `(("." . ,(cache-path "backup/"))))
   (auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
   (delete-old-versions t)
   (kept-new-versions 3)
@@ -169,16 +169,14 @@
   :delight auto-revert-mode)
 
 
-(setq cache-dir (expand-file-name "cache" user-emacs-directory))
-
 (use-package bookmark
   :custom
   (bookmark-save-flag 1)
-  (bookmark-default-file (expand-file-name "bookmarks" cache-dir)))
+  (bookmark-default-file (cache-path "bookmarks")))
 
 (use-package recentf
   :custom
-  (recentf-save-file (locate-user-emacs-file "cache/recentf"))
+  (recentf-save-file (cache-path "recentf"))
   (recentf-max-saved-items 1500)
   (recentf-max-menu-items 15)
   (recentf-auto-cleanup 600)
@@ -187,20 +185,22 @@
   (recentf-mode 1))
 
 
-(let ((session-dir "~/.emacs.d/.session/"))
+(eval-after-load 'x-win
+  (let ((session-dir (cache-path "emacs-session/")))
     `(progn
        (make-directory ,session-dir t)
        (defun emacs-session-filename (session-id)
          "Construct a filename to save the session in based on SESSION-ID.
 This function overrides the one on `x-win' to use `no-littering'
 directories."
-         (expand-file-name session-id ,session-dir))))
+             (expand-file-name session-id ,session-dir)))))
 
 
 ;; saveplace remembers your location in a file when saving files
 (use-package saveplace
+  :custom
+  (save-place-file (cache-path "saveplace"))
   :config
-  (setq save-place-file (expand-file-name "saveplace" cache-dir))
   ;; activate it for all buffers
   (save-place-mode 1))
 
@@ -212,7 +212,7 @@ directories."
   ;; save every minute
   (savehist-autosave-interval 60)
   ;; keep the home clean
-  (savehist-file (expand-file-name "savehist" cache-dir))
+  (savehist-file (cache-path "savehist"))
   :config
   (savehist-mode 1))
 
@@ -241,9 +241,9 @@ directories."
   ;; scroll 8 lines other window using M-<next>/M-<prior>
   (helm-scroll-amount                    8)
   (helm-ff-file-name-history-use-recentf t)
-  (helm-adaptive-history-file (expand-file-name "helm-adaptive-history" cache-dir))
+  (helm-adaptive-history-file (cache-path "helm-adaptive-history"))
   :custom-face
-  ;; Set the face of diretories for `.' and `..'
+  ;; Set the face of diretories for '.' and '..'
   (helm-ff-dotted-directory ((t (:foreground nil :background nil :inherit 'helm-ff-directory))))
   :config
   (helm-autoresize-mode t)
@@ -303,8 +303,6 @@ directories."
 ;; (define-key helm-grep-mode-map (kbd "p")  'helm-grep-mode-jump-other-window-backward)
 
 
-;; (set-face-attribute 'helm-source-header nil :height 0.1)
-
 ;; (add-to-list 'helm-boring-file-regexp-list "\\.\\{1,2\\}\\'")
 ;; (setq helm-ff-skip-boring-files t)
 
@@ -335,8 +333,8 @@ directories."
 ;;; intergrate projectile with helm.
 (use-package helm-projectile
   :custom
-  (projectile-cache-file (expand-file-name "projectile.cache" cache-dir))
-  (projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" cache-dir))
+  (projectile-cache-file (cache-path "projectile.cache"))
+  (projectile-known-projects-file (cache-path "projectile-bookmarks.eld"))
   :config
   (setq projectile-mode-line-function
         (lambda ()
@@ -379,7 +377,7 @@ directories."
 
 (use-package magit
   :custom
-  (transient-history-file (expand-file-name "transient/history.el" cache-dir))
+  (transient-history-file (cache-path "transient/history.el"))
   :config
   (setq magit-repository-directories '(("~/Programs/" . 1)))
   :bind
@@ -614,7 +612,7 @@ directories."
 
 (use-package lsp-treemacs
   :custom
-  (treemacs-persist-file (expand-file-name "treemacs-persist" cache-dir))
+  (treemacs-persist-file (cache-path "treemacs-persist"))
   :config
   (lsp-treemacs-sync-mode 1)
   :hook
@@ -811,7 +809,7 @@ directories."
   (org-clock-out-when-done t)
   ;; Save the running clock and all clock history when exiting Emacs, load it on startup
   (org-clock-persist t)
-  (org-clock-persist-file (expand-file-name "org-clock-save.el" cache-dir))
+  (org-clock-persist-file (cache-path "org-clock-save.el"))
   ;; Do not prompt to resume an active clock
   (org-clock-persist-query-resume nil)
   ;; Change tasks to NEXT when clocking in
@@ -851,8 +849,8 @@ directories."
 (use-package org-roam
   :custom
   (org-roam-directory "~/Documents/org-roam/")
-  (org-roam-db-location (expand-file-name "org-roam.db" cache-dir))
-  (org-roam-complete-everywhere t)
+  (org-roam-db-location (cache-path "org-roam.db"))
+  (org-roam-completion-everywhere t)
   :config
   (org-roam-setup))
 
@@ -924,7 +922,7 @@ directories."
   ;;                :file "~/Documents/pyim-bigdict.pyim"
   ;;                :coding utf-8-unix)))
   :custom
-  (pyim-dcache-directory (expand-file-name "pyim/dcache" cache-dir))
+  (pyim-dcache-directory (cache-path "pyim/dcache"))
   :config
   (use-package pyim-basedict)
   (pyim-basedict-enable)
