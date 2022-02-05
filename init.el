@@ -358,21 +358,19 @@ directories."
   (set-face-foreground 'parenthesis "DimGrey")
   (global-paren-face-mode 1))
 
-
-(use-package smartparens-config
-  :after paren-face
-  :ensure smartparens
-  :config
-  (smartparens-global-mode 1)
-  (show-smartparens-global-mode 1)
+(use-package smartparens
   :hook
   (smartparens-mode . (lambda ()
                         (when (member major-mode sp-lisp-modes)
-                          (smartparens-strict-mode 1)
-                          (sp-use-paredit-bindings))))
+                          ;; (set-face-foreground 'sp-show-pair-enclosing "LightGray")
+                          (smartparens-strict-mode 1))))
+  :config
+  (require 'smartparens-config)
+  (dolist (it sp-paredit-bindings)
+    (define-key smartparens-strict-mode-map (read-kbd-macro (car it)) (cdr it)))
+  (smartparens-global-mode 1)
+  (show-smartparens-global-mode 1)
   :delight smartparens-mode)
-  ;; (-each sp-lisp-modes (lambda (mode)
-                         ;; (set-face-foreground 'sp-pair-overlay-face "DimGrey")))
 
 
 (use-package magit
